@@ -81,13 +81,9 @@ export const projects: Project[] = [
     description:
       'Plataforma para gestionar usuarios, clientes y puestos de trabajo. Programa turnos y rondas, controla armas y mapas, y guarda historiales, alertas, nómina, métricas, copias de seguridad y bitácora.',
     stack: ['Spring Boot', 'Java', 'Bootstrap', 'Thymeleaf', 'MongoDB', 'WebSocket', 'Leaflet', 'jQuery'],
-    image: '/projects/sistema-vigilancia/login.webp',
+    image: '/projects/sistema-vigilancia/mapa.webp',
     links: [],
     gallery: [
-      {
-        src: '/projects/sistema-vigilancia/login.webp',
-        caption: 'Inicio de sesión con recuperación de contraseña. La sesión se maneja con JSON Web Token.',
-      },
       {
         src: '/projects/sistema-vigilancia/usuarios.webp',
         caption:
@@ -134,10 +130,9 @@ export const projects: Project[] = [
     description:
       'App móvil multiplataforma para la gestión operativa de vigilantes. Permite consultar y hacer transferencias de turno, ver la programación asignada, registrar minutas de novedades y apoyar las revistas de puestos que hacen los supervisores.',
     stack: ['Android Studio', 'Kotlin Multiplatform'],
-    image: '/projects/app-vigilantes/login.webp',
+    image: '/projects/app-vigilantes/inicio.webp',
     links: [],
     gallery: [
-      { src: '/projects/app-vigilantes/login.webp', caption: 'Inicio de sesión con recuperación de contraseña para entrar a la app.' },
       {
         src: '/projects/app-vigilantes/inicio.webp',
         caption:
