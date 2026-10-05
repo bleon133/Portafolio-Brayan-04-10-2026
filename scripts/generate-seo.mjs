@@ -10,7 +10,7 @@
  * Lee los datos directamente de src/data (se ejecuta con tsx, que entiende TypeScript),
  * por eso esos archivos solo contienen datos y `import type`.
  *
- * URL del sitio: SITE_URL, o el dominio de producción que entrega Vercel, o el valor por defecto.
+ * URL del sitio: la variable SITE_URL o, si no existe, el dominio definitivo (DEFAULT_URL).
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -23,11 +23,10 @@ import { siteConfig } from '../src/data/site.ts'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
 
-const DEFAULT_URL = 'https://portafolio-brayan-leon.vercel.app'
-const siteUrl = (
-  process.env.SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : DEFAULT_URL)
-).replace(/\/$/, '')
+// Dominio definitivo del portafolio. Las vistas previas (preview) de Vercel también apuntan aquí
+// como canonical, para que Google solo indexe el dominio propio y no las direcciones .vercel.app.
+const DEFAULT_URL = 'https://brayandeveloper.online'
+const siteUrl = (process.env.SITE_URL || DEFAULT_URL).replace(/\/$/, '')
 
 const defaultImage = '/og-image.png'
 

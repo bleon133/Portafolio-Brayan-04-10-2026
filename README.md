@@ -102,13 +102,13 @@ Accesibilidad: foco visible, contraste mínimo 4.5:1, objetivos táctiles de 44 
 - crea un `index.html` por ruta con título, descripción, canonical, Open Graph, Twitter y datos estructurados (JSON-LD) propios, para que LinkedIn, WhatsApp y X muestren la vista previa correcta aunque no ejecuten JavaScript;
 - genera `sitemap.xml` y `robots.txt` con la dirección real del sitio.
 
-La dirección sale de la variable `SITE_URL`. Si no existe, usa `VERCEL_PROJECT_PRODUCTION_URL` (que entrega Vercel) y, como último recurso, un valor por defecto en el script. El PDF del CV se sirve con `noindex` para que no aparezca en buscadores.
+La dirección sale de la variable `SITE_URL`. Si no existe, usa el dominio definitivo `https://brayandeveloper.online`, definido en el script. Las vistas previas de Vercel también apuntan a ese dominio como canonical, así Google solo indexa la dirección propia. El PDF del CV se sirve con `noindex` para que no aparezca en buscadores.
 
 ## Despliegue en Vercel
 
 1. Importa el repositorio en Vercel. Detecta Vite: comando `npm run build`, carpeta de salida `dist`.
 2. En **Settings → Deployment Protection**, deja la protección solo para *Preview*. Si producción exige iniciar sesión, Google no puede indexar el sitio.
-3. Opcional: define `SITE_URL` en *Production* si usarás un dominio propio.
+3. Opcional: define `SITE_URL` si algún día cambias de dominio (también se puede editar `DEFAULT_URL` en `scripts/generate-seo.mjs`).
 4. Después del primer despliegue:
    - abre `/sitemap.xml` y `/robots.txt` para comprobar la dirección;
    - da de alta el sitio en Google Search Console y envía el sitemap;
