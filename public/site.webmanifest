@@ -1,0 +1,14 @@
+{
+  "name": "Brayan Steven León Martinez | Portafolio",
+  "short_name": "Brayan León",
+  "description": "Portafolio de Brayan Steven León Martinez, estudiante de Ingeniería de Sistemas.",
+  "lang": "es",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0e27",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

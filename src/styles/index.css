@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens del sistema de diseño "Azul sobrio".
+ * Fuente de verdad: design-system/portafolio/MASTER.md
+ */
+@theme {
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+
+  /* Superficies: blanco y una sola familia azul (ver design-system/portafolio/MASTER.md) */
+  --color-background: #ffffff;
+  --color-surface: #f4f7fc;
+  --color-elevated: #e7edf7;
+  --color-border: #dde5f2;
+  --color-ink: #0a0e27;
+
+  /* Pasteles: hielo para tarjetas, niebla para hover y formas */
+  --color-sky: #e4eeff;
+  --color-fog: #c9dbff;
+
+  /* Texto */
+  --color-foreground: #0a0e27;
+  --color-muted: #475569;
+
+  /* Acento: accent para fondos (texto blanco encima), accent-soft para texto y enlaces sobre claro */
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-soft: #1d4ed8;
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-tight;
+    line-height: 1.15;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-soft;
+  }
+
+  button,
+  a,
+  [role='button'] {
+    @apply cursor-pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
