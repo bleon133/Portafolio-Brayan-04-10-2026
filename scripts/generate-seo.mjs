@@ -7,7 +7,7 @@
  * Así los rastreadores que no ejecutan JavaScript (LinkedIn, WhatsApp, X...)
  * ven la información correcta de cada página.
  *
- * Lee los datos directamente de src/data (Node 22 ejecuta TypeScript con tipos borrados),
+ * Lee los datos directamente de src/data (se ejecuta con tsx, que entiende TypeScript),
  * por eso esos archivos solo contienen datos y `import type`.
  *
  * URL del sitio: SITE_URL, o el dominio de producción que entrega Vercel, o el valor por defecto.
@@ -159,10 +159,15 @@ function headBlock({ route, title, description, image, graph }) {
     `<meta property="og:description" content="${escapeHtml(description)}" />`,
     `<meta property="og:url" content="${url}" />`,
     `<meta property="og:image" content="${imageUrl}" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(title)}" />`,
+    ...(image === defaultImage
+      ? [`<meta property="og:image:width" content="1200" />`, `<meta property="og:image:height" content="630" />`]
+      : []),
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
     `<meta name="twitter:image" content="${imageUrl}" />`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(title)}" />`,
     `<script type="application/ld+json">${jsonLd.replace(/</g, '\\u003c')}</script>`,
   ]
     .map((line) => `    ${line}`)

@@ -108,9 +108,14 @@ export function Footer() {
         </motion.p>
 
         <div className="mt-6 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center">
-          <p>
-            © {currentYear} {siteConfig.name}. Hecho con React, Tailwind y motion.
-          </p>
+          <div>
+            <p>
+              © {currentYear} {siteConfig.name}. Hecho con React, Tailwind y motion.
+            </p>
+            <p className="mt-1">
+              Este sitio mide visitas de forma anónima con Vercel Analytics, sin cookies.
+            </p>
+          </div>
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

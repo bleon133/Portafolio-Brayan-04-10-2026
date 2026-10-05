@@ -5,17 +5,19 @@
   "description": "Portafolio profesional de Brayan Steven León Martinez, estudiante de Ingeniería de Sistemas.",
   "author": "Brayan Steven León Martinez",
   "engines": {
-    "node": ">=22.18"
+    "node": ">=22.12"
   },
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-seo.mjs",
+    "build": "tsc -b && vite build && tsx scripts/generate-seo.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
     "lucide-react": "^1.52.0",
@@ -34,6 +36,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }
