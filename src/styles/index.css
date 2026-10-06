@@ -1,34 +1,36 @@
 @import 'tailwindcss';
 
 /*
- * Tokens del sistema de diseño "Azul sobrio".
- * Fuente de verdad: design-system/portafolio/MASTER.md
+ * Tokens Apple-style. Fuente de verdad: DESIGN.md (repo root).
  */
 @theme {
-  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Superficies: blanco y una sola familia azul (ver design-system/portafolio/MASTER.md) */
   --color-background: #ffffff;
-  --color-surface: #f4f7fc;
-  --color-elevated: #e7edf7;
-  --color-border: #dde5f2;
-  --color-ink: #0a0e27;
+  --color-surface: #f5f5f7;
+  --color-elevated: #fafafc;
+  --color-border: #d6d6d6;
+  --color-control: #e6e6e8;
+  --color-ink: #1d1d1f;
+  --color-foreground: #1d1d1f;
+  --color-muted: #707070;
+  --color-steel: #86868b;
+  --color-accent: #0071e3;
+  --color-accent-hover: #0068d6;
+  --color-accent-soft: #0066cc;
+  --color-launch: #b64400;
+  --color-sky: #f5f5f7;
+  --color-fog: #e6e6e8;
 
-  /* Pasteles: hielo para tarjetas, niebla para hover y formas */
-  --color-sky: #e4eeff;
-  --color-fog: #c9dbff;
+  --radius-card: 28px;
+  --radius-nav: 20px;
+  --radius-pill: 9999px;
 
-  /* Texto */
-  --color-foreground: #0a0e27;
-  --color-muted: #475569;
+  --shadow-subtle: rgb(230, 230, 232) 0px 0px 0px 1px;
 
-  /* Acento: accent para fondos (texto blanco encima), accent-soft para texto y enlaces sobre claro */
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-soft: #1d4ed8;
-
-  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee: marquee 80s linear infinite;
   @keyframes marquee {
     to {
       transform: translateX(-50%);
@@ -45,6 +47,7 @@
     @apply bg-background font-sans text-foreground antialiased;
     font-size: 1rem;
     line-height: 1.6;
+    letter-spacing: -0.01em;
   }
 
   h1,
