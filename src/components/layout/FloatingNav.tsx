@@ -27,7 +27,7 @@ export function FloatingNav() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-4 top-4 z-30 mx-auto flex max-w-fit items-center gap-1 rounded-full border border-border bg-background/85 p-1.5 shadow-lg shadow-ink/10 backdrop-blur"
+        className="fixed inset-x-4 top-4 z-30 mx-auto flex max-w-fit items-center gap-1 rounded-nav border border-border bg-background/85 p-1.5 backdrop-blur"
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}

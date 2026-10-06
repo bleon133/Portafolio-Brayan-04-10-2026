@@ -16,7 +16,7 @@ export function ProjectCard({ project }: { project: Project }) {
             En desarrollo
           </span>
         )}
-        <div className="overflow-hidden rounded-2xl shadow-lg shadow-ink/10">
+        <div className="overflow-hidden rounded-card border border-border">
           <ProjectCover
             project={project}
             className="transition-transform duration-500 ease-out group-hover:scale-105"

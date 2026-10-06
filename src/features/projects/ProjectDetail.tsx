@@ -81,7 +81,7 @@ export function ProjectDetail({ project, next }: ProjectDetailProps) {
           {hasGallery ? (
             <ProjectGallery images={project.gallery!} title={project.title} />
           ) : (
-            <div ref={imageRef} className="overflow-hidden rounded-3xl bg-background shadow-xl shadow-ink/15">
+            <div ref={imageRef} className="overflow-hidden rounded-card border border-border bg-background">
               <motion.img
                 src={project.image}
                 alt={`Captura de ${project.title}`}
