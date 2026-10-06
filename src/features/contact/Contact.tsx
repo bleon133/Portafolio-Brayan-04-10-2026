@@ -1,9 +1,6 @@
 import { ArrowUpRight, Check, Copy, Download, Mail } from 'lucide-react'
-import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import Magnet from '@/components/bits/Magnet'
-import SplitText from '@/components/bits/SplitText'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons'
@@ -14,9 +11,6 @@ const profiles = [
   { label: 'LinkedIn', handle: 'Brayan Steven León', href: siteConfig.linkedin, Icon: LinkedinIcon },
   { label: 'GitHub', handle: `@${siteConfig.githubUser}`, href: siteConfig.github, Icon: GithubIcon },
 ]
-
-const secondaryButton =
-  'inline-flex min-h-14 items-center gap-2 rounded-full border border-white/50 px-6 font-semibold transition-colors duration-200 hover:bg-white/15'
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
@@ -34,66 +28,55 @@ export function Contact() {
   return (
     <Section id="contacto" titleId="titulo-contacto">
       <Container>
-        <div className="relative overflow-hidden rounded-[2rem] bg-accent px-6 py-16 text-white sm:px-14 sm:py-24">
-          <motion.div
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-24 -right-24 size-80 rounded-full bg-white/10"
-            animate={{ scale: [1, 1.12, 1] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-16 left-1/3 size-48 rounded-full bg-white/10"
-            animate={{ y: [0, -16, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
-          <p className="relative text-sm font-medium tracking-widest uppercase">Contacto</p>
-          <SplitText
-            tag="h2"
-            id="titulo-contacto"
-            text="¿Trabajamos juntos? Busco prácticas 2027-1."
-            splitType="words"
-            textAlign="left"
-            delay={70}
-            duration={0.8}
-            rootMargin="-60px"
-            className="relative mt-4 max-w-4xl text-4xl font-bold sm:text-6xl"
-          />
+        <div className="relative overflow-hidden rounded-card border border-border bg-background px-6 py-14 sm:px-14">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Contacto</p>
+            <h2
+              id="titulo-contacto"
+              className="mt-3 max-w-3xl font-display text-[40px] font-semibold leading-none text-ink text-balance"
+            >
+              ¿Trabajamos juntos? Busco prácticas 2027-1.
+            </h2>
+          </Reveal>
           <Reveal delay={0.1}>
-            <p className="relative mt-6 max-w-xl text-lg text-white">
+            <p className="mt-4 max-w-xl text-[17px] leading-[1.47] tracking-[-0.022em] text-muted">
               Si tu equipo necesita a alguien que construya web, móvil o videojuegos, escríbeme por
               correo o LinkedIn, o revisa mi código en GitHub.
             </p>
           </Reveal>
 
-          <div className="relative mt-10 flex flex-wrap items-center gap-3">
+          <div className="relative mt-8 flex flex-wrap items-center gap-3">
             {siteConfig.email && (
-              <Magnet padding={50} magnetStrength={5}>
-                <button
-                  type="button"
-                  onClick={copyEmail}
-                  className="inline-flex min-h-14 items-center gap-3 rounded-full bg-white px-7 text-lg font-semibold text-ink transition-transform duration-200 hover:scale-[1.02]"
-                >
-                  {siteConfig.email}
-                  {copied ? (
-                    <Check className="size-5 text-accent" aria-hidden="true" />
-                  ) : (
-                    <Copy className="size-5" aria-hidden="true" />
-                  )}
-                  <span className="sr-only">Copiar correo</span>
-                </button>
-              </Magnet>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex min-h-11 items-center gap-2 rounded-pill bg-accent px-6 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
+              >
+                {siteConfig.email}
+                {copied ? (
+                  <Check className="size-4 text-white" aria-hidden="true" />
+                ) : (
+                  <Copy className="size-4" aria-hidden="true" />
+                )}
+                <span className="sr-only">Copiar correo</span>
+              </button>
             )}
             {siteConfig.email && (
-              <a href={`mailto:${siteConfig.email}`} className={secondaryButton}>
-                <Mail className="size-5" aria-hidden="true" />
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="inline-flex min-h-11 items-center gap-2 rounded-pill border border-steel px-6 text-sm font-medium text-ink transition-colors duration-200 hover:bg-elevated"
+              >
+                <Mail className="size-4" aria-hidden="true" />
                 Abrir en mi correo
               </a>
             )}
             {siteConfig.cvUrl && (
-              <a href={siteConfig.cvUrl} download={siteConfig.cvFileName} className={secondaryButton}>
-                <Download className="size-5" aria-hidden="true" />
+              <a
+                href={siteConfig.cvUrl}
+                download={siteConfig.cvFileName}
+                className="inline-flex min-h-11 items-center gap-2 rounded-pill border border-steel px-6 text-sm font-medium text-ink transition-colors duration-200 hover:bg-elevated"
+              >
+                <Download className="size-4" aria-hidden="true" />
                 Descargar CV
               </a>
             )}
@@ -102,7 +85,7 @@ export function Contact() {
             </span>
           </div>
 
-          <ul className="relative mt-10 grid gap-4 sm:grid-cols-2">
+          <ul className="relative mt-8 grid gap-4 sm:grid-cols-2">
             {profiles.map(({ label, handle, href, Icon }, index) => (
               <li key={label}>
                 <Reveal delay={0.15 + index * 0.1}>
@@ -110,7 +93,7 @@ export function Contact() {
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex min-h-20 items-center justify-between gap-4 rounded-2xl bg-white/10 px-6 py-4 transition-colors duration-200 hover:bg-white hover:text-ink"
+                    className="flex min-h-20 items-center justify-between gap-4 rounded-card border border-border bg-background px-6 py-4 text-ink transition-colors duration-200 hover:border-steel"
                   >
                     <span className="flex items-center gap-4">
                       <Icon className="size-6" />
