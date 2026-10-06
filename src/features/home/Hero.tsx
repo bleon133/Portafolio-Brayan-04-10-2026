@@ -1,24 +1,18 @@
-import { ArrowRight, Download } from 'lucide-react'
-import { motion } from 'motion/react'
-import { lazy, Suspense } from 'react'
-
-import Magnet from '@/components/bits/Magnet'
-import SplitText from '@/components/bits/SplitText'
-import { Container } from '@/components/layout/Container'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons'
-import { Marquee } from '@/components/ui/Marquee'
-import { Spotlight } from '@/components/ui/Spotlight'
 import { experiences } from '@/data/experience'
 import { projects } from '@/data/projects'
 import { siteConfig } from '@/data/site'
-import { marqueeItems } from '@/data/stack'
 import { formatDuration, monthsBetween } from '@/lib/collections'
 import { useIntroDone } from '@/lib/intro'
+import { motion, useReducedMotion } from 'motion/react'
 
-// El fondo de puntos es decorativo y arrastra GSAP: se carga después del primer pintado.
-const DotGrid = lazy(() => import('@/components/bits/DotGrid'))
+const titleClass =
+  'font-display text-[clamp(2.75rem,6.5vw,5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-ink'
+const kickerClass = 'font-display text-[21px] font-semibold tracking-[0.01em] text-ink'
+const descClass = 'mx-auto mt-6 max-w-2xl text-[17px] leading-[1.47] tracking-[-0.022em] text-muted'
+const pillBase = 'min-h-11 rounded-pill px-6 text-sm font-medium'
 
-const titleClass = 'max-w-3xl text-5xl font-bold sm:text-6xl lg:text-8xl'
+// --- data ---
 
 const devsTechnology = experiences.find((item) => item.id === 'devs-technology')
 const quickFacts = [
@@ -34,114 +28,99 @@ const quickFacts = [
   { value: `${projects.length} proyectos`, label: 'web, móviles, redes y videojuegos' },
 ]
 
+const techStrip =
+  'Java · Spring Boot · React · .NET · TypeScript · MongoDB · PostgreSQL · Docker · Git'
+
+// --- component ---
+
 export function Hero() {
   const ready = useIntroDone()
+  const reduced = useReducedMotion()
+
+  // Entrada suave tras el loader; sin movimiento si el usuario lo pide.
   const reveal = (delay: number) => ({
-    initial: { opacity: 0, y: 16 },
-    animate: ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
-    transition: { duration: 0.6, delay },
+    initial: reduced ? { opacity: 0 } : { opacity: 0, y: 12 },
+    animate: ready ? { opacity: 1, y: 0 } : reduced ? { opacity: 0 } : { opacity: 0, y: 12 },
+    transition: {
+      duration: reduced ? 0.2 : 0.5,
+      delay: delay * 0.08,
+      ease: [0.23, 1, 0.32, 1] as [number, number, number, number],
+    },
   })
 
   return (
     <section
       id="inicio"
-      className="relative isolate flex min-h-dvh flex-col justify-center overflow-hidden pt-28"
+      className="relative flex min-h-dvh flex-col justify-center overflow-hidden pt-28 pb-16"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 mask-[radial-gradient(ellipse_at_center,black_35%,transparent_80%)]"
-      >
-        <Suspense fallback={null}>
-          <DotGrid
-            dotSize={3}
-            gap={28}
-            baseColor="#cbd5e1"
-            activeColor="#2563eb"
-            proximity={140}
-            shockRadius={200}
-            shockStrength={4}
-          />
-        </Suspense>
-      </div>
-      <Spotlight />
-
-      {/* Bloques de color decorativos */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
-        <motion.div
-          className="absolute top-[22%] right-[8%] size-72 rounded-full bg-fog"
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute top-[48%] right-[18%] size-44 rotate-12 rounded-4xl bg-sky"
-          animate={{ y: [0, 12, 0], rotate: [12, 6, 12] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute top-[38%] right-[5%] size-16 rounded-full bg-accent"
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </div>
-
-      <Container className="relative flex flex-1 flex-col justify-center py-16">
-        {ready ? (
-          <SplitText
-            tag="h1"
-            text={siteConfig.name}
-            splitType="words"
-            textAlign="left"
-            delay={90}
-            duration={0.9}
-            from={{ opacity: 0, y: 36 }}
-            to={{ opacity: 1, y: 0 }}
-            rootMargin="0px"
-            className={titleClass}
-          />
-        ) : (
-          // Reserva el espacio del titular mientras corre el loader.
-          <h1 className={`${titleClass} invisible`}>{siteConfig.name}</h1>
-        )}
-
-        <motion.p className="mt-6 max-w-2xl text-lg text-muted sm:text-xl" {...reveal(0.8)}>
-          {siteConfig.tagline}
+      <div className="mx-auto w-full max-w-5xl px-6 text-center">
+        {/* 1. Kicker */}
+        <motion.p
+          className={kickerClass}
+          {...reveal(0)}
+        >
+          Desarrollador Backend y Fullstack
         </motion.p>
 
-        <motion.div className="mt-10 flex flex-wrap items-center gap-3" {...reveal(1)}>
-          <Magnet padding={60} magnetStrength={4}>
-            <a
-              href="#proyectos"
-              className="group inline-flex min-h-11 items-center gap-2 rounded-lg bg-accent px-5 font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
-            >
-              Ver proyectos
-              <ArrowRight
-                className="size-4 transition-transform duration-200 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </a>
-          </Magnet>
+        {/* 2. Title — two blocks */}
+        <h1 className={`${titleClass} mt-3`}>
+          <motion.span className="block" {...reveal(1)}>
+            Brayan Steven
+          </motion.span>
+          <motion.span className="block" {...reveal(2)}>
+            León Martinez
+          </motion.span>
+        </h1>
+
+        {/* 3. Description */}
+        <motion.p className={descClass} {...reveal(3)}>
+          Construyo aplicaciones web y móviles en producción con Java, Spring Boot, React y .NET.
+        </motion.p>
+
+        {/* 4. Availability */}
+        <motion.p className="mt-4 text-xs font-semibold text-launch" {...reveal(4)}>
+          Disponible para prácticas profesionales 2027-1
+        </motion.p>
+
+        {/* 5. CTA row */}
+        <motion.div
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+          {...reveal(5)}
+        >
+          {/* Filled */}
+          <a
+            href="#proyectos"
+            className={`${pillBase} bg-accent text-white hover:bg-accent-hover`}
+          >
+            Ver proyectos
+          </a>
+
+          {/* Outlined CV */}
           {siteConfig.cvUrl && (
             <a
               href={siteConfig.cvUrl}
               download={siteConfig.cvFileName}
-              className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-foreground/20 px-5 font-medium transition-colors duration-200 hover:bg-elevated"
+              className={`${pillBase} border border-steel text-ink hover:bg-elevated bg-transparent`}
             >
-              <Download className="size-4" aria-hidden="true" />
               Descargar CV
             </a>
           )}
+
+          {/* Link */}
           <a
             href="#contacto"
-            className="inline-flex min-h-11 items-center rounded-lg border border-foreground/20 px-5 font-medium transition-colors duration-200 hover:bg-elevated"
+            className="inline-flex min-h-11 items-center px-2 text-[17px] font-medium text-accent-soft hover:text-ink"
           >
             Contacto
           </a>
+
+          {/* Social icons */}
           <a
             href={siteConfig.github}
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="flex size-11 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-foreground"
+            className="text-muted hover:text-ink px-2"
           >
             <GithubIcon className="size-5" />
           </a>
@@ -150,23 +129,35 @@ export function Hero() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="flex size-11 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-foreground"
+            className="text-muted hover:text-ink px-2"
           >
             <LinkedinIcon className="size-5" />
           </a>
         </motion.div>
 
-        <motion.dl className="mt-12 grid max-w-3xl gap-6 sm:grid-cols-3" {...reveal(1.2)}>
+        {/* 6. Quick facts */}
+        <motion.dl
+          className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-3 sm:divide-x sm:divide-border"
+          {...reveal(6)}
+        >
           {quickFacts.map((fact) => (
-            <div key={fact.label} className="border-l-2 border-accent pl-4">
-              <dt className="font-heading text-xl font-bold">{fact.value}</dt>
-              <dd className="mt-1 text-sm text-muted">{fact.label}</dd>
+            <div key={fact.label} className="text-center">
+              <dt className="font-display text-[21px] font-semibold text-ink">
+                {fact.value}
+              </dt>
+              <dd className="mt-1 text-xs text-muted">{fact.label}</dd>
             </div>
           ))}
         </motion.dl>
-      </Container>
 
-      <Marquee items={marqueeItems} />
+        {/* 7. Tech strip */}
+        <motion.div
+          className="mt-12 border-t border-border pt-8 text-xs uppercase tracking-[0.14em] text-muted"
+          {...reveal(7)}
+        >
+          {techStrip}
+        </motion.div>
+      </div>
     </section>
   )
 }
