@@ -9,20 +9,30 @@ export function Capabilities() {
     <Section id="stack" titleId="titulo-stack" tone="surface">
       <Container>
         <Reveal>
-          <SectionHeading id="titulo-stack" eyebrow="Stack técnico" title="Lo que sé hacer" />
+          <SectionHeading
+            id="titulo-stack"
+            eyebrow="Stack técnico"
+            title="Lo que sé hacer"
+            action={{ label: 'Ver proyectos', to: '/proyectos' }}
+          />
         </Reveal>
-        <ul className="grid gap-5 md:grid-cols-2">
+
+        <ul className="mt-2 grid gap-5 md:grid-cols-2">
           {capabilities.map((capability, index) => (
             <li key={capability.title}>
-              <Reveal delay={index * 0.08} className="h-full">
-                <div className="h-full rounded-3xl bg-sky p-8 lg:p-10">
-                  <h3 className="text-3xl font-semibold">{capability.title}</h3>
-                  <p className="mt-2 text-lg text-foreground/75">{capability.blurb}</p>
-                  <ul className="mt-6 flex flex-wrap gap-2.5">
+              <Reveal delay={index * 0.08}>
+                <div className="flex h-full flex-col rounded-card bg-background p-7 lg:p-8">
+                  <h3 className="font-display text-[24px] font-semibold leading-none text-ink">
+                    {capability.title}
+                  </h3>
+                  <p className="mt-2 text-[17px] leading-[1.24] tracking-[-0.022em] text-muted">
+                    {capability.blurb}
+                  </p>
+                  <ul className="mt-6 flex flex-wrap gap-2">
                     {capability.items.map((item) => (
                       <li
                         key={item}
-                        className="rounded-full bg-background/85 px-4 py-1.5 text-base font-medium"
+                        className="rounded-pill border border-steel px-3.5 py-1.5 text-xs text-ink"
                       >
                         {item}
                       </li>
@@ -33,9 +43,10 @@ export function Capabilities() {
             </li>
           ))}
         </ul>
-        <Reveal delay={0.2}>
-          <p className="mt-8 text-base text-muted">Herramientas y otros lenguajes: {tools.join(' · ')}</p>
-        </Reveal>
+
+        <div className="mt-8 border-t border-border pt-6 text-sm text-muted">
+          Herramientas y otros lenguajes: {tools.join(' · ')}
+        </div>
       </Container>
     </Section>
   )
