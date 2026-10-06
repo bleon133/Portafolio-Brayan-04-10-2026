@@ -11,17 +11,17 @@ interface SectionHeadingProps {
 
 export function SectionHeading({ eyebrow, title, id, action }: SectionHeadingProps) {
   return (
-    <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
+    <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
       <div>
-        <p className="text-sm font-medium tracking-widest text-accent-soft uppercase">{eyebrow}</p>
-        <h2 id={id} className="mt-2 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+        <p className="text-xs font-semibold tracking-[0.12em] text-muted uppercase">{eyebrow}</p>
+        <h2 id={id} className="mt-3 font-display text-4xl font-semibold leading-none text-ink text-balance lg:text-5xl">
           {title}
         </h2>
       </div>
       {action && (
         <Link
           to={action.to}
-          className="group inline-flex min-h-11 items-center gap-2 text-lg font-medium text-accent-soft transition-colors duration-200 hover:text-foreground"
+          className="group inline-flex min-h-11 items-center gap-2 text-[17px] font-medium tracking-[-0.01em] text-accent-soft transition-colors duration-200 hover:text-ink"
         >
           {action.label}
           <ArrowRight
