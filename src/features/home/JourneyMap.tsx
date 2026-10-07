@@ -52,49 +52,52 @@ export function JourneyMap() {
             className="editorial-journey__map relative"
             aria-label="Recorrido del portafolio"
           >
-            {/* Desktop: horizontal connected path */}
+            {/* Desktop (≥768px): 5-column grid, horizontal route, no scroll */}
             <ol
-              className="hidden gap-0 sm:flex sm:items-center sm:overflow-x-auto sm:py-2"
+              className="hidden md:grid md:grid-cols-5 md:items-center md:gap-x-0 md:py-2"
             >
               {navItems.map((item, index) => (
-                <li
+                <div
                   key={item.href}
-                  className="flex items-center"
+                  className="group relative flex flex-col items-center md:px-4"
                 >
-                  {/* Numbered stop */}
+                  {/* Connector line to next stop (desktop) */}
+                  {index < navItems.length - 1 && (
+                    <div
+                      className="absolute bottom-[2.5rem] left-1/2 right-[-50%] top-1/2 h-[1px] bg-[#D7D3CA] -translate-y-1/2 md:block"
+                      aria-hidden="true"
+                    />
+                  )}
+
+                  {/* Circular node marker (always circular) */}
+                  <span
+                    className="relative z-10 mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D7D3CA] bg-[#F3F1EB] text-xs font-mono font-medium text-[#1D1D1B] md:mb-3"
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Stop surface — 2–4px corner, not pill */}
                   <Link
                     to={item.href}
-                    className="group flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#F3F1EB]"
+                    className="relative z-10 flex min-h-[44px] min-w-0 items-center justify-center gap-1.5 rounded-[4px] border border-transparent bg-transparent px-3 py-2 transition-colors hover:border-[#D7D3CA] hover:bg-[#F3F1EB]"
+                    aria-label={item.label}
                   >
-                    <span
-                      className="mr-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#D7D3CA] bg-[#F3F1EB] text-[10px] font-mono font-medium text-[#1D1D1B]"
-                      aria-hidden="true"
-                    >
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                     <span className="whitespace-nowrap text-sm font-medium text-[#1D1D1B] group-hover:text-[#B94E36]">
                       {item.label}
                     </span>
                     <ArrowUpRight
-                      className="ml-1 h-4 w-4 shrink-0 text-[#D7D3CA] transition-colors group-hover:text-[#B94E36]"
+                      className="h-3.5 w-3.5 shrink-0 text-[#D7D3CA] transition-colors group-hover:text-[#B94E36] md:hidden"
                       aria-hidden="true"
                     />
                   </Link>
-
-                  {/* Connector line between stops (desktop) */}
-                  {index < navItems.length - 1 && (
-                    <div
-                      className="mx-0 h-[1px] w-8 shrink-0 bg-[#D7D3CA]"
-                      aria-hidden="true"
-                    />
-                  )}
-                </li>
+                </div>
               ))}
             </ol>
 
-            {/* Mobile: clean vertical path below 768px */}
+            {/* Mobile (<768px): clean vertical path, no horizontal overflow */}
             <ol
-              className="sm:hidden"
+              className="md:hidden"
             >
               {navItems.map((item, index) => (
                 <li
@@ -107,7 +110,7 @@ export function JourneyMap() {
                     aria-hidden="true"
                   />
 
-                  {/* Numbered stop */}
+                  {/* Circular node marker */}
                   <span
                     className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#D7D3CA] bg-[#F3F1EB] text-xs font-mono font-medium text-[#1D1D1B]"
                     aria-hidden="true"
@@ -118,7 +121,8 @@ export function JourneyMap() {
                   {/* Link destination (44px minimum hit area) */}
                   <Link
                     to={item.href}
-                    className="group flex min-h-[44px] min-w-0 flex-1 items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-[#F3F1EB]"
+                    className="group flex min-h-[44px] min-w-0 flex-1 items-center gap-3 rounded-[4px] border border-transparent bg-transparent px-2 py-2 transition-colors hover:border-[#D7D3CA] hover:bg-[#F3F1EB]"
+                    aria-label={item.label}
                   >
                     <span className="text-sm font-medium text-[#1D1D1B] group-hover:text-[#B94E36]">
                       {item.label}
