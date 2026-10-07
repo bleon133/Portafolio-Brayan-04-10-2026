@@ -1,6 +1,5 @@
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
-import { Reveal } from '@/components/ui/Reveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projects } from '@/data/projects'
 import { ProjectCard } from '@/features/projects/ProjectCard'
@@ -12,22 +11,21 @@ export function Projects() {
   return (
     <Section id="proyectos" titleId="titulo-proyectos">
       <Container>
-        <Reveal>
-          <SectionHeading
-            id="titulo-proyectos"
-            eyebrow="Proyectos"
-            title="Cosas que he construido"
-            action={{ label: 'Ver todos', to: '/proyectos' }}
-          />
-        </Reveal>
-        <ul className="grid gap-8 md:grid-cols-2">
-          {featured.map((project, index) => (
-            <li key={project.slug}>
-              <Reveal delay={(index % 2) * 0.1} className="h-full">
+        <SectionHeading
+          id="titulo-proyectos"
+          eyebrow="Proyectos"
+          title="Cosas que he construido"
+          action={{ label: 'Ver todos', to: '/proyectos' }}
+        />
+        <ul className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-[7fr_5fr] md:grid-rows-2 md:gap-y-10">
+          {featured.map((project, index) => {
+            const isLeft = index % 2 === 0
+            return (
+              <li key={project.slug} className={isLeft ? '' : 'md:col-start-2 md:col-span-1'}>
                 <ProjectCard project={project} />
-              </Reveal>
-            </li>
-          ))}
+              </li>
+            )
+          })}
         </ul>
       </Container>
     </Section>

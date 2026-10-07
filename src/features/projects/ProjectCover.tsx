@@ -26,9 +26,7 @@ export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
       role="img"
       aria-label={`Portada de ${project.title}`}
     >
-      <span className="w-fit rounded-full bg-sky px-3 py-1 text-sm font-medium">
-        {project.category}
-      </span>
+      <span className="w-fit text-xs font-medium text-muted">{project.category}</span>
       <span className="font-heading text-3xl leading-tight font-bold sm:text-4xl">{project.title}</span>
     </div>
   )
