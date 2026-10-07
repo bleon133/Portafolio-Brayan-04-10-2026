@@ -1,32 +1,36 @@
 @import 'tailwindcss';
 
 /*
- * Tokens del sistema de diseño "Azul sobrio".
- * Fuente de verdad: design-system/portafolio/MASTER.md
+ * Editorial Neo-Minimal — type system & design tokens
+ * Design contract: /DESIGN.md
  */
+
+/* Local Fontsource imports (no network requests) */
+@import '@fontsource-variable/outfit/index.css';
+@import '@fontsource-variable/dm-sans/index.css';
+@import '@fontsource/ibm-plex-mono/index.css';
+
 @theme {
-  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  /* Typography */
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Superficies: blanco y una sola familia azul (ver design-system/portafolio/MASTER.md) */
-  --color-background: #ffffff;
-  --color-surface: #f4f7fc;
-  --color-elevated: #e7edf7;
-  --color-border: #dde5f2;
-  --color-ink: #0a0e27;
+  /* Surfaces — paper, raised, hairline */
+  --color-background: #F3F1EB;
+  --color-surface: #FAF9F5;
+  --color-elevated: #FAF9F5;
+  --color-border: #D7D3CA;
+  --color-ink: #1D1D1B;
 
-  /* Pasteles: hielo para tarjetas, niebla para hover y formas */
-  --color-sky: #e4eeff;
-  --color-fog: #c9dbff;
+  /* Text */
+  --color-foreground: #1D1D1B;
+  --color-muted: #66645E;
 
-  /* Texto */
-  --color-foreground: #0a0e27;
-  --color-muted: #475569;
-
-  /* Acento: accent para fondos (texto blanco encima), accent-soft para texto y enlaces sobre claro */
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-soft: #1d4ed8;
+  /* Accent — oxidized terracotta (single accent, no blue/purple) */
+  --color-accent: #B94E36;
+  --color-accent-hover: #963B2A;
+  --color-accent-soft: #B94E36;
 
   --animate-marquee: marquee 40s linear infinite;
   @keyframes marquee {
