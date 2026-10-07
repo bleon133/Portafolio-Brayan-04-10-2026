@@ -16,11 +16,13 @@
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Surfaces — paper, raised, hairline */
+  /* Surfaces — paper, raised, hairline, sky, fog */
   --color-background: #F3F1EB;
   --color-surface: #FAF9F5;
   --color-elevated: #FAF9F5;
   --color-border: #D7D3CA;
+  --color-sky: #EFECE4;
+  --color-fog: #E6E0D4;
   --color-ink: #1D1D1B;
 
   /* Text */
