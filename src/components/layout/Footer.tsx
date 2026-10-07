@@ -13,7 +13,7 @@ const footerProjects = projects.filter((project) => project.featured)
 
 export function Footer() {
   return (
-    <footer className="relative bg-paper">
+    <footer className="relative bg-background">
       <Container className="py-20">
         {/* ——— Contact CTA ——— */}
         <div className="mb-16 max-w-2xl">
@@ -22,7 +22,7 @@ export function Footer() {
           </h2>
           <Link
             to="/#contacto"
-            className="mt-6 inline-flex min-h-11 items-center rounded-full bg-accent px-7 font-semibold text-white transition-colors duration-200 hover:bg-accent-hover"
+            className="mt-6 inline-flex min-h-11 items-center rounded-sm bg-accent px-7 font-semibold text-white transition-colors duration-200 hover:bg-accent-hover"
           >
             Enviar un mensaje
           </Link>
