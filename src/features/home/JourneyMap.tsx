@@ -57,14 +57,14 @@ export function JourneyMap() {
               className="hidden md:grid md:grid-cols-5 md:items-center md:gap-x-0 md:py-2"
             >
               {navItems.map((item, index) => (
-                <div
+                <li
                   key={item.href}
                   className="group relative flex flex-col items-center md:px-4"
                 >
-                  {/* Connector line to next stop (desktop) */}
+                  {/* Connector line to next stop (desktop) — through node center */}
                   {index < navItems.length - 1 && (
                     <div
-                      className="absolute bottom-[2.5rem] left-1/2 right-[-50%] top-1/2 h-[1px] bg-[#D7D3CA] -translate-y-1/2 md:block"
+                      className="absolute left-0 top-4 right-0 h-px bg-[#D7D3CA] md:block"
                       aria-hidden="true"
                     />
                   )}
@@ -91,7 +91,7 @@ export function JourneyMap() {
                       aria-hidden="true"
                     />
                   </Link>
-                </div>
+                </li>
               ))}
             </ol>
 
