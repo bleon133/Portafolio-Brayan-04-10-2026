@@ -1,5 +1,5 @@
 import { Menu } from 'lucide-react'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -15,6 +15,7 @@ const sectionIds = [...navItems.map((item) => item.section ?? ''), 'inicio', 'st
 export function FloatingNav() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const reduceMotion = useReducedMotion()
   const isHome = pathname === '/'
   const activeSection = useActiveSection(isHome ? sectionIds : [])
 
@@ -27,14 +28,14 @@ export function FloatingNav() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-30 mx-auto h-[80px] max-w-7xl items-center justify-between px-4 md:flex md:px-8"
+        className="fixed inset-x-0 top-0 z-30 mx-auto flex h-[80px] max-w-7xl items-center justify-between px-4 md:px-8"
         style={{
           background: 'var(--color-background)',
           borderBottom: `1px solid var(--color-border)`,
         }}
-        initial={{ opacity: 0, transform: 'translateY(-8px)' }}
+        initial={reduceMotion ? false : { opacity: 0, transform: 'translateY(-8px)' }}
         animate={{ opacity: 1, transform: 'translateY(0)' }}
-        transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
+        transition={{ duration: reduceMotion ? 0 : 0.4, ease: 'easeOut', delay: reduceMotion ? 0 : 0.2 }}
       >
         {/* Brand — left */}
         <Link
@@ -76,19 +77,17 @@ export function FloatingNav() {
           </ul>
         </nav>
 
-        {/* Mobile: compact brand + 44px menu button */}
-        <div className="flex items-center justify-end gap-3 md:hidden">
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-haspopup="dialog"
-            aria-expanded={menuOpen}
-            aria-label="Abrir menú"
-            className="flex size-11 items-center justify-center rounded border border-border bg-background"
-          >
-            <Menu className="size-5" aria-hidden="true" />
-          </button>
-        </div>
+        {/* Mobile: 44px menu button, always visible */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={menuOpen}
+          aria-label="Abrir menú"
+          className="flex size-11 items-center justify-center rounded border border-border bg-background md:hidden"
+        >
+          <Menu className="size-5" aria-hidden="true" />
+        </button>
       </motion.header>
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
