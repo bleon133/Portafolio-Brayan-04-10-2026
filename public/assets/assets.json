@@ -1,0 +1,18 @@
+{
+  "editorial": [
+    {
+      "path": "public/assets/editorial/hero-artifact.webp",
+      "model": "mcp-tools/Z-Image-Turbo",
+      "seed": 927053,
+      "dimensions": "1536x864",
+      "purpose": "Editorial hero artwork: sculptural computing artifact in paper, graphite, and terracotta tones"
+    },
+    {
+      "path": "public/assets/editorial/journey-map-texture.webp",
+      "model": "mcp-tools/Z-Image-Turbo",
+      "seed": 347724,
+      "dimensions": "1248x832",
+      "purpose": "Editorial paper-and-metal route-map texture behind real portfolio navigation stops"
+    }
+  ]
+}

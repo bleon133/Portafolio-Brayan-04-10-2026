@@ -3,6 +3,7 @@ import { Contact } from '@/features/contact/Contact'
 import { EducationPreview } from '@/features/education/EducationPreview'
 import { ExperiencePreview } from '@/features/experience/ExperiencePreview'
 import { Hero } from '@/features/home/Hero'
+import { JourneyMap } from '@/features/home/JourneyMap'
 import { Projects } from '@/features/projects/Projects'
 import { Capabilities } from '@/features/stack/Capabilities'
 import { pageMeta } from '@/data/seo'
@@ -14,6 +15,7 @@ export function HomePage() {
   return (
     <>
       <Hero />
+      <JourneyMap />
       <About />
       <ExperiencePreview />
       <Capabilities />
