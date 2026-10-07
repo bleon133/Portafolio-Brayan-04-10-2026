@@ -15,6 +15,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/outfit": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
     "@gsap/react": "^2.1.2",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
