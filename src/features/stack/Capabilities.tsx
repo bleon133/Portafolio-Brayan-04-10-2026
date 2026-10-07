@@ -13,31 +13,20 @@ export function Capabilities() {
           id="titulo-stack"
         />
 
-        <div className="grid gap-x-8 gap-y-10 md:grid-cols-[auto_1fr] md:gap-y-12">
-          {capabilities.map((capability, index) => (
-            <div
+        <ul className="divide-y divide-border">
+          {capabilities.map((capability) => (
+            <li
               key={capability.title}
-              className={`${index > 0 ? 'md:col-span-2 md:border-t md:border-border' : ''} md:col-span-2`}
+              className="grid gap-3 md:grid-cols-[minmax(9rem,0.65fr)_1.35fr]"
             >
-              <div className="md:contents">
-                <p className="text-sm font-medium tracking-widest text-accent-soft uppercase md:hidden">
-                  {capability.title}
-                </p>
-
-                <div className="hidden md:block md:pr-8">
-                  <h3 className="text-xl font-semibold">{capability.title}</h3>
-                </div>
-              </div>
-
-              <div className="mt-3 md:mt-0 md:ml-auto">
+              <h3 className="text-xl font-semibold md:py-3 md:pr-8">{capability.title}</h3>
+              <div className="md:pt-3">
                 <p className="text-base text-muted">{capability.blurb}</p>
-                <p className="mt-3 text-base">
-                  {capability.items.join(' · ')}
-                </p>
+                <p className="mt-3 text-base">{capability.items.join(' · ')}</p>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <p className="mt-8 text-base text-muted">
           Herramientas y otros lenguajes: {tools.join(' · ')}
