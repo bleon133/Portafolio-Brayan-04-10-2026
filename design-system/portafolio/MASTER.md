@@ -1,4 +1,6 @@
-# Design System Master — Portafolio
+# Superseded design system
+
+> Replaced for the editorial neo-minimal redesign. The canonical rules are now in [`/DESIGN.md`](../../DESIGN.md). Do not use the blue/cobalt tokens below for new work.
 
 > Si existe `design-system/portafolio/pages/[pagina].md`, sus reglas sobrescriben este archivo.
 
