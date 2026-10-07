@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 
-import { Timeline } from '@/components/ui/Timeline'
 import { companyProjects, experiences } from '@/data/experience'
 import { getProject } from '@/data/projects'
 import { formatPeriod, sortByDateDesc } from '@/lib/collections'
@@ -9,76 +8,131 @@ export function ExperienceTimeline() {
   const items = sortByDateDesc(experiences, (item) => item.start).map((item) => ({
     id: item.id,
     meta: formatPeriod(item.start, item.end),
-    content: (
-      <article className="rounded-3xl border border-border bg-background p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold sm:text-3xl">{item.role}</h2>
-        <p className="mt-1 text-muted">
-          {item.company} · {item.location}
-        </p>
-        <p className="mt-5 max-w-3xl text-lg">{item.summary}</p>
-
-        <h3 className="mt-8 text-sm font-medium tracking-widest text-muted uppercase">Qué hice</h3>
-        <ul className="mt-3 space-y-3">
-          {item.responsibilities.map((line) => (
-            <li key={line} className="flex gap-3">
-              <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
-              {line}
-            </li>
-          ))}
-        </ul>
-
-        {item.environment.length > 0 && (
-          <>
-            <h3 className="mt-8 text-sm font-medium tracking-widest text-muted uppercase">Entorno</h3>
-            <dl className="mt-3 grid gap-4 sm:grid-cols-2">
-              {item.environment.map((group) => (
-                <div key={group.label}>
-                  <dt className="text-sm text-muted">{group.label}</dt>
-                  <dd className="mt-1 flex flex-wrap gap-2">
-                    {group.items.map((tech) => (
-                      <span key={tech} className="rounded-full bg-surface px-3 py-1 text-sm font-medium">
-                        {tech}
-                      </span>
-                    ))}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </>
-        )}
-
-        {companyProjects[item.id] && (
-          <>
-            <h3 className="mt-8 text-sm font-medium tracking-widest text-muted uppercase">
-              Proyectos en esta empresa
-            </h3>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {companyProjects[item.id].map((slug) => {
-                const project = getProject(slug)
-                return project ? (
-                  <li key={slug}>
-                    <Link
-                      to={`/proyectos/${slug}`}
-                      className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm font-medium transition-colors duration-200 hover:bg-surface"
-                    >
-                      {project.title}
-                    </Link>
-                  </li>
-                ) : null
-              })}
-            </ul>
-          </>
-        )}
-
-        {item.reference && (
-          <figure className="mt-8 rounded-2xl bg-sky p-5">
-            <blockquote className="text-lg font-medium">«{item.reference.quote}»</blockquote>
-            <figcaption className="mt-2 text-sm text-foreground/75">{item.reference.source}</figcaption>
-          </figure>
-        )}
-      </article>
-    ),
+    data: item,
   }))
 
-  return <Timeline items={items} />
+  return (
+    <ol className="relative">
+      {/* Timeline rail */}
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-0 bottom-0 w-px bg-border sm:left-4 md:left-8"
+      />
+
+      {items.map((entry) => {
+        const item = entry.data
+        const projects = companyProjects[item.id]
+          ? companyProjects[item.id].map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => !!p)
+          : []
+
+        return (
+          <li
+            key={item.id}
+            className="relative border-t border-border last:border-b-0 sm:grid sm:grid-cols-[140px_1fr] sm:gap-4 sm:pl-0"
+          >
+            {/* Marker dot on the rail */}
+            <span
+              aria-hidden="true"
+              className="absolute -left-[1px] top-2 size-2 rounded-full border border-accent bg-background sm:-left-[144px] md:-left-[148px]"
+            />
+
+            {/* Meta / date column (desktop) */}
+            <time
+              className="pt-3 text-sm font-medium text-accent-soft sm:sticky sm:top-0 sm:py-6 sm:text-right"
+              dateTime={item.start}
+            >
+              {entry.meta}
+            </time>
+
+            {/* Content column */}
+            <div className="pb-8 pt-4 sm:py-6">
+              {/* Role + company/location */}
+              <header>
+                <h2 className="text-xl font-semibold sm:text-2xl">{item.role}</h2>
+                <p className="mt-1 text-sm text-muted sm:text-base">
+                  {item.company} · {item.location}
+                </p>
+              </header>
+
+              {/* Summary */}
+              <p className="mt-4 max-w-2xl text-base sm:text-lg">{item.summary}</p>
+
+              {/* Responsibilities */}
+              {item.responsibilities.length > 0 && (
+                <>
+                  <h3 className="mt-7 text-xs font-semibold tracking-widest text-muted uppercase">
+                    Qué hice
+                  </h3>
+                  <ul className="mt-3 space-y-2">
+                    {item.responsibilities.map((line) => (
+                      <li key={line} className="flex gap-2 text-base">
+                        <span aria-hidden="true" className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent" />
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {/* Environment */}
+              {item.environment.length > 0 && (
+                <>
+                  <h3 className="mt-7 text-xs font-semibold tracking-widest text-muted uppercase">
+                    Entorno
+                  </h3>
+                  <dl className="mt-3 grid gap-4 sm:grid-cols-2">
+                    {item.environment.map((group) => (
+                      <div key={group.label}>
+                        <dt className="text-sm text-muted">{group.label}</dt>
+                        <dd className="mt-1 flex flex-wrap gap-1.5">
+                          {group.items.map((tech) => (
+                            <span key={tech} className="text-sm text-foreground">
+                              {tech}
+                            </span>
+                          ))}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </>
+              )}
+
+              {/* Related projects */}
+              {projects.length > 0 && (
+                <>
+                  <h3 className="mt-7 text-xs font-semibold tracking-widest text-muted uppercase">
+                    Proyectos en esta empresa
+                  </h3>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {projects.map((project) => (
+                      <li key={project.slug}>
+                        <Link
+                          to={`/proyectos/${project.slug}`}
+                          className="inline-flex h-11 items-center border-b border-foreground/25 px-1 text-sm font-medium transition-colors hover:border-accent"
+                        >
+                          {project.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {/* Reference / quote */}
+              {item.reference && (
+                <figure className="mt-7 border-l-2 border-accent/40 pl-4">
+                  <blockquote className="text-base italic">
+                    «{item.reference.quote}»
+                  </blockquote>
+                  <figcaption className="mt-1.5 text-sm text-foreground/70">
+                    — {item.reference.source}
+                  </figcaption>
+                </figure>
+              )}
+            </div>
+          </li>
+        )
+      })}
+    </ol>
+  )
 }
