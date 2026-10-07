@@ -1,9 +1,7 @@
 import { ArrowRight, Download } from 'lucide-react'
-import { Suspense } from 'react'
 
 import Magnet from '@/components/bits/Magnet'
 import { Container } from '@/components/layout/Container'
-import { GithubIcon, LinkedinIcon } from '@/components/ui/icons'
 import { siteConfig } from '@/data/site'
 
 // ---------------------------------------------------------------------------
@@ -55,62 +53,21 @@ export function Hero() {
                   Descargar CV
                 </a>
               )}
-              <a
-                href="#contacto"
-                className="inline-flex min-h-11 items-center rounded-lg border border-foreground/20 px-5 font-medium transition-colors duration-200 hover:bg-elevated"
-              >
-                Contacto
-              </a>
-              <a
-                href={siteConfig.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                className="flex size-11 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-foreground"
-              >
-                <GithubIcon className="size-5" />
-              </a>
-              <a
-                href={siteConfig.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="flex size-11 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-foreground"
-              >
-                <LinkedinIcon className="size-5" />
-              </a>
             </div>
           </Container>
         </div>
 
         {/* ——— Right: image ——— */}
         <div className="relative flex-1 overflow-hidden bg-fog lg:min-h-[560px] xl:min-h-[640px]">
-          <Suspense fallback={
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-fog"
-            />
-          }>
-            <img
-              src="/assets/editorial/hero-artifact.webp"
-              alt="Ilustración abstracta — composición de formas orgánicas en tonos cálidos"
-              className="absolute inset-0 h-full w-full object-cover"
-              width={1536}
-              height={864}
-            />
-          </Suspense>
+          <img
+            src="/assets/editorial/hero-artifact.webp"
+            alt="Esfera terracota dentro de un anillo metálico, junto a formas de piedra clara"
+            className="absolute inset-0 h-full w-full object-cover"
+            width={1536}
+            height={864}
+          />
         </div>
       </div>
-
-      {/* ——— Reduced-motion / no-JS fallback: ensure content is visible ——— */}
-      <style>{`
-        @media (prefers-reduced-motion: reduce) {
-          .hero-enter {
-            opacity: 1 !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }
