@@ -12,13 +12,7 @@ export function ExperienceTimeline() {
   }))
 
   return (
-    <ol className="relative">
-      {/* Timeline rail */}
-      <span
-        aria-hidden="true"
-        className="absolute left-0 top-0 bottom-0 w-px bg-border sm:left-4 md:left-8"
-      />
-
+    <ol className="border-l border-border pl-4 sm:pl-8">
       {items.map((entry) => {
         const item = entry.data
         const projects = companyProjects[item.id]
@@ -33,7 +27,7 @@ export function ExperienceTimeline() {
             {/* Marker dot on the rail */}
             <span
               aria-hidden="true"
-              className="absolute -left-[1px] top-2 size-2 rounded-full border border-accent bg-background sm:-left-[144px] md:-left-[148px]"
+              className="absolute left-[-5px] top-3 size-2.5 rounded-full border border-accent bg-background sm:left-[-5px]"
             />
 
             {/* Meta / date column (desktop) */}
