@@ -27,7 +27,7 @@ export function ExperienceTimeline() {
             {/* Marker dot on the rail */}
             <span
               aria-hidden="true"
-              className="absolute left-[-5px] top-3 size-2.5 rounded-full border border-accent bg-background sm:left-[-5px]"
+              className="absolute left-[-21px] top-3 size-2.5 rounded-full border border-accent bg-background sm:left-[-37px]"
             />
 
             {/* Meta / date column (desktop) */}
