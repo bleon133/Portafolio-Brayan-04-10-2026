@@ -13,7 +13,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="relative overflow-hidden">
         <ProjectCover
           project={project}
-          className="transition-transform duration-500 ease-out group-hover:scale-102.5 peer-focus-visible:scale-102.5"
+          className="transition-transform duration-500 ease-out motion-safe:group-hover:scale-102.5 motion-safe:group-focus-visible:scale-102.5"
         />
         {project.status && (
           <span className="absolute top-4 left-4 z-10 bg-ink/90 px-2 py-0.5 text-xs font-medium text-white">
@@ -35,7 +35,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </ul>
       </div>
       <span
-        className="mt-2.5 inline-flex size-5 items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 peer-focus-visible:opacity-100"
+        className="mt-2.5 inline-flex size-5 items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
         aria-hidden="true"
       >
         <ArrowUpRight className="size-5" />
