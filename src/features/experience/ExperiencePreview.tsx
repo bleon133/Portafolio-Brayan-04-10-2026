@@ -21,17 +21,17 @@ export function ExperiencePreview() {
           {items.map((item) => (
             <li
               key={item.id}
-              className="relative flex flex-col gap-2 border-l-2 border-border pl-6 last:border-l-0 sm:flex-row sm:gap-8 sm:items-start"
+              className="relative flex flex-col gap-2 border-l-2 border-border pl-6 last:border-l-0 sm:grid sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8 sm:items-start sm:pl-0 sm:border-l-0 sm:gap-y-8"
             >
-              {/* Date / meta — top-left on desktop, stacked above on mobile */}
+              {/* Date / meta — above on mobile, fixed column on desktop */}
               <time
-                className="shrink-0 text-sm font-medium text-accent-soft sm:pt-1"
+                className="text-sm font-medium text-accent-soft sm:text-right sm:pt-1"
                 dateTime={item.start}
               >
                 {formatPeriod(item.start, item.end)}
               </time>
 
-              {/* Role, company, location, summary */}
+              {/* Role, company, location, summary — above on mobile, second column on desktop */}
               <div className="flex flex-col gap-2">
                 <h3 className="text-xl font-semibold sm:text-2xl">{item.role}</h3>
                 <p className="text-base text-muted">
