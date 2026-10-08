@@ -22,5 +22,16 @@
       "dimensions": "1280x640",
       "purpose": "2:1 cover crop centering the existing Defender wordmark for the uniform project-card grid; the gallery retains the original phone screenshot"
     }
+  ],
+  "userProvided": [
+    {
+      "source": "src/assets/hero/BrayanLeon.png",
+      "path": "public/assets/hero/brayan-leon.webp",
+      "dimensions": "3840x2160",
+      "format": "WebP with alpha",
+      "sourceBytes": 3854664,
+      "optimizedBytes": 243088,
+      "purpose": "User-provided transparent portrait for the Home hero"
+    }
   ]
 }
