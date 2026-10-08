@@ -1,48 +1,53 @@
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
-import { Reveal } from '@/components/ui/Reveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { experiences } from '@/data/experience'
 import { formatPeriod, sortByDateDesc } from '@/lib/collections'
 
-/** Resumen para la Home: cada experiencia con sus primeras funciones. */
+/** Resumen compacto para la Home: cronología editorial sin tarjetas. */
 export function ExperiencePreview() {
   const items = sortByDateDesc(experiences, (item) => item.start)
 
   return (
     <Section id="experiencia" titleId="titulo-experiencia">
       <Container>
-        <Reveal>
-          <SectionHeading
-            id="titulo-experiencia"
-            eyebrow="Experiencia"
-            title="Dónde he trabajado"
-            action={{ label: 'Ver detalle', to: '/experiencia' }}
-          />
-        </Reveal>
-        <ul className="space-y-6">
-          {items.map((item, index) => (
-            <li key={item.id}>
-              <Reveal delay={index * 0.1}>
-                <article className="grid gap-8 rounded-3xl border border-border p-8 sm:p-10 lg:grid-cols-[1fr_1.4fr]">
-                  <div>
-                    <p className="text-base font-medium text-accent-soft">{formatPeriod(item.start, item.end)}</p>
-                    <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">{item.role}</h3>
-                    <p className="mt-2 text-lg text-muted">
-                      {item.company} · {item.location}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-lg">{item.summary}</p>
-                    {item.reference && (
-                      <p className="mt-5 rounded-2xl bg-sky p-4 text-base font-medium">«{item.reference.quote}»</p>
-                    )}
-                  </div>
-                </article>
-              </Reveal>
+        <SectionHeading
+          id="titulo-experiencia"
+          eyebrow="Experiencia"
+          title="Dónde he trabajado"
+          action={{ label: 'Ver detalle', to: '/experiencia' }}
+        />
+        <ol className="relative mt-8">
+          {items.map((item) => (
+            <li
+              key={item.id}
+              className="relative flex flex-col gap-2 border-l-2 border-border pl-6 last:border-l-0 sm:flex-row sm:gap-8 sm:items-start"
+            >
+              {/* Date / meta — top-left on desktop, stacked above on mobile */}
+              <time
+                className="shrink-0 text-sm font-medium text-accent-soft sm:pt-1"
+                dateTime={item.start}
+              >
+                {formatPeriod(item.start, item.end)}
+              </time>
+
+              {/* Role, company, location, summary */}
+              <div className="flex flex-col gap-2">
+                <h3 className="text-xl font-semibold sm:text-2xl">{item.role}</h3>
+                <p className="text-base text-muted">
+                  {item.company} · {item.location}
+                </p>
+                <p className="text-base">{item.summary}</p>
+                {item.reference && (
+                  <blockquote className="mt-2 border-l-2 border-border pl-4 text-sm italic text-muted">
+                    «{item.reference.quote}»
+                    <footer className="mt-1 text-xs not-italic">— {item.reference.source}</footer>
+                  </blockquote>
+                )}
+              </div>
             </li>
           ))}
-        </ul>
+        </ol>
       </Container>
     </Section>
   )
