@@ -37,9 +37,9 @@ export function EducationPreview() {
             <h3 className="mb-6 text-sm font-medium tracking-widest text-muted uppercase">
               Credenciales destacadas
             </h3>
-            <ul className="divide-y divide-border">
+            <ul>
               {featured.map((cert) => (
-                <li key={cert.id} className="py-5 first:pt-0 last:pb-0">
+                <li key={cert.id}>
                   <CertificationCard cert={cert} />
                 </li>
               ))}
