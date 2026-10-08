@@ -84,26 +84,19 @@ export function Contact() {
               </span>
             </div>
 
-            {/* Hairline divider */}
-            <hr className="border-ink/10" />
-
-            {/* Profile cards */}
-            <ul className="flex flex-col gap-4">
-              {profiles.map(({ label, handle, href, Icon }) => (
-                <li key={label}>
+            {/* Profile links */}
+            <ul className="flex flex-col">
+              {profiles.map(({ label, handle, href, Icon }, index) => (
+                <li key={label} className={index > 0 ? 'border-t border-ink/10 pt-4' : ''}>
                   <a
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex min-h-[44px] items-center justify-between gap-4 rounded-lg px-4 py-3 transition-colors duration-200 hover:bg-ink/5"
+                    className="inline-flex min-h-[44px] items-center gap-2 py-2 text-sm font-medium underline-offset-4 underline-offset-[4px] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
                   >
-                    <span className="flex items-center gap-4">
-                      <Icon className="size-5 text-ink/60 transition-colors duration-200 group-hover:text-ink" />
-                      <span>
-                        <span className="block font-semibold">{label}</span>
-                        <span className="block text-sm text-ink/70">{handle}</span>
-                      </span>
-                    </span>
+                    <Icon className="size-4 text-ink/60" />
+                    <span className="text-ink/80">{label}</span>
+                    <span className="text-ink/50">{handle}</span>
                   </a>
                 </li>
               ))}
@@ -118,7 +111,7 @@ export function Contact() {
 /* ---- button styles ---- */
 
 const btnPrimary =
-  'inline-flex min-h-14 items-center gap-3 rounded-full border border-ink/20 bg-accent px-7 font-semibold text-white transition-colors duration-200 hover:bg-accent/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent'
+  'inline-flex min-h-[44px] items-center gap-3 rounded-sm bg-accent px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent'
 
 const btnSecondary =
-  'inline-flex min-h-14 items-center gap-2 rounded-full border border-ink/20 px-6 font-semibold transition-colors duration-200 hover:bg-ink/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent'
+  'inline-flex min-h-[44px] items-center gap-2 rounded-sm border border-ink/20 px-5 text-sm font-medium transition-colors duration-200 hover:bg-ink/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent'
