@@ -130,7 +130,7 @@ export const projects: Project[] = [
     description:
       'App móvil multiplataforma para la gestión operativa de vigilantes. Permite consultar y hacer transferencias de turno, ver la programación asignada, registrar minutas de novedades y apoyar las revistas de puestos que hacen los supervisores.',
     stack: ['Android Studio', 'Kotlin Multiplatform'],
-    image: '/projects/app-vigilantes/inicio.webp',
+    image: '/projects/app-vigilantes/portada.webp',
     links: [],
     gallery: [
       {
