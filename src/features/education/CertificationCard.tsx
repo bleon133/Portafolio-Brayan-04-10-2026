@@ -9,7 +9,7 @@ export function CertificationCard({ cert }: { cert: Certification }) {
       href={cert.url}
       target="_blank"
       rel="noreferrer"
-      className="group block min-h-[44px] border-b border-border py-5 transition-colors duration-200 hover:bg-ink/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-soft md:grid md:grid-cols-[1fr_auto] md:grid-rows-1 md:items-center md:gap-6 md:py-4 md:border-b-0 md:even:border-r md:even:border-l md:last:border-b-0"
+      className="group flex flex-col min-h-[44px] border-b border-border py-5 gap-4 transition-colors duration-200 hover:bg-ink/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-soft md:grid md:grid-cols-[1fr_auto] md:grid-rows-1 md:items-center md:gap-6 md:py-4 md:border-b-0 md:even:border-r md:even:border-l md:last:border-b-0"
     >
       {/* Compact metadata — issuer + date */}
       <span className="text-sm text-muted md:col-span-2 md:hidden">
