@@ -28,10 +28,10 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.origin && <>·</>}
           {project.origin && <span>{project.origin}</span>}
         </div>
-        <h3 className="mt-1 line-clamp-2 text-xl font-semibold leading-tight sm:text-2xl">
+        <h3 className="mt-1 min-h-[2.5em] line-clamp-2 text-xl font-semibold leading-tight sm:text-2xl">
           {project.title}
         </h3>
-        <ul className="mt-1.5 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-muted">
+        <ul className="mt-1.5 h-10 max-h-10 flex flex-wrap items-end gap-x-3 gap-y-0.5 overflow-hidden text-xs text-muted">
           {project.stack.slice(0, 4).map((tech) => (
             <li key={tech}>{tech}</li>
           ))}
