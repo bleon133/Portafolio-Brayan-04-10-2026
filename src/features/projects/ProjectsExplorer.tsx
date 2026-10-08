@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 
 import { Container } from '@/components/layout/Container'
 import { FilterChips } from '@/components/ui/FilterChips'
-import { Reveal } from '@/components/ui/Reveal'
 import { projects } from '@/data/projects'
 import { ProjectCard } from '@/features/projects/ProjectCard'
 import { uniqueValues } from '@/lib/collections'
@@ -48,7 +47,8 @@ export function ProjectsExplorer() {
 
   return (
     <Container className="flex-1 py-16">
-      <div className="space-y-6">
+      {/* Archive controls */}
+      <div className="flex flex-wrap items-baseline gap-x-8 gap-y-2 sm:items-center">
         <FilterChips
           legend="Categoría"
           options={categories}
@@ -61,31 +61,40 @@ export function ProjectsExplorer() {
           value={technology}
           onChange={(value) => setFilter('tecnologia', value)}
         />
-        {technologiesByFrequency.length > VISIBLE_TECHNOLOGIES && (
-          <button
-            type="button"
-            aria-expanded={expanded}
-            onClick={() => setShowAllTech((value) => !value)}
-            className="min-h-11 text-sm font-medium text-accent-soft hover:text-foreground"
-          >
-            {expanded ? 'Ver menos tecnologías' : 'Ver más tecnologías'}
-          </button>
-        )}
       </div>
 
-      <p className="mt-8 text-sm text-muted" role="status">
+      {technologiesByFrequency.length > VISIBLE_TECHNOLOGIES && (
+        <button
+          type="button"
+          aria-expanded={expanded}
+          onClick={() => setShowAllTech((value) => !value)}
+          className="min-h-11 text-sm font-medium text-accent-soft hover:text-foreground"
+        >
+          {expanded ? 'Ver menos tecnologías' : 'Ver más tecnologías'}
+        </button>
+      )}
+
+      <p className="mt-6 text-sm text-muted" role="status">
         {visible.length} {visible.length === 1 ? 'proyecto' : 'proyectos'}
       </p>
 
       {visible.length > 0 ? (
-        <ul className="mt-4 grid gap-8 md:grid-cols-2">
-          {visible.map((project, index) => (
-            <li key={project.slug}>
-              <Reveal delay={(index % 2) * 0.1}>
+        <ul className="mt-4 grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-8 md:gap-y-10">
+          {visible.map((project, index) => {
+            const colSpan =
+              index === 0
+                ? 'md:col-span-7'
+                : index === 1
+                  ? 'md:col-span-5 md:col-start-8'
+                  : index === 2
+                    ? 'md:col-span-5'
+                    : 'md:col-span-7 md:col-start-8'
+            return (
+              <li key={project.slug} className={colSpan}>
                 <ProjectCard project={project} />
-              </Reveal>
-            </li>
-          ))}
+              </li>
+            )
+          })}
         </ul>
       ) : (
         <div className="mt-8 rounded-2xl border border-border bg-surface p-8">
