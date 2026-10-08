@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { Container } from '@/components/layout/Container'
 import { MobileMenu } from '@/components/layout/MobileMenu'
-import { navItems, siteConfig } from '@/data/site'
+import { navItems } from '@/data/site'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { cn } from '@/lib/cn'
 
@@ -29,7 +29,7 @@ export function FloatingNav() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-30 w-full"
+        className="fixed inset-x-0 top-0 z-30 h-[88px] w-full"
         style={{
           background: 'var(--color-background)',
           borderBottom: `1px solid var(--color-border)`,
@@ -38,12 +38,12 @@ export function FloatingNav() {
         animate={{ opacity: 1, transform: 'translateY(0)' }}
         transition={{ duration: reduceMotion ? 0 : 0.4, ease: 'easeOut', delay: reduceMotion ? 0 : 0.2 }}
       >
-        <Container className="flex w-full items-center justify-between">
+        <Container className="flex h-full w-full items-center justify-between">
           {/* Brand — left */}
           <Link
             to="/"
-            className="font-outfit text-sm font-semibold uppercase tracking-tight text-accent"
-            aria-label={`${siteConfig.shortName}, ir al inicio`}
+            className="font-heading text-base font-bold uppercase tracking-wide text-accent"
+            aria-label="BRAYAN DEVELOPER, ir al inicio"
           >
             Brayan Developer
           </Link>
