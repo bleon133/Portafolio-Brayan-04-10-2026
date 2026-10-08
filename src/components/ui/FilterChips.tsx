@@ -24,7 +24,7 @@ export function FilterChips({ legend, options, value, onChange }: FilterChipsPro
               aria-pressed={active}
               onClick={() => onChange(option)}
               className={cn(
-                'group inline-flex items-baseline border-none bg-transparent px-0 pb-1 pt-0.5 text-sm font-medium transition-colors duration-150 hover:text-foreground focus-visible:outline-offset-2',
+                'group inline-flex items-baseline bg-transparent px-0 pb-1 pt-0.5 text-sm font-medium transition-colors duration-150 hover:text-foreground focus-visible:outline-offset-2',
                 'min-h-11',
                 active
                   ? 'border-b-2 border-accent text-accent' // selected = terracotta bottom rule + ink text
