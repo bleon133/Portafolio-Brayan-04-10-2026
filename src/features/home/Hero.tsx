@@ -23,7 +23,7 @@ export function Hero() {
       <Container className="relative flex flex-col pt-[104px] pb-10 sm:pb-12 lg:min-h-[100svh] lg:pb-0">
         {/* Masthead — Bebas Neue 400, z-10 above circle (z-0) */}
         <h1
-          className={`${portfolioTitleClass} relative z-10`}
+          className={`${portfolioTitleClass} relative z-10 origin-left scale-x-[1.05] sm:scale-x-[1.25] lg:scale-x-[1.3]`}
         >
           Portafolio
         </h1>
@@ -34,11 +34,11 @@ export function Hero() {
         <div className="relative -mt-2 grid flex-1 items-end gap-6 sm:mt-0 lg:-mt-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0">
 
           {/* ── Copy column — left ─────────────────────────────────── */}
-          <div className="relative z-10 py-6 lg:self-center lg:py-10">
+          <div className="relative z-30 py-6 font-heading lg:self-start lg:py-0 lg:pt-14">
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
               Hola, soy
             </p>
-            <h2 className="mt-1 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h2 className="mt-2 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
               {siteConfig.shortName}
             </h2>
             <p className="mt-3 text-sm font-semibold uppercase tracking-[0.1em] text-accent">
@@ -74,19 +74,19 @@ export function Hero() {
           {/*
             Desktop: portrait anchored to section bottom, scaled to viewport
             height so it overlaps the masthead.  Mobile: small top-right
-            cutout (~6 rem at 390 px, ~10 rem at 768 px) overlapping
+            cutout (~6 rem at 390 px, ~12 rem at 768 px) overlapping
             the final "LIO" letters without cropping arms.
           */}
-          <figure className="relative mx-auto lg:flex lg:h-full lg:w-full lg:items-end lg:justify-end">
+          <figure className="absolute -top-4 right-0 h-24 w-24 sm:-top-20 sm:right-[5.5rem] sm:h-40 sm:w-40 md:right-32 md:h-48 md:w-48 lg:relative lg:top-auto lg:right-auto lg:h-full lg:w-full lg:flex lg:items-end lg:justify-end">
             {/* Terracotta circle backdrop — z-0, behind H1 and photo */}
             <span
               aria-hidden="true"
-              className="absolute bottom-[4%] left-1/2 aspect-square w-[82%] max-w-[32rem] -translate-x-1/2 rounded-full bg-accent/90 lg:max-w-[40rem]"
+              className="absolute bottom-[4%] left-1/2 z-0 aspect-square w-[82%] max-w-[32rem] -translate-x-1/2 rounded-full bg-accent/90 lg:max-w-[40rem]"
             />
 
             {/*
-              Mobile: fixed top-right cutout (6 rem → 10 rem), z-30.
-              Desktop: inline with grid, z-20, bottom-aligned.
+              Mobile: absolute top-right cutout (6rem at 390px; 12rem at 768px)
+              overlapping the masthead. Desktop: large bottom-aligned portrait.
               Intrinsic width/height prevent CLS; eager loading ensures
               first-fold delivery.
             */}
@@ -98,7 +98,7 @@ export function Hero() {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className="mx-auto aspect-[1600/1572] h-[26rem] w-[82%] max-w-[28rem] object-contain sm:h-[31rem] sm:max-w-[32rem] lg:mx-0 lg:h-auto lg:w-full lg:max-w-full lg:max-h-[min(48rem,calc(100svh_-_12rem))] [@media(min-width:1024px)_and_(max-height:800px)]:origin-bottom-right [@media(min-width:1024px)_and_(max-height:800px)]:scale-[1.14] [@media(min-width:1024px)_and_(max-height:800px)]:translate-x-10 @media(min-width:480px):fixed @media(min-width:480px):top-0 @media(min-width:480px):right-0 @media(min-width:480px):z-30 @media(min-width:480px):h-auto @media(min-width:480px):w-[6rem] @media(min-width:768px):w-[10rem] @media(min-width:1024px):static @media(min-width:1024px):z-auto @media(min-width:1024px):h-auto @media(min-width:1024px):w-auto"
+              className="relative z-20 aspect-[1600/1572] h-full w-full object-contain lg:mx-0 lg:h-auto lg:w-full lg:max-w-full lg:max-h-[min(48rem,calc(100svh_-_16rem))] lg:origin-bottom-right lg:scale-[1.05] [@media(min-width:1024px)_and_(max-height:800px)]:origin-bottom-right [@media(min-width:1024px)_and_(max-height:800px)]:scale-[1.14] [@media(min-width:1024px)_and_(max-height:800px)]:translate-x-10"
             />
           </figure>
         </div>
