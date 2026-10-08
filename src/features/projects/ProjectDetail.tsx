@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { useRef, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Container } from '@/components/layout/Container'
@@ -16,7 +16,12 @@ interface ProjectDetailProps {
 function Section({ title, children }: { title?: string; children: ReactNode }) {
   return (
     <section>
-      {title && <h2 className="text-sm font-medium tracking-widest uppercase text-muted">{title}</h2>}
+      {title && (
+        <h2 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+          {title}
+          <span className="ml-2 inline-block h-px w-8 bg-border align-middle" />
+        </h2>
+      )}
       <div className="mt-3 text-lg leading-relaxed text-foreground/90">{children}</div>
     </section>
   )
@@ -42,8 +47,6 @@ export function ProjectDetail({ project, next }: ProjectDetailProps) {
     path: `/proyectos/${project.slug}`,
     image: project.image,
   })
-
-  const imageRef = useRef<HTMLDivElement>(null)
 
   const hasGallery = Boolean(project.gallery?.length)
 
@@ -78,7 +81,7 @@ export function ProjectDetail({ project, next }: ProjectDetailProps) {
           {hasGallery ? (
             <ProjectGallery images={project.gallery!} title={project.title} />
           ) : (
-            <div ref={imageRef} className="overflow-hidden">
+            <div className="overflow-hidden">
               <img
                 src={project.image}
                 alt={`Captura de ${project.title}`}
@@ -128,13 +131,9 @@ export function ProjectDetail({ project, next }: ProjectDetailProps) {
           </dl>
           <div>
             <h2 className="text-sm font-medium tracking-widest uppercase text-muted">Stack</h2>
-            <ul className="mt-2 flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <li key={tech} className="border border-border px-2.5 py-1 text-sm">
-                  {tech}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-2 text-sm leading-relaxed text-foreground">
+              {project.stack.join(' · ')}
+            </p>
           </div>
           {project.links.length > 0 && (
             <ul className="space-y-2">
