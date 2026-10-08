@@ -17,22 +17,12 @@ export function Projects() {
           title="Cosas que he construido"
           action={{ label: 'Ver todos', to: '/proyectos' }}
         />
-        <ul className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-12 md:gap-y-10">
-          {featured.map((project, index) => {
-            const colSpan =
-              index === 0
-                ? 'md:col-span-7'
-                : index === 1
-                  ? 'md:col-span-5 md:col-start-8'
-                  : index === 2
-                    ? 'md:col-span-5'
-                    : 'md:col-span-7 md:col-start-8'
-            return (
-              <li key={project.slug} className={colSpan}>
-                <ProjectCard project={project} />
-              </li>
-            )
-          })}
+        <ul className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-y-10">
+          {featured.map((project) => (
+            <li key={project.slug} className="h-full">
+              <ProjectCard project={project} />
+            </li>
+          ))}
         </ul>
       </Container>
     </Section>
