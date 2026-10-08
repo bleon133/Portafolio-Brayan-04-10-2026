@@ -79,22 +79,12 @@ export function ProjectsExplorer() {
       </p>
 
       {visible.length > 0 ? (
-        <ul className="mt-4 grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-8 md:gap-y-10">
-          {visible.map((project, index) => {
-            const colSpan =
-              index === 0
-                ? 'md:col-span-7'
-                : index === 1
-                  ? 'md:col-span-5 md:col-start-8'
-                  : index === 2
-                    ? 'md:col-span-5'
-                    : 'md:col-span-7 md:col-start-8'
-            return (
-              <li key={project.slug} className={colSpan}>
-                <ProjectCard project={project} />
-              </li>
-            )
-          })}
+        <ul className="mt-4 grid grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+          {visible.map((project) => (
+            <li key={project.slug} className="h-full">
+              <ProjectCard project={project} />
+            </li>
+          ))}
         </ul>
       ) : (
         <div className="mt-8 rounded-2xl border border-border bg-surface p-8">
