@@ -31,7 +31,7 @@
       "format": "WebP with alpha",
       "sourceBytes": 3854664,
       "optimizedBytes": 172530,
-      "transformation": "Trimmed transparent canvas to alpha bounds with 48px horizontal padding; preserves both arms",
+      "transformation": "Trimmed transparent canvas to alpha bounds with 48px side/top padding (source bottom retained); preserves both arms",
       "purpose": "User-provided portrait for the Home hero"
     }
   ]

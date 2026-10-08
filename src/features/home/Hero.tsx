@@ -19,7 +19,7 @@ export function Hero() {
       aria-label="Inicio"
       className="relative isolate overflow-hidden bg-background"
     >
-      <Container className="relative pt-24 pb-10 sm:pb-12">
+      <Container className="relative flex flex-col pt-[104px] pb-10 sm:pb-12 lg:min-h-[100svh] lg:pb-0">
         {/* Masthead — always visible, never wraps, vertically elongated */}
         <h1
           className={`${portfolioTitleClass} relative z-0 origin-bottom`}
@@ -28,11 +28,12 @@ export function Hero() {
           Portafolio
         </h1>
 
-        {/* Two-column grid: copy left, portrait right (stacks on mobile) */}
-        <div className="relative -mt-2 grid items-end gap-6 sm:mt-0 lg:-mt-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8">
+        {/* Two-column grid: copy left, portrait right (stacks on mobile)
+            — portrait anchored to section bottom on desktop for full overlap */}
+        <div className="relative -mt-2 grid flex-1 items-end gap-6 sm:mt-0 lg:-mt-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0">
 
           {/* ── Copy column — left ─────────────────────────────────── */}
-          <div className="relative z-10 py-6 lg:py-10">
+          <div className="relative z-10 py-6 lg:self-center lg:py-10">
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
               Hola, soy
             </p>
@@ -69,17 +70,22 @@ export function Hero() {
           </div>
 
           {/* ── Portrait column — right ────────────────────────────── */}
-          <figure className="relative isolate mx-auto lg:max-w-none">
+          {/*
+            Desktop: portrait anchored to section bottom, scaled to viewport
+            height so it overlaps the masthead.  Mobile: stacks below copy.
+          */}
+          <figure className="relative isolate mx-auto lg:flex lg:h-full lg:w-full lg:items-end lg:justify-end">
             {/* Terracotta circle backdrop */}
             <span
               aria-hidden="true"
-              className="absolute bottom-[4%] left-1/2 aspect-square w-[82%] max-w-[32rem] -translate-x-1/2 rounded-full bg-accent/20"
+              className="absolute bottom-[4%] left-1/2 aspect-square w-[82%] max-w-[32rem] -translate-x-1/2 rounded-full bg-accent/20 lg:max-w-[40rem]"
             />
 
             {/*
               Transparent portrait — real 1600×1572 ratio (≈1.018),
               object-contain so both arms are fully visible.
-              z-20 places it above the elongated H1 on the right edge.
+              Scaled by viewport height on desktop to fill the fold and
+              physically overlap the lower-right masthead letters.
               Intrinsic width/height prevent CLS; eager loading ensures
               first-fold delivery.
             */}
@@ -91,7 +97,7 @@ export function Hero() {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className="relative z-20 mx-auto aspect-[1600/1572] h-[26rem] w-[82%] max-w-[28rem] sm:h-[31rem] lg:h-[38rem] object-contain"
+              className="relative z-20 mx-auto aspect-[1600/1572] h-[26rem] w-[82%] max-w-[28rem] object-contain sm:h-[31rem] sm:max-w-[32rem] lg:mx-0 lg:h-auto lg:w-full lg:max-w-full lg:max-h-[min(48rem,calc(100svh_-_12rem))]"
             />
           </figure>
         </div>
