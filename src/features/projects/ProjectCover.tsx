@@ -5,7 +5,7 @@ interface ProjectCoverProps {
   className?: string
 }
 
-/** Imagen del proyecto o, si no hay captura, una portada tipográfica con su color. */
+/** Portada uniforme del proyecto: imagen recortada 2:1 o superficie editorial silenciosa. */
 export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
   if (project.image) {
     return (
@@ -15,19 +15,20 @@ export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
         loading="lazy"
         width={640}
         height={360}
-        className={`aspect-[2/1] w-full object-cover object-top ${className}`}
+        className={`aspect-[2/1] w-full object-cover object-center ${className}`}
       />
     )
   }
 
   return (
     <div
-      className={`flex aspect-[2/1] w-full flex-col justify-between bg-background p-6 sm:p-8 ${className}`}
+      className={`aspect-[2/1] w-full bg-sky ${className}`}
       role="img"
       aria-label={`Portada de ${project.title}`}
     >
-      <span className="w-fit text-xs font-medium text-muted">{project.category}</span>
-      <span className="font-heading text-3xl leading-tight font-bold sm:text-4xl">{project.title}</span>
+      <span className="flex h-full items-center justify-center px-6 pt-4 text-xs font-medium uppercase tracking-widest text-muted">
+        {project.category}
+      </span>
     </div>
   )
 }
