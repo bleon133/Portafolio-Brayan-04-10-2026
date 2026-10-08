@@ -48,8 +48,8 @@ export function ProjectGallery({ images, title }: { images: GalleryImage[]; titl
       </div>
 
       {/* Hairline caption and counter controls */}
-      <div className="mt-3 flex items-start justify-between gap-4 px-1">
-        <p className="max-w-2xl text-sm leading-relaxed text-muted" aria-live="polite">
+      <div className="mt-3 flex items-start gap-3 px-1">
+        <p className="flex min-w-0 flex-1 text-base leading-relaxed text-muted" aria-live="polite">
           {current.caption}
         </p>
         <div className="flex shrink-0 items-center gap-2">
