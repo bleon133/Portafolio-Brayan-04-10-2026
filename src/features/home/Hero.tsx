@@ -20,8 +20,11 @@ export function Hero() {
       className="relative isolate overflow-hidden bg-background"
     >
       <Container className="relative pt-24 pb-10 sm:pb-12">
-        {/* Masthead — always visible, never wraps */}
-        <h1 className={`${portfolioTitleClass} relative z-0`}>
+        {/* Masthead — always visible, never wraps, vertically elongated */}
+        <h1
+          className={`${portfolioTitleClass} relative z-0 origin-bottom`}
+          style={{ transform: 'scaleY(1.15)' }}
+        >
           Portafolio
         </h1>
 
@@ -66,13 +69,6 @@ export function Hero() {
           </div>
 
           {/* ── Portrait column — right ────────────────────────────── */}
-          {/*
-            <figure> provides intrinsic dimensions (width/height) for zero
-            layout shift, and a semantic wrapper for the <img>.
-            The terracotta circle sits behind the portrait via absolute
-            positioning.  The portrait is cropped to a 3:4 aspect ratio
-            (face-biased) and scales fluidly from mobile to desktop.
-          */}
           <figure className="relative isolate mx-auto lg:max-w-none">
             {/* Terracotta circle backdrop */}
             <span
@@ -81,19 +77,21 @@ export function Hero() {
             />
 
             {/*
-              Transparent portrait — cropped to 3:4, face-biased crop,
-              positioned over the circle.  Intrinsic width/height prevent
-              CLS; eager loading ensures first-fold delivery.
+              Transparent portrait — real 1600×1572 ratio (≈1.018),
+              object-contain so both arms are fully visible.
+              z-20 places it above the elongated H1 on the right edge.
+              Intrinsic width/height prevent CLS; eager loading ensures
+              first-fold delivery.
             */}
             <img
               src="/assets/hero/brayan-leon.webp"
               alt="Brayan León, desarrollador Backend y Fullstack"
-              width={1080}
-              height={1440}
+              width={1600}
+              height={1572}
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className="relative z-10 mx-auto aspect-[3/4] h-[26rem] w-[82%] max-w-[28rem] sm:h-[31rem] lg:h-[35rem] object-cover object-[50%_30%]"
+              className="relative z-20 mx-auto aspect-[1600/1572] h-[26rem] w-[82%] max-w-[28rem] sm:h-[31rem] lg:h-[38rem] object-contain"
             />
           </figure>
         </div>
