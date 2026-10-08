@@ -11,14 +11,14 @@ interface SectionProps {
   children: ReactNode
 }
 
-/** Sección de la Home: ocupa al menos el alto de la ventana y centra su contenido. */
+/** Sección editorial: alto automático con espaciado vertical equilibrado. */
 export function Section({ id, titleId, tone = 'background', className, children }: SectionProps) {
   return (
     <section
       id={id}
       aria-labelledby={titleId}
       className={cn(
-        'flex min-h-dvh flex-col justify-center py-24',
+        'flex flex-col py-20 sm:py-24',
         tone === 'surface' && 'bg-surface',
         className,
       )}
