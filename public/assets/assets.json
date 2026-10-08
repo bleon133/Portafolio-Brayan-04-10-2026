@@ -14,5 +14,13 @@
       "dimensions": "1248x832",
       "purpose": "Editorial paper-and-metal route-map texture behind real portfolio navigation stops"
     }
+  ],
+  "derived": [
+    {
+      "path": "public/projects/app-vigilantes/portada.webp",
+      "source": "public/projects/app-vigilantes/inicio.webp",
+      "dimensions": "1280x640",
+      "purpose": "2:1 cover crop centering the existing Defender wordmark for the uniform project-card grid; the gallery retains the original phone screenshot"
+    }
   ]
 }
