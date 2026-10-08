@@ -5,7 +5,7 @@ interface ProjectCoverProps {
   className?: string
 }
 
-/** Portada uniforme del proyecto: imagen recortada 2:1 o superficie editorial silenciosa. */
+/** Portada uniforme del proyecto: imagen real o textura editorial abstracta. */
 export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
   if (project.image) {
     return (
@@ -22,11 +22,17 @@ export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
 
   return (
     <div
-      className={`aspect-[2/1] w-full bg-sky ${className}`}
+      className={`relative aspect-[2/1] w-full ${className}`}
       role="img"
       aria-label={`Portada de ${project.title}`}
     >
-      <span className="flex h-full items-center justify-center px-6 pt-4 text-xs font-medium uppercase tracking-widest text-muted">
+      <img
+        src="/assets/editorial/journey-map-texture.webp"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-30"
+      />
+      <span className="absolute inset-0 flex items-center justify-center px-6 pt-4 text-xs font-medium uppercase tracking-widest text-muted/80">
         {project.category}
       </span>
     </div>
