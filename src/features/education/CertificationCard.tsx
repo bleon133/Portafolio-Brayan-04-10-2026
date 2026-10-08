@@ -21,7 +21,6 @@ export function CertificationCard({ cert }: { cert: Certification }) {
       </span>
       {/* Action affordance — inline label + arrow */}
       <span className="col-span-2 flex items-center justify-between gap-2 text-sm font-medium text-accent-soft md:col-span-1 md:justify-end md:gap-1.5">
-        <span className="md:hidden">{formatMonthYear(cert.issued)}</span>
         <span className="hidden md:inline text-sm text-muted">
           {cert.issuer} · {formatMonthYear(cert.issued)}
         </span>
