@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+import { Container } from '@/components/layout/Container'
 import { MobileMenu } from '@/components/layout/MobileMenu'
 import { navItems, siteConfig } from '@/data/site'
 import { useActiveSection } from '@/hooks/useActiveSection'
@@ -28,7 +29,7 @@ export function FloatingNav() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-30 mx-auto flex h-[80px] max-w-7xl items-center justify-between px-4 md:px-8"
+        className="fixed inset-x-0 top-0 z-30 w-full"
         style={{
           background: 'var(--color-background)',
           borderBottom: `1px solid var(--color-border)`,
@@ -37,57 +38,59 @@ export function FloatingNav() {
         animate={{ opacity: 1, transform: 'translateY(0)' }}
         transition={{ duration: reduceMotion ? 0 : 0.4, ease: 'easeOut', delay: reduceMotion ? 0 : 0.2 }}
       >
-        {/* Brand — left */}
-        <Link
-          to="/"
-          className="flex items-center whitespace-nowrap text-sm font-semibold tracking-tight"
-          aria-label={`${siteConfig.shortName}, ir al inicio`}
-        >
-          {siteConfig.shortName}
-        </Link>
+        <Container className="flex w-full items-center justify-between">
+          {/* Brand — left */}
+          <Link
+            to="/"
+            className="font-outfit text-sm font-semibold uppercase tracking-tight text-accent"
+            aria-label={`${siteConfig.shortName}, ir al inicio`}
+          >
+            Brayan Developer
+          </Link>
 
-        {/* Desktop nav — right, single line */}
-        <nav aria-label="Principal" className="hidden md:block">
-          <ul className="flex items-center gap-6">
-            {navItems.map((item) => {
-              const active = isActive(item.href, item.section)
-              return (
-                <li key={item.href}>
-                  <Link
-                    to={item.href}
-                    aria-current={active ? 'page' : undefined}
-                    className={cn(
-                      'relative inline-block px-1 py-2 text-sm transition-colors duration-200',
-                      active
-                        ? 'font-medium text-ink'
-                        : 'text-muted hover:text-ink',
-                    )}
-                  >
-                    {item.label}
-                    {active && (
-                      <span
-                        className="absolute bottom-0 left-0 right-0 h-px bg-ink"
-                        aria-hidden="true"
-                      />
-                    )}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+          {/* Desktop nav — right, single line */}
+          <nav aria-label="Principal" className="hidden md:block">
+            <ul className="flex items-center gap-6">
+              {navItems.map((item) => {
+                const active = isActive(item.href, item.section)
+                return (
+                  <li key={item.href}>
+                    <Link
+                      to={item.href}
+                      aria-current={active ? 'page' : undefined}
+                      className={cn(
+                        'relative inline-block px-1 py-2 text-sm transition-colors duration-200',
+                        active
+                          ? 'font-medium text-ink'
+                          : 'text-muted hover:text-ink',
+                      )}
+                    >
+                      {item.label}
+                      {active && (
+                        <span
+                          className="absolute bottom-0 left-0 right-0 h-px bg-ink"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
 
-        {/* Mobile: 44px menu button, always visible */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen(true)}
-          aria-haspopup="dialog"
-          aria-expanded={menuOpen}
-          aria-label="Abrir menú"
-          className="flex size-11 items-center justify-center rounded border border-border bg-background md:hidden"
-        >
-          <Menu className="size-5" aria-hidden="true" />
-        </button>
+          {/* Mobile: 44px menu button, always visible */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={menuOpen}
+            aria-label="Abrir menú"
+            className="flex size-11 items-center justify-center rounded border border-border bg-background md:hidden"
+          >
+            <Menu className="size-5" aria-hidden="true" />
+          </button>
+        </Container>
       </motion.header>
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
