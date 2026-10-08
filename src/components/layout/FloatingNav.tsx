@@ -29,7 +29,7 @@ export function FloatingNav() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-30 h-[88px] w-full"
+        className="fixed inset-x-0 top-0 z-30 h-[80px] w-full"
         style={{
           background: 'var(--color-background)',
           borderBottom: `1px solid var(--color-border)`,
