@@ -7,7 +7,7 @@ export function About() {
   return (
     <Section id="sobre-mi" titleId="titulo-sobre-mi" tone="surface">
       <Container>
-        <div className="mx-auto max-w-5xl">
+        <div>
           {/* Split grid: heading + intro + stats | timeline */}
           <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
 
