@@ -21,7 +21,7 @@ export function ExperiencePreview() {
           {items.map((item) => (
             <li
               key={item.id}
-              className="relative flex flex-col gap-2 border-l-2 border-border pl-6 last:border-l-0 sm:grid sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8 sm:items-start sm:pl-0 sm:border-l-0 sm:gap-y-8"
+              className="relative flex flex-col gap-2 border-b border-border py-6 last:border-b-0 sm:grid sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8 sm:items-start sm:pl-0 sm:border-b-0 sm:border-l-2 sm:pl-6"
             >
               {/* Date / meta — above on mobile, fixed column on desktop */}
               <time
