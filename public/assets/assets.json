@@ -27,11 +27,11 @@
     {
       "source": "src/assets/hero/BrayanLeon.png",
       "path": "public/assets/hero/brayan-leon.webp",
-      "dimensions": "1600x1572",
+      "dimensions": "1600x1536",
       "format": "WebP with alpha",
       "sourceBytes": 3854664,
-      "optimizedBytes": 172530,
-      "transformation": "Trimmed transparent canvas to alpha bounds with 48px side/top padding (source bottom retained); preserves both arms",
+      "optimizedBytes": 169436,
+      "transformation": "Trimmed transparent canvas to alpha bounds with 48px side padding; removed top transparency and retained source bottom, preserving both arms",
       "purpose": "User-provided portrait for the Home hero"
     }
   ]

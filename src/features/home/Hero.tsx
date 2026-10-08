@@ -1,6 +1,7 @@
 import '@fontsource/bebas-neue/latin-400.css'
 
 import { ArrowRight, Download } from 'lucide-react'
+import type { CSSProperties } from 'react'
 
 import { Container } from '@/components/layout/Container'
 import { siteConfig } from '@/data/site'
@@ -8,33 +9,50 @@ import { siteConfig } from '@/data/site'
 /**
  * Masthead class — giant "PORTAFOLIO" that stays single-line at 1440 px.
  * Bebas Neue 400, clamp(5rem,17vw,17rem), uppercase, tight line-height
- * and tracking.  No scaleY transform.
+ * and tracking. The inner text is scaled vertically while this heading
+ * reserves the transformed height in layout.
  */
 const portfolioTitleClass =
   'whitespace-nowrap font-["Bebas_Neue"] text-[clamp(5rem,17vw,17rem)] font-normal uppercase leading-[0.85] tracking-[-0.01em] text-ink'
+
+const heroMetrics = {
+  '--header-h': '80px',
+  '--title-stretch': '1.5',
+  '--title-natural-h': 'calc(clamp(5rem, 17vw, 17rem) * 0.85)',
+  '--title-h': 'calc(var(--title-natural-h) * var(--title-stretch))',
+  '--photo-w': 'clamp(360px, 55vw, 560px)',
+  '--photo-h': 'calc(var(--photo-w) * 1536 / 1600)',
+  '--hero-natural-h':
+    'max(640px, calc(24px + var(--title-h) + var(--photo-h) - var(--overlap)))',
+  '--hero-extra':
+    'max(0px, calc(100svh - var(--header-h) - var(--hero-natural-h)))',
+  '--tablet-photo-w': 'clamp(360px, 51vw, 480px)',
+  '--tablet-photo-h': 'calc(var(--tablet-photo-w) * 1536 / 1600)',
+  '--overlap': 'clamp(40px, calc(var(--title-natural-h) * 0.25), 56px)',
+  '--mobile-photo-h': 'calc(min(90vw, 380px) * 1536 / 1600)',
+} as CSSProperties
 
 export function Hero() {
   return (
     <section
       id="inicio"
       aria-label="Inicio"
-      className="relative isolate overflow-hidden bg-background"
+      style={heroMetrics}
+      className="relative isolate mt-[var(--header-h)] overflow-hidden bg-background [@media(min-width:1024px)_and_(min-height:800px)_and_(orientation:landscape)]:pt-[min(var(--hero-extra),20vh)]"
     >
-      <Container className="relative flex flex-col pt-[104px] pb-10 sm:pb-12 lg:min-h-[100svh] lg:pb-0">
+      <Container className="relative grid grid-rows-[auto_minmax(max-content,1fr)] pt-6 min-h-[max(700px,calc(100svh_-_var(--header-h)))] sm:min-h-[calc(24px_+_var(--title-h)_+_var(--tablet-photo-h)_-_var(--overlap))] lg:min-h-[max(640px,calc(24px_+_var(--title-h)_+_var(--photo-h)_-_var(--overlap)))] [@media(max-height:500px)_and_(max-width:900px)]:min-h-[max(700px,calc(100svh_-_var(--header-h)))]">
         {/* Masthead — Bebas Neue 400, z-10 above circle (z-0) */}
         <h1
-          className={`${portfolioTitleClass} relative z-10 origin-left scale-x-[1.05] sm:scale-x-[1.25] lg:scale-x-[1.3]`}
+          className={`${portfolioTitleClass} h-[var(--title-h)] relative z-10 origin-left scale-x-[1.05] sm:scale-x-[1.25] lg:scale-x-[1.3]`}
         >
-          Portafolio
+          <span className="block origin-top [transform:scaleY(var(--title-stretch))]">
+            Portafolio
+          </span>
         </h1>
 
-        {/* Two-column grid: copy left, portrait right (stacks on mobile)
-            — portrait anchored to section bottom on desktop for full overlap
-            — circle backdrop now z-0 so H1 (z-10) renders above it */}
-        <div className="relative -mt-2 grid flex-1 items-end gap-6 sm:mt-0 lg:-mt-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0">
-
-          {/* ── Copy column — left ─────────────────────────────────── */}
-          <div className="relative z-30 py-6 font-heading lg:self-start lg:py-0 lg:pt-14">
+        {/* Content row — grid intrinsic sizing lets the hero grow if copy needs space. */}
+        <div className="relative z-30 grid min-h-0 grid-cols-1 items-center pb-[calc(var(--mobile-photo-h)_+_24px)] sm:grid-cols-[42%_58%] sm:pb-0 md:grid-cols-[50%_50%] lg:grid-cols-[40%_60%] [@media(max-height:500px)_and_(max-width:900px)]:grid-cols-1 [@media(max-height:500px)_and_(max-width:900px)]:pb-[calc(var(--mobile-photo-h)_+_24px)]">
+          <div className="relative z-30 min-w-0 py-6 font-heading">
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
               Hola, soy
             </p>
@@ -69,39 +87,26 @@ export function Hero() {
               )}
             </div>
           </div>
-
-          {/* ── Portrait column — right ────────────────────────────── */}
-          {/*
-            Desktop: portrait anchored to section bottom, scaled to viewport
-            height so it overlaps the masthead.  Mobile: small top-right
-            cutout (~6 rem at 390 px, ~12 rem at 768 px) overlapping
-            the final "LIO" letters without cropping arms.
-          */}
-          <figure className="absolute -top-4 right-0 h-24 w-24 sm:-top-20 sm:right-[5.5rem] sm:h-40 sm:w-40 md:right-32 md:h-48 md:w-48 lg:relative lg:top-auto lg:right-auto lg:h-full lg:w-full lg:flex lg:items-end lg:justify-end">
-            {/* Terracotta circle backdrop — z-0, behind H1 and photo */}
-            <span
-              aria-hidden="true"
-              className="absolute bottom-[4%] left-1/2 z-0 aspect-square w-[82%] max-w-[32rem] -translate-x-1/2 rounded-full bg-accent/90 lg:max-w-[40rem]"
-            />
-
-            {/*
-              Mobile: absolute top-right cutout (6rem at 390px; 12rem at 768px)
-              overlapping the masthead. Desktop: large bottom-aligned portrait.
-              Intrinsic width/height prevent CLS; eager loading ensures
-              first-fold delivery.
-            */}
-            <img
-              src="/assets/hero/brayan-leon.webp"
-              alt="Brayan León, desarrollador Backend y Fullstack"
-              width={1600}
-              height={1572}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="relative z-20 aspect-[1600/1572] h-full w-full object-contain lg:mx-0 lg:h-auto lg:w-full lg:max-w-full lg:max-h-[min(48rem,calc(100svh_-_16rem))] lg:origin-bottom-right lg:scale-[1.05] [@media(min-width:1024px)_and_(max-height:800px)]:origin-bottom-right [@media(min-width:1024px)_and_(max-height:800px)]:scale-[1.14] [@media(min-width:1024px)_and_(max-height:800px)]:translate-x-10"
-            />
-          </figure>
+          <div className="hidden sm:block" aria-hidden="true" />
         </div>
+
+        {/* Photo is always bottom-anchored and stays at its natural ratio. */}
+        <figure className="absolute z-20 bottom-0 left-1/2 aspect-[1600/1536] w-[90vw] max-w-[380px] -translate-x-1/2 sm:left-auto sm:right-0 sm:w-[var(--tablet-photo-w)] sm:max-w-none sm:translate-x-0 md:-right-1 lg:w-[var(--photo-w)] lg:right-8 xl:right-16 [@media(max-height:500px)_and_(max-width:900px)]:left-1/2 [@media(max-height:500px)_and_(max-width:900px)]:right-auto [@media(max-height:500px)_and_(max-width:900px)]:w-[90vw] [@media(max-height:500px)_and_(max-width:900px)]:max-w-[380px] [@media(max-height:500px)_and_(max-width:900px)]:-translate-x-1/2">
+          <span
+            aria-hidden="true"
+            className="absolute bottom-0 left-1/2 z-0 aspect-square w-[80vw] max-w-[320px] -translate-x-1/2 rounded-full bg-accent/90 sm:w-[82%] sm:max-w-[40rem] [@media(max-height:500px)_and_(max-width:900px)]:w-[80vw] [@media(max-height:500px)_and_(max-width:900px)]:max-w-[320px]"
+          />
+          <img
+            src="/assets/hero/brayan-leon.webp"
+            alt="Brayan León, desarrollador Backend y Fullstack"
+            width={1600}
+            height={1536}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="relative z-20 block h-full w-full object-contain lg:origin-bottom-right lg:scale-[1.05]"
+          />
+        </figure>
       </Container>
     </section>
   )
