@@ -43,7 +43,7 @@ export function Hero() {
             <p className="mt-3 text-sm font-semibold uppercase tracking-[0.1em] text-accent">
               Desarrollador Backend y Fullstack
             </p>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg lg:max-w-[21rem] xl:max-w-lg">
               Construyo aplicaciones web y APIs robustas, con atención al
               rendimiento y a la experiencia de usuario.
             </p>
@@ -97,7 +97,7 @@ export function Hero() {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className="relative z-20 mx-auto aspect-[1600/1572] h-[26rem] w-[82%] max-w-[28rem] object-contain sm:h-[31rem] sm:max-w-[32rem] lg:mx-0 lg:h-auto lg:w-full lg:max-w-full lg:max-h-[min(48rem,calc(100svh_-_12rem))]"
+              className="relative z-20 mx-auto aspect-[1600/1572] h-[26rem] w-[82%] max-w-[28rem] object-contain sm:h-[31rem] sm:max-w-[32rem] lg:mx-0 lg:h-auto lg:w-full lg:max-w-full lg:max-h-[min(48rem,calc(100svh_-_12rem))] [@media(min-width:1024px)_and_(max-height:800px)]:origin-bottom-right [@media(min-width:1024px)_and_(max-height:800px)]:scale-[1.14] [@media(min-width:1024px)_and_(max-height:800px)]:translate-x-10"
             />
           </figure>
         </div>
