@@ -25,7 +25,7 @@ export function Contact() {
   }
 
   return (
-    <Section id="contacto" titleId="titulo-contacto">
+    <Section id="contacto" titleId="titulo-contacto" className="min-h-0 py-20 md:py-24">
       <Container>
         <div className="grid gap-8 md:grid-cols-[1fr_1.2fr] md:items-center md:gap-12">
           {/* Left — editorial copy */}
