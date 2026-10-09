@@ -26,7 +26,7 @@ An editorial, image-led portfolio for a backend/full-stack engineering student. 
 - Follow the provided résumé reference: a compact uppercase eyebrow and large editorial heading above a two-column list; dates stay in the narrow left column, while role/employer, location, summary and the existing quote form each right-hand row. Use thin horizontal hairlines between rows. Remove the right-side generated illustration entirely.
 - Keep every existing Spanish role, employer, date, location, summary and reference quote. Do not invent or shorten factual copy. Keep the `/experiencia` route, its chronology and content untouched.
 - Preserve the existing palette only: paper `#F3F1EB`, raised paper `#FAF9F5`, ink `#1D1D1B`, muted `#66645E`, hairline `#D7D3CA`, terracotta `#B94E36`. Add no hue, panel, gradient or shadow.
-- Use the already-local Newsreader only for this section's display heading and role/employer titles to echo the reference's editorial serif; retain DM Sans for supporting copy and existing technical/date typography. Do not alter global font tokens or other sections.
+- Retain the existing type system: Outfit headings, DM Sans supporting copy, and IBM Plex Mono for technical/date labels. Use the existing ink, muted text and terracotta roles; do not alter global font tokens or other sections.
 - At desktop, align each date to the left of its row and the content to the right. At mobile, stack the date above the content in the same reading order; preserve the existing navigation/action behavior and add no focus stops.
 
 ## Motion

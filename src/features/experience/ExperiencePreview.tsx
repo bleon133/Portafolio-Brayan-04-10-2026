@@ -10,11 +10,15 @@ export function ExperiencePreview() {
   const items = sortByDateDesc(experiences, (item) => item.start)
 
   return (
-    <Section id="experiencia" titleId="titulo-experiencia">
+    <Section
+      id="experiencia"
+      titleId="titulo-experiencia"
+      className="scroll-mt-48 sm:scroll-mt-20"
+    >
       <Container>
         <header className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-medium tracking-widest text-accent-soft uppercase">
+            <p className="text-sm font-medium tracking-widest text-muted uppercase">
               Experiencia
             </p>
             <h2
@@ -42,10 +46,10 @@ export function ExperiencePreview() {
             return (
               <li
                 key={item.id}
-                className="grid grid-cols-1 gap-2 py-6 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8 sm:py-6 first:pt-0 last:pb-0"
+                className="grid grid-cols-1 gap-2 py-6 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8"
               >
                 <time
-                  className="text-sm font-medium text-accent-soft sm:text-left sm:pt-1"
+                  className="font-mono text-xs font-medium text-muted uppercase sm:pt-1"
                   dateTime={item.start}
                 >
                   {period}
@@ -55,10 +59,10 @@ export function ExperiencePreview() {
                   <h3 className="text-xl font-semibold font-heading sm:text-2xl">
                     {item.role} en {item.company}
                   </h3>
-                  <p className="text-base text-muted">{item.location}</p>
-                  <p className="text-base">{item.summary}</p>
+                  <p className="text-sm text-muted">{item.location}</p>
+                  <p className="text-base text-muted md:max-w-prose">{item.summary}</p>
                   {item.reference && (
-                    <blockquote className="mt-2 text-sm italic text-muted">
+                    <blockquote className="mt-2 text-sm italic text-muted md:max-w-prose">
                       «{item.reference.quote}»
                       <footer className="mt-1 text-xs not-italic">
                         — {item.reference.source}
