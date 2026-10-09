@@ -13,7 +13,7 @@ export function ExperiencePreview() {
     <Section
       id="experiencia"
       titleId="titulo-experiencia"
-      className="scroll-mt-48 sm:scroll-mt-20"
+      className="scroll-mt-48 sm:scroll-mt-28"
     >
       <Container>
         <header className="mb-12 flex flex-wrap items-end justify-between gap-4">
