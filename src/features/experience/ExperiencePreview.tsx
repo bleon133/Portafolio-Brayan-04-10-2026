@@ -53,11 +53,7 @@ export function ExperiencePreview() {
 
                 <article className="flex flex-col gap-2">
                   <h3 className="text-xl font-semibold font-heading sm:text-2xl">
-                    {item.role}
-                    <span className="text-base font-normal text-muted">
-                      {' '}
-                      · {item.company}
-                    </span>
+                    {item.role} en {item.company}
                   </h3>
                   <p className="text-base text-muted">{item.location}</p>
                   <p className="text-base">{item.summary}</p>
