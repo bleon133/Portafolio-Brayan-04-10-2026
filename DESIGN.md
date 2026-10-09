@@ -21,6 +21,14 @@ An editorial, image-led portfolio for a backend/full-stack engineering student. 
 5. **Project detail**: preserve each slug, gallery captions and next-project link. Use the real screenshot/gallery assets already associated with the project.
 6. **Experience and education**: preserve all existing data, chronology, certificate URLs, filtering and deep links.
 
+### Project details — modular editorial case study (direction A)
+
+- Give every `/proyectos/:slug` page the same reading order: project introduction, media stage, ordered story sections with a compact facts/stack/links rail, and next-project navigation. Keep all twelve slugs, existing copy, links, URL filters, and next-project behavior.
+- Model narrative as ordered data sections composed from reusable paragraph/list blocks so future project information is added in data rather than by branching the detail template.
+- Use one shared media gallery for real multi-image galleries and image-only covers. The enlarged native dialog shares the current slide, caption, counter, previous/next actions, and keyboard behavior with the inline carousel. Respect reduced motion and never autoplay.
+- When a project has no real image, show a clearly labeled editorial placeholder idea derived only from its existing title/category/description/features. It is a replaceable media slot, never a fabricated product screenshot.
+- Keep the current paper/ink/terracotta palette and Outfit/DM Sans/IBM Plex Mono system. Derive portrait/landscape presentation from media metadata rather than slug-specific conditions. Reflow the story, facts, and media without horizontal overflow on mobile.
+
 ### Home experience — editorial résumé rows
 
 - Follow the provided résumé reference: a compact uppercase eyebrow and large editorial heading above a two-column list; dates stay in the narrow left column, while role/employer, location, summary and the existing quote form each right-hand row. Use thin horizontal hairlines between rows. Remove the right-side generated illustration entirely.
