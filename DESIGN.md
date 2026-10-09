@@ -21,13 +21,13 @@ An editorial, image-led portfolio for a backend/full-stack engineering student. 
 5. **Project detail**: preserve each slug, gallery captions and next-project link. Use the real screenshot/gallery assets already associated with the project.
 6. **Experience and education**: preserve all existing data, chronology, certificate URLs, filtering and deep links.
 
-### Home experience graphic — selected direction A
+### Home experience — editorial résumé rows
 
-- Replace the Home experience preview's small date-bar chart with a single vertical, image-led paper-relief artifact in the right column. Keep the full experience list and its data unchanged.
-- The generated scene is tactile handmade paper with embossed topographic contours and a muted terracotta thread connecting two dark paper pins. Use a full composition, natural paper edges and soft editorial light; do not generate text, dates, labels, logos, charts, or fake product UI.
-- Preserve the existing palette only: paper `#F3F1EB`, raised paper `#FAF9F5`, ink `#1D1D1B`, muted `#66645E`, hairline `#D7D3CA`, terracotta `#B94E36`. Add no hue or gradient.
-- Keep actual employer names and date ranges as HTML adjacent to the artwork. Use Newsreader for the graphic's short editorial labels and the existing DM Sans for supporting text; do not change typography elsewhere.
-- Treat the generated illustration as decorative (`alt=""`) and provide a paper-color fallback. Keep the graphic in the existing desktop right column; preserve mobile's single-column experience layout.
+- Follow the provided résumé reference: a compact uppercase eyebrow and large editorial heading above a two-column list; dates stay in the narrow left column, while role/employer, location, summary and the existing quote form each right-hand row. Use thin horizontal hairlines between rows. Remove the right-side generated illustration entirely.
+- Keep every existing Spanish role, employer, date, location, summary and reference quote. Do not invent or shorten factual copy. Keep the `/experiencia` route, its chronology and content untouched.
+- Preserve the existing palette only: paper `#F3F1EB`, raised paper `#FAF9F5`, ink `#1D1D1B`, muted `#66645E`, hairline `#D7D3CA`, terracotta `#B94E36`. Add no hue, panel, gradient or shadow.
+- Use the already-local Newsreader only for this section's display heading and role/employer titles to echo the reference's editorial serif; retain DM Sans for supporting copy and existing technical/date typography. Do not alter global font tokens or other sections.
+- At desktop, align each date to the left of its row and the content to the right. At mobile, stack the date above the content in the same reading order; preserve the existing navigation/action behavior and add no focus stops.
 
 ## Motion
 

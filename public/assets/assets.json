@@ -13,6 +13,13 @@
       "seed": 347724,
       "dimensions": "1248x832",
       "purpose": "Editorial paper-and-metal route-map texture behind real portfolio navigation stops"
+    },
+    {
+      "path": "public/assets/experience/paper-relief.webp",
+      "model": "mcp-tools/Z-Image-Turbo",
+      "seed": 66418,
+      "dimensions": "1024x1536",
+      "purpose": "Warm paper relief with a terracotta thread route for the Home experience graphic"
     }
   ],
   "derived": [
