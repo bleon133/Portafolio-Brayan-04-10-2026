@@ -1,80 +1,79 @@
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
-import { SectionHeading } from '@/components/ui/SectionHeading'
 import { experiences } from '@/data/experience'
 import { formatPeriod, sortByDateDesc } from '@/lib/collections'
-import { ExperiencePaperRelief } from './ExperiencePaperRelief'
 
 /** Resumen compacto para la Home: cronología editorial sin tarjetas. */
 export function ExperiencePreview() {
   const items = sortByDateDesc(experiences, (item) => item.start)
-  const [activeExperienceId, setActiveExperienceId] = useState<string | null>(null)
 
   return (
     <Section id="experiencia" titleId="titulo-experiencia">
       <Container>
-        <SectionHeading
-          id="titulo-experiencia"
-          eyebrow="Experiencia"
-          title="Dónde he trabajado"
-          action={{ label: 'Ver detalle', to: '/experiencia' }}
-        />
-        <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-16">
-          <ol className="relative mt-8 divide-y divide-border py-6">
-            {items.map((item) => {
-              const period = formatPeriod(item.start, item.end)
-              const [range, duration] = period.split(' · ')
+        <header className="mb-12 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium tracking-widest text-accent-soft uppercase">
+              Experiencia
+            </p>
+            <h2
+              id="titulo-experiencia"
+              className="mt-2 text-4xl font-semibold sm:text-5xl lg:text-6xl"
+            >
+              Experiencia profesional
+            </h2>
+          </div>
+          <Link
+            to="/experiencia"
+            className="group inline-flex min-h-11 items-center gap-2 text-lg font-medium text-accent-soft transition-colors duration-200 hover:text-foreground"
+          >
+            Ver detalle
+            <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </header>
 
-              return (
-                <li
-                  key={item.id}
-                  className="relative flex flex-col gap-2 py-6 first:pt-0 last:pb-0 sm:grid sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8 sm:items-start md:items-baseline"
-                  onPointerEnter={(event) => {
-                    if (event.pointerType !== 'touch') setActiveExperienceId(item.id)
-                  }}
-                  onPointerLeave={(event) => {
-                    if (event.pointerType !== 'touch') {
-                      setActiveExperienceId((activeId) => (activeId === item.id ? null : activeId))
-                    }
-                  }}
+        <ol className="border-y border-border divide-y divide-border">
+          {items.map((item) => {
+            const period = formatPeriod(item.start, item.end)
+
+            return (
+              <li
+                key={item.id}
+                className="grid grid-cols-1 gap-2 py-6 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8 sm:py-6 first:pt-0 last:pb-0"
+              >
+                <time
+                  className="text-sm font-medium text-accent-soft sm:text-left sm:pt-1"
+                  dateTime={item.start}
                 >
-                  {/* Date / meta — above on mobile, fixed column on desktop */}
-                  <time
-                    className="text-sm font-medium text-accent-soft sm:text-left sm:pt-1"
-                    dateTime={item.start}
-                  >
-                    {duration ? (
-                      <>
-                        <span className="whitespace-nowrap">{range} ·</span>
-                        {' '}
-                        <span className="whitespace-nowrap">{duration}</span>
-                      </>
-                    ) : (
-                      period
-                    )}
-                  </time>
+                  {period}
+                </time>
 
-                  {/* Role, company, location, summary — above on mobile, second column on desktop */}
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-xl font-semibold sm:text-2xl">{item.role}</h3>
-                    <p className="text-base text-muted">
-                      {item.company} · {item.location}
-                    </p>
-                    <p className="text-base md:max-w-prose">{item.summary}</p>
-                    {item.reference && (
-                      <blockquote className="mt-2 text-sm italic text-muted md:max-w-prose">
-                        «{item.reference.quote}»
-                        <footer className="mt-1 text-xs not-italic">— {item.reference.source}</footer>
-                      </blockquote>
-                    )}
-                  </div>
-                </li>
-              )
-            })}
-          </ol>
-          <ExperiencePaperRelief items={items} activeId={activeExperienceId} />
-        </div>
+                <article className="flex flex-col gap-2">
+                  <h3 className="text-xl font-semibold font-heading sm:text-2xl">
+                    {item.role}
+                    <span className="text-base font-normal text-muted">
+                      {' '}
+                      · {item.company}
+                    </span>
+                  </h3>
+                  <p className="text-base text-muted">{item.location}</p>
+                  <p className="text-base">{item.summary}</p>
+                  {item.reference && (
+                    <blockquote className="mt-2 text-sm italic text-muted">
+                      «{item.reference.quote}»
+                      <footer className="mt-1 text-xs not-italic">
+                        — {item.reference.source}
+                      </footer>
+                    </blockquote>
+                  )}
+                </article>
+              </li>
+            )
+          })}
+        </ol>
       </Container>
     </Section>
   )
