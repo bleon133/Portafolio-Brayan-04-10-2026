@@ -21,6 +21,14 @@ An editorial, image-led portfolio for a backend/full-stack engineering student. 
 5. **Project detail**: preserve each slug, gallery captions and next-project link. Use the real screenshot/gallery assets already associated with the project.
 6. **Experience and education**: preserve all existing data, chronology, certificate URLs, filtering and deep links.
 
+### Home experience graphic — selected direction A
+
+- Replace the Home experience preview's small date-bar chart with a single vertical, image-led paper-relief artifact in the right column. Keep the full experience list and its data unchanged.
+- The generated scene is tactile handmade paper with embossed topographic contours and a muted terracotta thread connecting two dark paper pins. Use a full composition, natural paper edges and soft editorial light; do not generate text, dates, labels, logos, charts, or fake product UI.
+- Preserve the existing palette only: paper `#F3F1EB`, raised paper `#FAF9F5`, ink `#1D1D1B`, muted `#66645E`, hairline `#D7D3CA`, terracotta `#B94E36`. Add no hue or gradient.
+- Keep actual employer names and date ranges as HTML adjacent to the artwork. Use Newsreader for the graphic's short editorial labels and the existing DM Sans for supporting text; do not change typography elsewhere.
+- Treat the generated illustration as decorative (`alt=""`) and provide a paper-color fallback. Keep the graphic in the existing desktop right column; preserve mobile's single-column experience layout.
+
 ## Motion
 
 - Use the existing `motion` package for brief entrance/reveal and navigation state transitions; use GSAP only where an actual scroll-led route-map explanation benefits from it.
