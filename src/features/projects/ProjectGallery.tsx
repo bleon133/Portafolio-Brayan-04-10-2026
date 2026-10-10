@@ -94,7 +94,7 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
         alt=""
         aria-hidden="true"
         loading="lazy"
-        className="h-auto w-full object-contain"
+        className="size-full object-contain"
       />
     )
   }
@@ -114,7 +114,6 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
   }
 
   function renderCounter() {
-    if (merged.length < 2) return null
     return (
       <span className="min-w-14 text-center text-sm tabular-nums text-muted" aria-live="polite">
         {index + 1} / {merged.length}
@@ -173,8 +172,12 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
                 duration: prefersReducedMotion ? 0 : 0.25,
               }}
               onClick={() => setViewerOpen(true)}
-              aria-label={`Ampliar imagen: ${current.type === 'idea' ? current.caption : current.caption}`}
-              className="group relative flex cursor-zoom-in items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-soft"
+              aria-label={
+                current.type === 'idea'
+                  ? `Abrir idea visual: ${current.title}`
+                  : `Ampliar imagen: ${current.caption}`
+              }
+              className="group absolute inset-0 flex cursor-zoom-in items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-soft"
             >
               {renderSlideContent()}
               {current.type !== 'idea' && (
@@ -195,15 +198,17 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
           <p className="flex min-w-0 flex-1" aria-live="polite">
             {renderCaption()}
           </p>
-          <div className="flex shrink-0 items-center gap-2">
-            {renderNavButton(-1, 'Imagen anterior', (
-              <ChevronLeft className="size-5" aria-hidden="true" />
-            ))}
-            {renderCounter()}
-            {renderNavButton(1, 'Imagen siguiente', (
-              <ChevronRight className="size-5" aria-hidden="true" />
-            ))}
-          </div>
+          {merged.length > 1 && (
+            <div className="flex shrink-0 items-center gap-2">
+              {renderNavButton(-1, 'Imagen anterior', (
+                <ChevronLeft className="size-5" aria-hidden="true" />
+              ))}
+              {renderCounter()}
+              {renderNavButton(1, 'Imagen siguiente', (
+                <ChevronRight className="size-5" aria-hidden="true" />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
