@@ -26,6 +26,7 @@ An editorial, image-led portfolio for a backend/full-stack engineering student. 
 - Use one shared editorial case-study order on all `/proyectos/:slug` routes: `PageHeader`, a media stage, ordered narrative sections alongside project facts/stack/links, and the existing next-project link. Preserve every slug, project claim, external link, gallery caption and archive filter URL.
 - Store narrative as ordered typed sections containing prose or bullet-list blocks, so new project information can be added in data without branching `ProjectDetail`.
 - Route real gallery images, single covers and clearly labeled editorial media ideas through the same carousel/zoom component. Ideas must derive only from existing project facts and must be visually identified as placeholders, never fake product screenshots.
+- Keep the inline media stage at a shared 16:9 ratio and render source media with `object-contain` so every screenshot is fully visible. The enlarged viewer preserves each source image's intrinsic ratio and fits it inside the viewport.
 - Keep the current cream/ink/terracotta palette, Outfit/DM Sans/IBM Plex Mono type roles and native modal approach. Keep portrait/landscape behavior independent of slug names.
 - Carousel and enlarged viewer share slide index, caption and counter; include keyboard-operable previous/next controls, Escape/close, focus handling, reduced-motion behavior and no autoplay.
 

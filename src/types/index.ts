@@ -14,6 +14,25 @@ export interface GalleryImage {
   caption: string
 }
 
+export type ProjectContentBlock =
+  | { type: 'paragraph'; text: string }
+  | { type: 'list'; items: string[] }
+
+export interface ProjectSection {
+  id: string
+  title: string
+  blocks: ProjectContentBlock[]
+}
+
+export interface ProjectMediaIdea {
+  title: string
+  caption: string
+}
+
+export type ProjectMediaSlide =
+  | { type: 'image'; src: string; caption: string }
+  | { type: 'idea'; title: string; caption: string }
+
 export type ProjectCategory = 'Web' | 'Móvil' | 'Web y móvil' | 'Escritorio' | 'Redes' | 'Realidad virtual' | 'Videojuego'
 
 export interface Project {
@@ -41,6 +60,10 @@ export interface Project {
   overview?: string
   features?: string[]
   gallery?: GalleryImage[]
+  /** Bloques ordenados que reemplazan `overview`, `problem`, `decisions`, `features`, `result`. */
+  sections?: ProjectSection[]
+  /** Ideas conceptuales de imágenes o capturas para cada proyecto. */
+  mediaIdeas?: ProjectMediaIdea[]
 }
 
 export interface Capability {
