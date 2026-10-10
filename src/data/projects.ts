@@ -83,20 +83,6 @@ export const projects: Project[] = [
         ],
       },
     ],
-    mediaIdeas: [
-      {
-        title: '(Propuesta) Captura del módulo de preparación e higiene en la cocina',
-        caption: 'Vista propuesta del módulo donde el paciente aprende la asepsia y preparación del sitio de inyección, reemplazable por una captura real del motor de Unity.',
-      },
-      {
-        title: '(Propuesta) Diagrama de arquitectura ScriptableObject',
-        caption: 'Esquema propuesto que muestre cómo los ScriptableObjects desacoplan el contenido de la escena, para reemplazar por un diagrama real si se desea.',
-      },
-      {
-        title: '(Propuesta) Captura del árbol de avances con estados',
-        caption: 'Ilustración propuesta del árbol de avances mostrando los tres estados (hecho, disponible, bloqueado), reemplazable por una captura real del juego.',
-      },
-    ],
     facts: [
       { label: 'Autores', value: 'Brayan Steven León Martinez y Santiago Cardona Prada' },
       { label: 'Director', value: 'Leonardo Stiven Pardo Niño' },
