@@ -77,15 +77,15 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
   function renderSlideContent() {
     if (current.type === 'idea') {
       return (
-        <div className="flex h-full w-full items-center justify-center bg-ink/5 p-8 text-center">
-          <div className="space-y-3">
+        <span className="flex h-full w-full items-center justify-center bg-ink/5 p-8 text-center">
+          <span className="block max-w-lg space-y-3">
             <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent-soft">
               Idea de imagen
             </span>
-            <p className="text-base font-medium text-foreground">{current.title}</p>
-            <p className="text-sm text-muted">{current.caption}</p>
-          </div>
-        </div>
+            <span className="block text-base font-medium text-foreground">{current.title}</span>
+            <span className="block text-sm text-muted">{current.caption}</span>
+          </span>
+        </span>
       )
     }
     return (
@@ -145,7 +145,7 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
       <div
         role="group"
         aria-roledescription="carrusel"
-        aria-label={`Pantallazos de ${title}`}
+        aria-label={`Medios del proyecto ${title}`}
       >
         {/* Fixed 16:9 stage — images never cropped */}
         <div className="relative aspect-video w-full overflow-hidden">
@@ -180,15 +180,13 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
               className="group absolute inset-0 flex cursor-zoom-in items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-soft"
             >
               {renderSlideContent()}
-              {current.type !== 'idea' && (
-                <span
-                  aria-hidden="true"
-                  className="absolute right-2 bottom-2 inline-flex min-h-11 items-center gap-2 border border-border bg-background/95 px-3 text-sm text-foreground transition-colors group-hover:border-accent"
-                >
-                  <Maximize2 className="size-4" />
-                  Ampliar
-                </span>
-              )}
+              <span
+                aria-hidden="true"
+                className="absolute right-2 bottom-2 inline-flex min-h-11 items-center gap-2 border border-border bg-background/95 px-3 text-sm text-foreground transition-colors group-hover:border-accent"
+              >
+                <Maximize2 className="size-4" />
+                Ampliar
+              </span>
             </motion.button>
           </AnimatePresence>
         </div>
@@ -220,7 +218,11 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
           if (event.target === event.currentTarget) setViewerOpen(false)
         }}
         onKeyDown={onKeyDown}
-        aria-label={`Imagen ampliada: ${current.caption}`}
+        aria-label={
+          current.type === 'idea'
+            ? `Idea visual ampliada: ${current.title}`
+            : `Imagen ampliada: ${current.caption}`
+        }
         className="fixed inset-0 m-auto h-fit max-h-[95dvh] w-fit max-w-[96vw] overflow-visible border-0 bg-transparent p-0 backdrop:bg-ink/80"
       >
         <div
@@ -241,8 +243,8 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
 
           {/* Slide content (full size) */}
           {current.type === 'idea' ? (
-            <div className="flex h-full w-full items-center justify-center bg-ink/5 p-8 text-center">
-              <div className="space-y-3">
+            <div className="flex aspect-video w-[min(82vw,64rem)] max-w-full items-center justify-center bg-ink/5 p-8 text-center">
+              <div className="max-w-lg space-y-3">
                 <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent-soft">
                   Idea de imagen
                 </span>
@@ -259,7 +261,9 @@ export function ProjectGallery({ images, title, slides }: ProjectGalleryProps) {
           )}
 
           {/* Caption */}
-          <p className="text-center text-sm text-muted">{current.caption}</p>
+          <p aria-live="polite" className="text-center text-sm text-muted">
+            {current.caption}
+          </p>
 
           {/* Navigation inside viewer */}
           {merged.length >= 2 && (
