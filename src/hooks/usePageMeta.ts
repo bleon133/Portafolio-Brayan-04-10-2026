@@ -23,7 +23,7 @@ function setMeta(selector: string, attribute: 'name' | 'property', key: string, 
 }
 
 /** Actualiza título, descripción, canonical, Open Graph, Twitter y robots al cambiar de página. */
-export function usePageMeta({ title, description, path, image = '/og-image.png', noindex = false }: PageMetaOptions) {
+export function usePageMeta({ title, description, path, image = '/og-image-v2.png', noindex = false }: PageMetaOptions) {
   useEffect(() => {
     const origin = window.location.origin
     const url = `${origin}${path === '/' ? '/' : path}`

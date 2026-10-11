@@ -28,7 +28,8 @@ const dist = path.join(root, 'dist')
 const DEFAULT_URL = 'https://brayandeveloper.online'
 const siteUrl = (process.env.SITE_URL || DEFAULT_URL).replace(/\/$/, '')
 
-const defaultImage = '/og-image.png'
+// Use a versioned filename to invalidate social crawlers' cached preview image.
+const defaultImage = '/og-image-v2.png'
 
 const escapeHtml = (text) =>
   text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
