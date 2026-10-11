@@ -5,60 +5,78 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 
-Portafolio profesional de un estudiante de Ingeniería de Sistemas (UNAB) que busca prácticas como desarrollador Backend o Fullstack en 2027-1. Reúne experiencia, proyectos con su detalle técnico, formación y certificados, en un sitio claro, rápido y accesible.
+Portafolio de **Brayan Steven León Martinez**, estudiante de Ingeniería de Sistemas en la Universidad Autónoma de Bucaramanga (UNAB), desarrollador Backend y Fullstack que busca prácticas profesionales para 2027-1. Presenta experiencia, capacidades técnicas, formación y 12 proyectos con sus respectivos casos de estudio.
 
-![Página de inicio](docs/inicio.png)
+## Vista previa
 
-| Proyectos | Proyecto de grado | Móvil |
-|---|---|---|
-| ![Proyectos](docs/proyectos.png) | ![InsulinaVR](docs/insulinavr.png) | ![Vista móvil](docs/movil.png) |
+| Inicio — escritorio (1440 × 900) | Proyectos — escritorio (1440 × 900) |
+|---|---|
+| ![Inicio actual del portafolio en escritorio](docs/inicio.png) | ![Listado actual de proyectos en escritorio](docs/proyectos.png) |
+
+| InsulinaVR — escritorio (1440 × 900) | Inicio — móvil (390 × 844) |
+|---|---|
+| ![Caso de estudio actual de InsulinaVR](docs/insulinavr.png) | ![Inicio actual del portafolio en móvil](docs/movil.png) |
 
 ## Qué incluye
 
-- **Inicio** con presentación, datos clave, descarga del CV y enlaces a GitHub y LinkedIn.
-- **Experiencia** en formato de línea de tiempo, con funciones, entorno técnico y referencia de la empresa.
-- **Proyectos** con filtros por categoría y tecnología guardados en la URL, y una página de detalle por proyecto con galería de capturas, decisiones técnicas y resultados.
-- **Educación** con formación académica y certificados filtrables por área y emisor.
-- **Contacto** con botón para copiar el correo y enlaces a las redes.
-- Carga inicial animada, transiciones entre páginas, barra de progreso de lectura y menú móvil accesible.
+- **Inicio editorial** con presentación, estadísticas, capacidades, proyectos destacados, formación y contacto.
+- **Experiencia** en filas editoriales con fechas, responsabilidades, tecnologías y referencias laborales.
+- **12 proyectos**, cuatro destacados en Inicio, con filtros compartibles por categoría y tecnología.
+- **Casos de estudio** con narrativa por secciones, datos del proyecto, stack, enlaces y navegación al proyecto siguiente.
+- **Galerías** con imágenes reales cuando están disponibles; las ideas visuales pendientes se identifican explícitamente como propuestas. El carrusel incluye controles de teclado y visor ampliado.
+- **Educación** con formación académica y certificados filtrables.
+- **Contacto** con opción para copiar el correo, WhatsApp, descarga del CV y enlaces sociales.
+- Navegación móvil, foco visible y movimiento que respeta `prefers-reduced-motion`.
+
+## Rutas
+
+| Ruta | Contenido |
+|---|---|
+| `/` | Portafolio y secciones principales |
+| `/experiencia` | Experiencia laboral |
+| `/proyectos` | Archivo completo con filtros |
+| `/proyectos/:slug` | Caso de estudio de cada proyecto |
+| `/educacion` | Formación y certificados |
 
 ## Tecnologías
 
 | Área | Herramientas |
 |---|---|
-| Interfaz | React 19, TypeScript, React Router 7 |
-| Estilos | Tailwind CSS v4 con tokens propios, Space Grotesk y Archivo |
-| Animación | motion y GSAP (componentes de React Bits y estilo Aceternity UI) |
+| Interfaz | React 19, TypeScript 6, React Router 7 |
+| Estilos y tipografía | Tailwind CSS 4; Bebas Neue, Outfit, DM Sans e IBM Plex Mono |
+| Movimiento | Motion y GSAP |
 | Iconos | lucide-react y simple-icons |
-| Herramientas | Vite 8, oxlint, tsx |
-| Métricas | Vercel Web Analytics y Speed Insights |
+| Desarrollo y build | Vite 8, tsx y oxlint |
+| Analítica | Vercel Web Analytics y Speed Insights |
 | Despliegue | Vercel |
 
 ## Estructura
 
 ```text
 src/
-├── app/          App, router y rutas con carga diferida
+├── app/          Aplicación y rutas con carga diferida
 ├── components/
-│   ├── layout/   Barra flotante, menú móvil, footer, secciones
-│   ├── ui/       Loader, Stepper, Timeline, filtros, Reveal, Marquee
-│   └── bits/     Componentes de React Bits (instalados con shadcn CLI)
-├── features/     Un módulo por área: home, about, experience, projects, education, stack, contact
-├── pages/        Una página por ruta; solo componen features
-├── data/         Todo el contenido editable (ver más abajo)
-├── hooks/        usePageMeta, useActiveSection
-├── lib/          Utilidades (fechas, colecciones, intro)
-├── styles/       CSS global y tokens de diseño
+│   ├── layout/   Navegación, contenedores y pie de página
+│   ├── ui/       Controles y componentes reutilizables
+│   └── bits/     Componentes visuales compartidos
+├── features/     home, about, experience, projects, education, stack y contact
+├── pages/        Composición de las rutas
+├── data/         Contenido editable del portafolio
+├── hooks/        Hooks de metadatos y navegación
+├── styles/       Estilos globales y tokens
 └── types/        Tipos compartidos
-public/           CV, íconos, imagen para compartir e imágenes de proyectos
-scripts/          Generador de SEO que se ejecuta después del build
-design-system/    Guía de color, tipografía y reglas de diseño
-docs/             Capturas usadas en este README
+public/
+├── projects/     Imágenes de los proyectos
+├── assets/       Recursos del sitio
+└── cv-brayan-leon.pdf
+scripts/          Generación de HTML y metadatos SEO
+docs/             Capturas actuales incluidas en este README
+DESIGN.md         Contrato visual vigente
 ```
 
 ## Primeros pasos
 
-Requisitos: Node 22.12 o superior y npm.
+Requisitos: Node.js 22.12 o superior y npm.
 
 ```bash
 npm install
@@ -68,73 +86,46 @@ npm run dev
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Servidor de desarrollo en `http://localhost:5173` |
-| `npm run build` | Comprueba tipos, compila y genera el SEO de cada ruta |
-| `npm run preview` | Sirve el build de producción en local |
+| `npm run build` | Comprueba tipos, compila y genera las páginas y metadatos SEO |
+| `npm run preview` | Sirve localmente el build de producción |
 | `npm run lint` | Revisa el código con oxlint |
 
 ## Cómo editar el contenido
 
-Agregar algo nuevo es editar un archivo de datos; no hace falta tocar componentes.
+El contenido del portafolio vive en archivos de datos:
 
 | Quiero cambiar | Archivo |
 |---|---|
 | Nombre, redes, correo, CV y menú | `src/data/site.ts` |
-| Proyectos y sus capturas | `src/data/projects.ts` y `public/projects/<slug>/` |
+| Proyectos, casos de estudio y galerías | `src/data/projects.ts` y `public/projects/<slug>/` |
 | Experiencia laboral | `src/data/experience.ts` |
 | Estudios | `src/data/education.ts` |
 | Certificados | `src/data/certifications.ts` |
-| Stack técnico | `src/data/stack.ts` |
-| Textos de «Sobre mí» | `src/data/about.ts` |
-| Título y descripción de las páginas fijas | `src/data/seo.ts` |
+| Capacidades y herramientas | `src/data/stack.ts` |
+| Presentación y recorrido | `src/data/about.ts` |
+| Títulos y descripciones de las páginas | `src/data/seo.ts` |
 
-Para sumar un proyecto, agrega un objeto a `projects` con `slug`, `title`, `category`, `description`, `stack` y, si tiene capturas, `image` y `gallery`. Con `featured: true` aparece también en la página de inicio. Las rutas, los filtros, el sitemap y el SEO de su página se generan solos.
+Para sumar un proyecto, agrega un objeto a `projects` con `slug`, `title`, `category`, `description` y `stack`. También puedes añadir secciones narrativas, enlaces, una portada y una galería. Con `featured: true` aparece en Inicio. Las rutas, los filtros, el sitemap y los metadatos se generan desde esos datos.
 
-## Diseño
+## Diseño y accesibilidad
 
-Paleta «azul hielo»: blanco, un solo pastel azul para las tarjetas y cobalto solo para las acciones. Las categorías se distinguen con texto, no con color. Los tokens están en `src/styles/index.css` y las reglas completas en [`design-system/portafolio/MASTER.md`](design-system/portafolio/MASTER.md).
+La dirección visual es editorial neo-minimalista: papel `#F3F1EB`, superficie `#FAF9F5`, tinta `#1D1D1B` y terracota `#B94E36`. Bebas Neue forma el masthead; Outfit se usa en titulares, DM Sans en texto e IBM Plex Mono en etiquetas técnicas. Los tokens están en `src/styles/index.css` y las reglas vigentes en [`DESIGN.md`](DESIGN.md).
 
-Accesibilidad: foco visible, contraste mínimo 4.5:1, objetivos táctiles de 44 px, respeto de `prefers-reduced-motion` y navegación completa con teclado.
+La interfaz usa estructura semántica, foco visible, navegación por teclado y respeta `prefers-reduced-motion`.
 
 ## SEO
 
-`npm run build` ejecuta `tsc`, `vite build` y `scripts/generate-seo.mjs`. El script:
+`npm run build` ejecuta `tsc`, `vite build` y `scripts/generate-seo.mjs`. El generador crea HTML con título, descripción, canonical, Open Graph, Twitter y JSON-LD para cada ruta, además de `sitemap.xml` y `robots.txt`. Las páginas de detalle se construyen desde los datos de los proyectos.
 
-- crea un `index.html` por ruta con título, descripción, canonical, Open Graph, Twitter y datos estructurados (JSON-LD) propios, para que LinkedIn, WhatsApp y X muestren la vista previa correcta aunque no ejecuten JavaScript;
-- genera `sitemap.xml` y `robots.txt` con la dirección real del sitio.
-
-La dirección sale de la variable `SITE_URL`. Si no existe, usa el dominio definitivo `https://brayandeveloper.online`, definido en el script. Las vistas previas de Vercel también apuntan a ese dominio como canonical, así Google solo indexa la dirección propia. El PDF del CV se sirve con `noindex` para que no aparezca en buscadores.
+La dirección canónica sale de `SITE_URL`; si no se define, se usa `https://brayandeveloper.online`. El PDF del CV recibe `X-Robots-Tag: noindex, noarchive`. La configuración de Vercel está en `vercel.json`.
 
 ## Despliegue en Vercel
 
-1. Importa el repositorio en Vercel. Detecta Vite: comando `npm run build`, carpeta de salida `dist`.
-2. En **Settings → Deployment Protection**, deja la protección solo para *Preview*. Si producción exige iniciar sesión, Google no puede indexar el sitio.
-3. Opcional: define `SITE_URL` si algún día cambias de dominio (también se puede editar `DEFAULT_URL` en `scripts/generate-seo.mjs`).
-4. Después del primer despliegue:
-   - abre `/sitemap.xml` y `/robots.txt` para comprobar la dirección;
-   - da de alta el sitio en Google Search Console y envía el sitemap;
-   - prueba la vista previa al compartir un enlace en LinkedIn;
-   - pon la dirección en tu perfil de LinkedIn y de GitHub.
+Vercel compila con `npm run build` y sirve `dist`. `vercel.json` conserva las rutas de la SPA, los headers de seguridad y las reglas de caché. Después del despliegue se pueden comprobar `/sitemap.xml`, `/robots.txt` y las vistas previas sociales de las rutas de proyecto.
 
-## Métricas
+## Analítica
 
-El sitio usa [Vercel Web Analytics](https://vercel.com/docs/analytics) y [Speed Insights](https://vercel.com/docs/speed-insights) para saber cuánta gente entra y qué tan rápido carga. Miden visitas, páginas más vistas, país, dispositivo, origen del tráfico y velocidad real, sin cookies y sin datos personales. Cada ruta cuenta como una visita propia. En local los componentes no se montan, así que las pruebas no ensucian las estadísticas.
-
-Para activarlas, después del primer despliegue:
-
-1. En el proyecto de Vercel, entra a la pestaña **Analytics** y pulsa **Enable**.
-2. Haz lo mismo en la pestaña **Speed Insights**.
-3. Vuelve a desplegar si Vercel lo pide. El script solo se sirve cuando la función está activada.
-4. Los primeros datos aparecen a los pocos minutos de recibir visitas. Los planes gratuitos tienen límites mensuales; conviene revisarlos en el panel.
-
-## Rendimiento
-
-Medido con Lighthouse en móvil sobre el build de producción:
-
-| Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO |
-|---|---|---|---|---|
-| Inicio | 85 | 100 | 100 | 100 |
-| Proyectos | 82 | 98 | 100 | 100 |
-| Proyecto de grado | 81 | 100 | 100 | 100 |
+El sitio integra [Vercel Web Analytics](https://vercel.com/docs/analytics) y [Speed Insights](https://vercel.com/docs/speed-insights). En local no se montan los componentes de medición para no mezclar pruebas con visitas reales. Para ver datos de producción, activa ambas herramientas en el proyecto de Vercel.
 
 ## Autor
 

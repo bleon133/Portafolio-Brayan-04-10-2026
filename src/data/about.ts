@@ -17,7 +17,7 @@ export const aboutSteps: AboutStep[] = [
     points: [
       'Movilidad académica en la UTTT de México durante 2026.',
       'Técnico en Sistemas, SENA.',
-      'Inglés B1 (intermedio), con certificado EF SET 60/100.',
+      'Inglés B2 (intermedio), con certificado EF SET 60/100.',
       'Credenciales de AWS Academy, MongoDB University, Oracle Academy y Cisco Networking Academy.',
     ],
   },

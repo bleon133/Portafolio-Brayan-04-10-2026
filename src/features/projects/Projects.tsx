@@ -14,7 +14,7 @@ export function Projects() {
         <SectionHeading
           id="titulo-proyectos"
           eyebrow="Proyectos"
-          title="Cosas que he construido"
+          title="Proyectos que he realizado"
           action={{ label: 'Ver todos', to: '/proyectos' }}
         />
         <ul className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
