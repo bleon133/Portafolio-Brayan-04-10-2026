@@ -34,13 +34,13 @@ export function EducationPreview() {
 
           {/* Featured credentials */}
           <div>
-            <h3 className="mb-6 text-sm font-medium tracking-widest text-muted uppercase">
+            <h3 className="mb-6 text-sm font-medium tracking-widest text-muted uppercase lg:mb-0">
               Credenciales destacadas
             </h3>
-            <ul>
+            <ul className="divide-y divide-border">
               {featured.map((cert) => (
-                <li key={cert.id}>
-                  <CertificationCard cert={cert} />
+                <li key={cert.id} className="py-6 first:pt-0 last:pb-0">
+                  <CertificationCard cert={cert} layout="stacked" />
                 </li>
               ))}
             </ul>

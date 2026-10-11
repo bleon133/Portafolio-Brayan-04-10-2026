@@ -18,7 +18,7 @@ export function ExperiencePreview() {
       <Container>
         <header className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-medium tracking-widest text-muted uppercase">
+            <p className="text-sm font-medium tracking-widest text-accent-soft uppercase">
               Experiencia
             </p>
             <h2
@@ -49,7 +49,7 @@ export function ExperiencePreview() {
                 className="grid grid-cols-1 gap-2 py-6 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-8"
               >
                 <time
-                  className="font-mono text-xs font-medium text-muted uppercase sm:pt-1"
+                  className="text-sm text-muted sm:pt-1 sm:text-right"
                   dateTime={item.start}
                 >
                   {period}
@@ -60,9 +60,9 @@ export function ExperiencePreview() {
                     {item.role} en {item.company}
                   </h3>
                   <p className="text-sm text-muted">{item.location}</p>
-                  <p className="text-base text-muted md:max-w-prose">{item.summary}</p>
+                  <p className="text-base text-muted">{item.summary}</p>
                   {item.reference && (
-                    <blockquote className="mt-2 text-sm italic text-muted md:max-w-prose">
+                    <blockquote className="mt-2 text-sm italic text-muted">
                       «{item.reference.quote}»
                       <footer className="mt-1 text-xs not-italic">
                         — {item.reference.source}

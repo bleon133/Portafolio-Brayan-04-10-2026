@@ -11,28 +11,10 @@ export const projects: Project[] = [
     year: '2026',
     description:
       'Prototipo de realidad virtual para Android y Google Cardboard que enseña a adultos con diabetes tipo 2 la técnica de insulinización con lapicero, el almacenamiento y el desecho seguro. Se recorre solo con la mirada.',
-    problem:
-      'En la diabetes tipo 2 la aplicación de la insulina recae en el propio paciente. Una técnica incorrecta, no rotar los sitios de inyección o guardar mal el medicamento reducen la eficacia del tratamiento y favorecen complicaciones como la lipohipertrofia.',
-    features: [
-      'Cinco módulos con 60 pasos narrados y subtitulados: extracción e inspección, preparación e higiene, mapeo, rotación y asepsia, técnica de inyección, y desecho seguro y conservación.',
-      'Una vivienda virtual con cuatro espacios (cocina, sala, vestíbulo y sala de estudio), con animaciones 3D que acompañan cada paso.',
-      'Un examen por módulo con retroalimentación inmediata y puntaje; se aprueba con 60 %.',
-      'Árbol de avances con tres estados (hecho, disponible y bloqueado) y desbloqueo por prerrequisitos.',
-      'Botonera estándar en cada paso: anterior, repetir, siguiente, salir y finalizar.',
-    ],
-    decisions: [
-      'Arquitectura guiada por datos: el contenido, el orden, el audio y las preguntas viven en ScriptableObjects, así el equipo de salud puede ajustar textos sin programar.',
-      'Sistemas desacoplados por eventos, con datos de contenido separados de la escena.',
-      'Interacción solo con la mirada (1.5 s en botones y 2.5 s para salir) y teletransporte suavizado con viñeta de confort para evitar el mareo.',
-      'Subtítulos cortos y estados que se comunican con color y texto, pensando en pacientes con posibles alteraciones visuales.',
-      'El progreso se guarda en un archivo JSON dentro del dispositivo, con respaldo y recuperación si el archivo se daña. No hay nube ni datos personales (Ley 1581 de 2012).',
-    ],
-    result:
-      'Al 1 de octubre de 2026 el avance ponderado era del 68 %, por encima del 60 % exigido para la entrega. Se ejecutaron 35 pruebas de verificación y se corrigieron 15 defectos. Faltan el tutorial, la pantalla de puntuaciones, más preguntas por examen y la validación con médicos de la Fundación Clínica de Floridablanca.',
     sections: [
       {
-        id: 'contexto',
-        title: 'Contexto',
+        id: 'problema',
+        title: 'Problema',
         blocks: [
           {
             type: 'paragraph',
@@ -41,8 +23,8 @@ export const projects: Project[] = [
         ],
       },
       {
-        id: 'solucion',
-        title: 'Solución',
+        id: 'caracteristicas',
+        title: 'Qué incluye',
         blocks: [
           {
             type: 'list',
@@ -73,8 +55,8 @@ export const projects: Project[] = [
         ],
       },
       {
-        id: 'resultados',
-        title: 'Resultados',
+        id: 'resultado',
+        title: 'Resultado',
         blocks: [
           {
             type: 'paragraph',
@@ -262,12 +244,10 @@ export const projects: Project[] = [
     year: '2022',
     description:
       'Prototipo para el registro y la trazabilidad de medicamentos: inventario, escaneo de códigos y alertas de caducidad.',
-    overview:
-      'Sistema web con monitoreo por código de barras, inventario digital, alertas de caducidad y control del transporte de fármacos. Se publicó como artículo de investigación en el repositorio institucional de la UNAB.',
     sections: [
       {
-        id: 'descripcion',
-        title: 'Descripción',
+        id: 'resumen',
+        title: 'Resumen',
         blocks: [
           {
             type: 'paragraph',
@@ -307,16 +287,10 @@ export const projects: Project[] = [
     year: '2026',
     description:
       'Sistema CRUD de artículos con código de barras, stock mínimo y precios, más proveedores y clasificaciones. Ningún artículo queda sin proveedor ni clasificación.',
-    features: [
-      'Web Services ASMX como capa de servicios desacoplada para crear, editar, eliminar y consultar cada entidad.',
-      'Consultas por código de barras, precio, stock mínimo y proveedor.',
-      'Kits y promociones con vigencia, y relación muchos a muchos entre artículos y proveedores.',
-      'Dashboard de métricas de inventario consultadas por Web Service.',
-    ],
     sections: [
       {
         id: 'caracteristicas',
-        title: 'Características',
+        title: 'Qué incluye',
         blocks: [
           {
             type: 'list',
@@ -356,15 +330,10 @@ export const projects: Project[] = [
     year: '2026',
     description:
       'Sistema web CRUD de perfiles de usuario, direcciones, teléfonos y roles, con autenticación contra base de datos.',
-    features: [
-      'Web API REST en ASP.NET con control de acceso basado en roles.',
-      'Interfaz responsive con Bootstrap y validaciones en JavaScript.',
-      'Publicado en un servidor web externo (somee.com).',
-    ],
     sections: [
       {
         id: 'caracteristicas',
-        title: 'Características',
+        title: 'Qué incluye',
         blocks: [
           {
             type: 'list',
@@ -403,15 +372,10 @@ export const projects: Project[] = [
     year: '2026',
     description:
       'Diseño de la red de un campus universitario de más de 17 edificios, con segmentación por VLANs, subnetting VLSM y topología jerárquica de tres capas (core, distribución y acceso).',
-    features: [
-      'ACLs extendidas, autenticación centralizada AAA/RADIUS con FreeRADIUS y FreeIPA, y enrutamiento dinámico OSPF con redundancia en anillo.',
-      'DMZ aislada con DHCP, DNS, Syslog, TFTP/FTP, VoIP SIP y Web.',
-      'Modelo validado en GNS3 con routers Cisco y hosts Ubuntu.',
-    ],
     sections: [
       {
         id: 'caracteristicas',
-        title: 'Características',
+        title: 'Qué incluye',
         blocks: [
           {
             type: 'list',

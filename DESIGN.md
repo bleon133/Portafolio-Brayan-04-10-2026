@@ -18,7 +18,7 @@ An editorial, image-led portfolio for a backend/full-stack engineering student. 
 2. **Journey map**: a compact, horizontal route line on desktop, vertical route on mobile, connecting real anchors/paths (profile → experience → selected work → education → contact). Project nodes link to actual project detail routes. It is a navigation aid, not a decorative fake architecture diagram; do not claim nonexistent technical components.
 3. **About / experience / capabilities / work / education / contact**: varied editorial compositions with short headings, real project screenshots, restrained dividers, and mixed image ratios. No wall of repeated cards, no empty spacer sections, and no repeated stats.
 4. **Projects**: actual screenshots from `public/projects`, category and technology filters stay shareable in query params, each project remains linked to `/proyectos/:slug`; never generate fake screenshots or rewrite project claims.
-5. **Project detail**: preserve each slug, gallery captions and next-project link. Use the real screenshot/gallery assets already associated with the project.
+5. **Project detail**: preserve each slug, gallery captions and next-project link. Use real screenshots where available; missing-media ideas remain clearly marked placeholders, never fake product UI.
 6. **Experience and education**: preserve all existing data, chronology, certificate URLs, filtering and deep links.
 
 ### Project details — modular editorial case study

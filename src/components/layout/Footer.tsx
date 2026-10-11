@@ -1,5 +1,5 @@
 import { ArrowUp, Download } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { Container } from '@/components/layout/Container'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons'
@@ -12,21 +12,25 @@ const currentYear = new Date().getFullYear()
 const footerProjects = projects.filter((project) => project.featured)
 
 export function Footer() {
+  const isHome = useLocation().pathname === '/'
+
   return (
     <footer className="relative bg-background">
       <Container className="py-20">
         {/* ——— Contact CTA ——— */}
-        <div className="mb-16 max-w-2xl">
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            ¿Tienes un proyecto en mente? <span className="text-accent">Escríbeme.</span>
-          </h2>
-          <Link
-            to="/#contacto"
-            className="mt-6 inline-flex min-h-11 items-center rounded-sm bg-accent px-7 font-semibold text-white transition-colors duration-200 hover:bg-accent-hover"
-          >
-            Enviar un mensaje
-          </Link>
-        </div>
+        {!isHome && (
+          <div className="mb-16 max-w-2xl">
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              ¿Tienes un proyecto en mente? <span className="text-accent">Escríbeme.</span>
+            </h2>
+            <Link
+              to="/#contacto"
+              className="mt-6 inline-flex min-h-11 items-center rounded-sm bg-accent px-7 font-semibold text-white transition-colors duration-200 hover:bg-accent-hover"
+            >
+              Enviar un mensaje
+            </Link>
+          </div>
+        )}
 
         {/* ——— Dividing rule ——— */}
         <div className="mb-10 h-px bg-border" />

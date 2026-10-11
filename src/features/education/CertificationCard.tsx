@@ -3,7 +3,38 @@ import { ArrowUpRight } from 'lucide-react'
 import { formatMonthYear } from '@/lib/collections'
 import type { Certification } from '@/types'
 
-export function CertificationCard({ cert }: { cert: Certification }) {
+interface CertificationCardProps {
+  cert: Certification
+  layout?: 'default' | 'stacked'
+}
+
+export function CertificationCard({ cert, layout = 'default' }: CertificationCardProps) {
+  if (layout === 'stacked') {
+    return (
+      <a
+        href={cert.url}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Ver credencial: ${cert.name}, se abre en una pestaña nueva`}
+        className="group flex min-h-[44px] w-full flex-col transition-colors duration-200 hover:bg-ink/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-soft"
+      >
+        <span className="text-sm text-muted">
+          {cert.issuer} · {formatMonthYear(cert.issued)}
+        </span>
+        <span className="mt-4 text-base leading-snug font-semibold lg:whitespace-nowrap">
+          {cert.name}
+        </span>
+        <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent-soft">
+          Ver credencial
+          <ArrowUpRight
+            className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
+        </span>
+      </a>
+    )
+  }
+
   return (
     <a
       href={cert.url}

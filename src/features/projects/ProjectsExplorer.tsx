@@ -79,7 +79,7 @@ export function ProjectsExplorer() {
       </p>
 
       {visible.length > 0 ? (
-        <ul className="mt-4 grid grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+        <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
           {visible.map((project) => (
             <li key={project.slug} className="h-full">
               <ProjectCard project={project} />

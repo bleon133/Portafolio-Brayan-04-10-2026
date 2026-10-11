@@ -54,13 +54,8 @@ export interface Project {
   origin?: string
   year?: string
   role?: string
-  problem?: string
-  decisions?: string[]
-  result?: string
-  overview?: string
-  features?: string[]
   gallery?: GalleryImage[]
-  /** Bloques ordenados que reemplazan `overview`, `problem`, `decisions`, `features`, `result`. */
+  /** Blocks render in data order so project detail content can grow without template branches. */
   sections?: ProjectSection[]
   /** Ideas conceptuales de imágenes o capturas para cada proyecto. */
   mediaIdeas?: ProjectMediaIdea[]

@@ -17,7 +17,7 @@ export function Projects() {
           title="Cosas que he construido"
           action={{ label: 'Ver todos', to: '/proyectos' }}
         />
-        <ul className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-y-10">
+        <ul className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
           {featured.map((project) => (
             <li key={project.slug} className="h-full">
               <ProjectCard project={project} />
