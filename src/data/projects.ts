@@ -628,25 +628,184 @@ export const projects: Project[] = [
     title: 'HuronTroll',
     category: 'Videojuego',
     featured: false,
+    origin: 'Global Game Jam 2024',
     year: '2024',
-    description: 'Aventura de plataformas 2D en pixel art creada en 48 horas para la Global Game Jam 2024.',
-    stack: ['Unity', 'C#'],
-    image: '/projects/hurontroll/portada.webp',
-    links: [{ label: 'Código', href: 'https://github.com/bleon133/HuronTroll' }],
-    mediaIdeas: [
+    role: 'Documentación y README del proyecto',
+    description:
+      'Juego de plataformas 2D en pixel art protagonizado por un hurón. Hecho en 48 horas para la Global Game Jam 2024 bajo el tema «Make Me Laugh».',
+    highlights: ['Global Game Jam 2024', '48 horas', '4 personas', 'Unity + C#', 'Make Me Laugh'],
+    facts: [
+      { label: 'Género', value: 'Plataformas 2D' },
+      { label: 'Motor', value: 'Unity 2022.3.4f1 (LTS)' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Duración', value: '48 horas' },
+      { label: 'Formato', value: 'Game jam en equipo (4 personas)' },
+      { label: 'Tema de la jam', value: 'Make Me Laugh' },
+      { label: 'Estado', value: 'Jugable de principio a fin' },
+    ],
+    sections: [
       {
-        title: '(Propuesta) Captura de un nivel de plataformas',
-        caption: 'Vista propuesta de un nivel de plataformas 2D con los elementos de pixel art, reemplazable por una captura real del juego.',
+        id: 'descripcion',
+        title: 'Descripción',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'HuronTroll es un plataformas 2D en pixel art desarrollado en 48 horas durante la Global Game Jam 2024. El jugador controla a un hurón que avanza por niveles saltando entre plataformas, esquivando fuego y pinchos, y recogiendo todo lo que encuentra.',
+          },
+          {
+            type: 'paragraph',
+            text: 'El juego abraza el tema de la jam —«Make Me Laugh»— sin complejos: los coleccionables son platos colombianos (arepa santanderiana, tamal y hormiga culona), la cinemática se cuenta sobre un tablero de corcho con doce memes reales pinchados, y la habilidad estrella del hurón es directamente hacer caca.',
+          },
+          {
+            type: 'paragraph',
+            text: 'Detrás del chiste hay un plataformas funcional: control con inercia, salto, agacharse para pasar por huecos, y un sistema de progresión que obliga a recoger al menos una llave y un item antes de abrir la puerta de nivel.',
+          },
+        ],
       },
       {
-        title: '(Propuesta) Captura del personaje HuronTroll en acción',
-        caption: 'Ilustración propuesta del personaje saltando o interactuando en el entorno, para reemplazar por una captura real del motor Unity.',
+        id: 'mi-aporte',
+        title: 'Mi aporte al proyecto',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Participé en el equipo durante la jam, a cargo de la documentación y el README del proyecto: dejé por escrito el funcionamiento del juego, sus mecánicas y sus controles, para que el equipo y quien llegara después pudiera entender qué se había construido en dos días de trabajo.',
+          },
+          {
+            type: 'paragraph',
+            text: 'En una jam de 48 horas, tener a alguien que ordene y documente lo que se produce es lo que evita que el resultado se pierda en la memoria.',
+          },
+        ],
       },
       {
-        title: '(Propuesta) Captura de la pantalla de título de la Game Jam',
-        caption: 'Captura propuesta de la pantalla de inicio del juego de la Global Game Jam 2024, reemplazable por una captura real.',
+        id: 'sistemas',
+        title: 'Sistemas del juego (equipo)',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Estos son los sistemas que hacen funcionar el juego, desarrollados por el equipo:',
+          },
+          {
+            type: 'table',
+            columns: ['Sistema', 'Qué resuelve'],
+            rows: [
+              ['Control del personaje', 'Movimiento con inercia (SmoothDamp), salto, agacharse con detección de techo, y giro por inversión de escala.'],
+              ['Marcador persistente', 'Singleton con DontDestroyOnLoad que mantiene la puntuación entre escenas y se reconecta a la UI en cada cambio.'],
+              ['Coleccionables', 'Items y llaves por etiquetas, con contadores separados en pantalla.'],
+              ['Puertas de nivel', 'La salida solo se abre con al menos una llave y un item recogidos.'],
+              ['Mecánica cómica', 'El hurón hace caca con la tecla Z; el objeto se autodestruye a los 5 segundos.'],
+              ['Victoria y derrota', 'Pantallas de Winner y Game Over con reinicio de nivel.'],
+              ['Cinemática', 'Secuencia de cinco láminas sobre tablero de corcho, con navegación y Skip.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'reto',
+        title: 'Un detalle técnico que quiero destacar',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El marcador persistente (ControladorPuntos.cs) es el sistema mejor resuelto del proyecto. Mantiene la puntuación viva entre escenas con un Singleton y, como la interfaz sí se destruye al cambiar de escena, se resuscribe al evento sceneLoaded para reconectar sus referencias. Es justo el tipo de patrón que en una jam suele quedar a medias, y aquí está bien cerrado.',
+          },
+        ],
+      },
+      {
+        id: 'nivel-inedito',
+        title: 'Un nivel inédito',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El equipo alcanzó a producir arte para un tercer nivel ambientado dentro del tronco de un árbol, con su propio personaje: un ratón entronado. No llegó a integrarse en la build de la jam, así que se conserva aquí como muestra del trabajo que quedó fuera del alcance de las 48 horas.',
+          },
+          {
+            type: 'media',
+            columns: 2,
+            items: [
+              { src: '/projects/hurontroll/03-fondo-nivel3.webp', alt: 'Arte de fondo del nivel inédito, dentro del tronco de un árbol', label: 'El tronco', caption: 'Escenario del nivel inédito, dentro del tronco de un árbol.' },
+              { src: '/projects/hurontroll/08-raton-trono.png', alt: 'Sprite del ratón entronado, personaje del nivel inédito', label: 'El ratón entronado', caption: 'Uno de los personajes del nivel inédito.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'stack',
+        title: 'Stack técnico',
+        blocks: [
+          {
+            type: 'table',
+            columns: ['Área', 'Tecnología'],
+            rows: [
+              ['Motor', 'Unity 2022.3.4f1'],
+              ['Lenguaje', 'C#'],
+              ['Física', 'Rigidbody2D, colliders y triggers'],
+              ['Datos de UI', 'TextMeshPro'],
+              ['Animación', 'Animation / Animator Controller'],
+              ['Arte', 'Pixel art (hojas de sprites de 64×64)'],
+              ['Control de versiones', 'Git y GitHub (4 colaboradores)'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'animaciones',
+        title: 'Animaciones',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El hurón está animado con hojas de sprites de 64×64. Estas son sus animaciones y los elementos animados del escenario.',
+          },
+          {
+            type: 'media',
+            columns: 3,
+            items: [
+              { src: '/projects/hurontroll/gifs/huron-idle.gif', alt: 'El hurón en reposo', label: 'En reposo', caption: 'Animación idle' },
+              { src: '/projects/hurontroll/gifs/huron-correr.gif', alt: 'El hurón corriendo', label: 'Corriendo', caption: 'Carrera con inercia' },
+              { src: '/projects/hurontroll/gifs/huron-salto.gif', alt: 'El hurón saltando', label: 'Saltando', caption: 'Salto' },
+              { src: '/projects/hurontroll/gifs/huron-agachado.gif', alt: 'El hurón agachado y avanzando', label: 'Agachado', caption: 'Para pasar por huecos' },
+              { src: '/projects/hurontroll/gifs/huron-caida.gif', alt: 'El hurón cayendo', label: 'Cayendo', caption: 'Animación de caída' },
+              { src: '/projects/hurontroll/gifs/huron-muerte.gif', alt: 'El hurón derrotado', label: 'Derrota', caption: 'Animación de muerte' },
+            ],
+          },
+          {
+            type: 'media',
+            columns: 3,
+            items: [
+              { src: '/projects/hurontroll/gifs/elemento-fuego.gif', alt: 'El fuego animado, un peligro del escenario', label: 'Fuego', caption: 'Peligro del escenario' },
+              { src: '/projects/hurontroll/gifs/elemento-chispa.gif', alt: 'Las chispas del escenario', label: 'Chispas', caption: 'Efecto de partículas' },
+              { src: '/projects/hurontroll/gifs/elemento-manzana.gif', alt: 'La manzana, un coleccionable', label: 'Manzana', caption: 'Coleccionable' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'galeria',
+        title: 'Galería del juego',
+        blocks: [
+          {
+            type: 'gallery',
+            images: [
+              { src: '/projects/hurontroll/10-menu.png', caption: 'El menú del juego: el logotipo con letras de comida y los botones PLAY! y EXIT.' },
+              { src: '/projects/hurontroll/13-nivel1.png', caption: 'El hurón avanzando por el primer nivel, con las plataformas, el fuego como peligro y los contadores de items y llaves.' },
+              { src: '/projects/hurontroll/14-nivel2.png', caption: 'El nivel del bosque: el puente de cuerdas, las nubes y una manzana coleccionable.' },
+              { src: '/projects/hurontroll/12-cinematica-2.png', caption: 'Una de las láminas de la cinemática, con los botones BACK, NEXT y SKIP.' },
+              { src: '/projects/hurontroll/00-logo.webp', caption: 'El logotipo en grande: cada letra de «HURON» está formada con comida.' },
+              { src: '/projects/hurontroll/04-fondo-nivel2.webp', caption: 'El fondo del segundo nivel, un bosque oscuro con siluetas de árboles.' },
+              { src: '/projects/hurontroll/03-fondo-nivel3.webp', caption: 'El escenario del nivel inédito, dentro del tronco de un árbol.' },
+              { src: '/projects/hurontroll/05-tiles-nivel1.webp', caption: 'La hoja de tiles con la que se construye el primer nivel.' },
+              { src: '/projects/hurontroll/01-fondo-menu.webp', caption: 'El escenario del menú principal.' },
+              { src: '/projects/hurontroll/02-escenario-cabana.png', caption: 'El escenario de la cabaña.' },
+              { src: '/projects/hurontroll/08-raton-trono.png', caption: 'Uno de los personajes del nivel inédito.' },
+              { src: '/projects/hurontroll/06-plataformas.png', caption: 'La hoja de plataformas con la que se arman los niveles.' },
+              { src: '/projects/hurontroll/07-game-over.png', caption: 'El cartel de derrota, en tipografía pixel art.' },
+            ],
+          },
+        ],
       },
     ],
+    stack: ['Unity', 'C#', 'Pixel Art', 'Física 2D', 'Game Jam'],
+    image: '/projects/hurontroll/00-logo.webp',
+    coverFit: 'contain',
+    links: [{ label: 'Código', href: 'https://github.com/bleon133/HuronTroll' }],
   },
   {
     slug: 'cthulhu-jamboree',

@@ -57,6 +57,29 @@
         "dimensions": "192x192 (hakon-caminar: 804x192)",
         "purpose": "Sprites animados del protagonista (Hakon), los cruzados, la araña de la cueva y siete aldeanos, usados en las rejillas de la sección Animaciones. Se excluyó npc-comensal.gif por ser un sprite prácticamente vacío"
       }
+    },
+    {
+      "project": "hurontroll",
+      "source": "InfoProyectos/HuronTroll (material entregado por el usuario)",
+      "cover": {
+        "path": "public/projects/hurontroll/00-logo.webp",
+        "source": "InfoProyectos/HuronTroll/carousel/00-logo.png",
+        "dimensions": "1600x960",
+        "purpose": "Logotipo del juego: cada letra de «HURON» formada con comida. Se renderiza con object-contain dentro del marco 2:1 por su relación 1.67:1. El archivo de origen tenía extensión .png pero su contenido real es WebP: se renombró a .webp para que la extensión coincida con el formato"
+      },
+      "carousel": {
+        "path": "public/projects/hurontroll/",
+        "count": 13,
+        "dimensions": "1600x1600 a 1600x690",
+        "purpose": "Capturas y arte del juego: menú, niveles 1 y 2, cinemáticas, logotipo, fondos del bosque y del tronco, hojas de tiles y plataformas, ratón entronado y cartel de Game Over",
+        "note": "Seis archivos de origen (00-logo, 01-fondo-menu, 02-escenario-cabana, 03-fondo-nivel3, 04-fondo-nivel2, 05-tiles-nivel1) eran WebP con extensión .png; se copiaron como .webp"
+      },
+      "gifs": {
+        "path": "public/projects/hurontroll/gifs/",
+        "count": 9,
+        "dimensions": "192x192 (hurón) y 150x150 (elementos)",
+        "purpose": "Animaciones del hurón (idle, correr, salto, agachado, caída, muerte) y elementos animados del escenario (fuego, chispas, manzana), usados en la sección Animaciones"
+      }
     }
   ]
 }
