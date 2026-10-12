@@ -830,29 +830,201 @@ export const projects: Project[] = [
     title: 'Cthulhu Jamboree',
     category: 'Videojuego',
     featured: true,
+    origin: 'Global Game Jam 2025',
     year: '2025',
     publishedAt: '2025-01-26',
+    role: 'Programación y ensamblaje',
     description:
-      'Batalla local 1v1 de burbujas: revienta la de tu oponente antes de caer al vacío. Global Game Jam 2025.',
-    stack: ['Unity', 'C#', 'HTML5'],
+      'Combate local 1v1 entre dos peces que cuelgan de un globo. Revienta el globo de tu rival antes de caer al vacío. Hecho en 48 horas para la Global Game Jam 2025.',
+    highlights: ['Global Game Jam 2025', '1v1 local', 'HTML5', 'Unity + C#', 'Crim.Patches'],
+    facts: [
+      { label: 'Género', value: 'Combate 1v1 local' },
+      { label: 'Motor', value: 'Unity 2022.3.56f1' },
+      { label: 'Plataforma', value: 'HTML5 (navegador)' },
+      { label: 'Duración', value: '48 horas' },
+      { label: 'Formato', value: 'Game jam en equipo (6 personas)' },
+      { label: 'Idiomas', value: 'Español e inglés' },
+      { label: 'Estado', value: 'Publicado' },
+    ],
+    sections: [
+      {
+        id: 'descripcion',
+        title: 'Descripción',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Cthulhu Jamboree es un juego de combate local 1v1 para dos jugadores, hecho en 48 horas para la Global Game Jam 2025 y publicado para jugar en el navegador. Cada jugador controla un pez: uno cool y otro desgarbado.',
+          },
+          {
+            type: 'paragraph',
+            text: 'Cada pez empieza colgando de un globo que lo mantiene a flote. El objetivo es reventar el globo del rival: cuando eso pasa, su dueño cae al vacío y pierde. Los jugadores comparten el mismo teclado, uno con A/D y el otro con las flechas, y se empujan entre sí y contra las burbujas que suben desde abajo.',
+          },
+          {
+            type: 'paragraph',
+            text: 'La premisa sale de la mitología que da nombre al juego. La sociedad pez adoraba a Cthulhu con sacrificios hasta que descubrió que al dios le gustaba su comida tradicional, y desde entonces decide los sacrificios con duelos de burbujas. En esta partida, los campeones elegidos son tú y tu mejor amigo.',
+          },
+        ],
+      },
+      {
+        id: 'mi-aporte',
+        title: 'Mi aporte al proyecto',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Participé como programador y del ensamblaje. En una jam de 48 horas eso significa construir el núcleo jugable y montarlo en Unity para que sea una partida real.',
+          },
+        ],
+      },
+      {
+        id: 'sistemas',
+        title: 'Sistemas que trabajé',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Estos son los sistemas que hacen funcionar el juego:',
+          },
+          {
+            type: 'table',
+            columns: ['Sistema', 'Qué resuelve'],
+            rows: [
+              ['Movimiento de los personajes', 'Control independiente para dos jugadores en el mismo teclado, con giro por inversión de escala.'],
+              ['Física del combate', 'Rebote entre jugadores y burbujas mediante impulsos controlados, en lugar de la física por defecto de Unity.'],
+              ['El globo como vida', 'El globo sostiene al jugador; al reventar, se dispara la caída cambiando la masa y la gravedad.'],
+              ['Gravedad progresiva', 'Cuenta atrás que endurece la partida con el tiempo y evita duelos interminables.'],
+              ['Spawners', 'Oleadas de burbujas y de objetos con posición aleatoria, retardo y ritmo configurables.'],
+              ['Ensamblaje', 'Montar las escenas, unir los sistemas con el arte del equipo y dejar el juego jugable de principio a fin.'],
+              ['Localización', 'Soporte de español e inglés con archivos JSON por idioma y un selector en el menú, con el idioma que se conserva entre escenas.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'reto',
+        title: 'Un detalle técnico que quiero destacar',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El rebote de las burbujas (Bubble.cs) no usa la física de colisión de Unity. Al chocar, calcula la dirección del impacto a partir de la posición del jugador menos la de la burbuja, la normaliza y aplica un impulso con AddForce.',
+          },
+          {
+            type: 'paragraph',
+            text: 'Eso da un empuje predecible: el jugador siempre sale disparado en la dirección correcta, sin depender de masas ni rebotes impredecibles. En un juego de sumas de vectores como este, es justo lo que hace que el control se sienta bien.',
+          },
+          {
+            type: 'paragraph',
+            text: 'La gravedad progresiva es el segundo sistema del que estoy contento. Empieza suave y sube 0,1 cada 10 segundos hasta un máximo, de forma que el duelo siempre termina. Es una solución sencilla a un problema de diseño real: las partidas que no acaban.',
+          },
+        ],
+      },
+      {
+        id: 'personajes',
+        title: 'Personajes',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Dos peces con personalidades opuestas, y el dios que da sentido al sacrificio.',
+          },
+          {
+            type: 'table',
+            columns: ['Personaje', 'Descripción'],
+            rows: [
+              ['Cool Fish', 'El pez con gorra, auriculares y zapatillas. El popular del duelo.'],
+              ['Uncool Fish', 'El pez desgarbado, con la lengua fuera y cara de no entender nada.'],
+              ['Cthulhu', 'El dios verde que observa desde el centro del escenario.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'stack',
+        title: 'Stack técnico',
+        blocks: [
+          {
+            type: 'table',
+            columns: ['Área', 'Tecnología'],
+            rows: [
+              ['Motor', 'Unity 2022.3.56f1'],
+              ['Lenguaje', 'C#'],
+              ['Física', 'Rigidbody2D, colliders y triggers'],
+              ['UI', 'TextMeshPro'],
+              ['Animación', 'Animator y clips por secuencia de sprites'],
+              ['Localización', 'JSON por idioma en StreamingAssets'],
+              ['Plataforma', 'HTML5 (WebGL)'],
+              ['Arte', 'Paint Tool SAI, Clip Studio Paint, Illustrator'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'animaciones',
+        title: 'Animaciones',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Los personajes y las burbujas están animados con secuencias de sprites. Estos son los dos peces, cada uno en reposo y cayendo.',
+          },
+          {
+            type: 'media',
+            columns: 4,
+            items: [
+              { src: '/projects/cthulhu-jamboree/gifs/pez-cool-idle.gif', alt: 'El pez cool en reposo', label: 'Cool Fish', caption: 'En reposo' },
+              { src: '/projects/cthulhu-jamboree/gifs/pez-cool-caida.gif', alt: 'El pez cool cayendo', label: 'Cool Fish', caption: 'Cayendo' },
+              { src: '/projects/cthulhu-jamboree/gifs/pez-uncool-idle.gif', alt: 'El pez uncool en reposo', label: 'Uncool Fish', caption: 'En reposo' },
+              { src: '/projects/cthulhu-jamboree/gifs/pez-uncool-caida.gif', alt: 'El pez uncool cayendo', label: 'Uncool Fish', caption: 'Cayendo' },
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'Las burbujas del combate tienen animación de reposo y de explosión. Esa explosión es la que revienta el globo del rival.',
+          },
+          {
+            type: 'media',
+            columns: 3,
+            items: [
+              { src: '/projects/cthulhu-jamboree/gifs/burbuja-idle.gif', alt: 'La burbuja del combate en reposo', label: 'Burbuja', caption: 'En reposo' },
+              { src: '/projects/cthulhu-jamboree/gifs/burbuja-explosion.gif', alt: 'La explosión de una burbuja', label: 'Explosión', caption: 'Al chocar con un jugador' },
+              { src: '/projects/cthulhu-jamboree/gifs/escenario-explosion.gif', alt: 'Explosión de una burbuja de fondo', label: 'Burbuja de fondo', caption: 'Explotando' },
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'El escenario tiene tres tipos de burbujas decorativas que suben con el fondo.',
+          },
+          {
+            type: 'media',
+            columns: 3,
+            items: [
+              { src: '/projects/cthulhu-jamboree/gifs/escenario-burbuja-1.gif', alt: 'Burbuja de fondo tipo 1', label: 'Tipo 1', caption: 'Burbuja de fondo' },
+              { src: '/projects/cthulhu-jamboree/gifs/escenario-burbuja-2.gif', alt: 'Burbuja de fondo tipo 2', label: 'Tipo 2', caption: 'Burbuja de fondo' },
+              { src: '/projects/cthulhu-jamboree/gifs/escenario-burbuja-3.gif', alt: 'Burbuja de fondo tipo 3', label: 'Tipo 3', caption: 'Burbuja de fondo' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'galeria',
+        title: 'Galería del juego',
+        blocks: [
+          {
+            type: 'gallery',
+            images: [
+              { src: '/projects/cthulhu-jamboree/01-menu.webp', caption: 'El menú principal: los dos peces se enfrentan y el Cthulhu verde los observa desde el centro del escenario.' },
+              { src: '/projects/cthulhu-jamboree/02-gameplay.webp', caption: 'El pez cool colgando de su globo, con el fondo submarino y las burbujas del escenario.' },
+              { src: '/projects/cthulhu-jamboree/04-fin-partida.webp', caption: 'El final de partida: uno de los peces cae, el otro gana, con la pantalla de reinicio.' },
+              { src: '/projects/cthulhu-jamboree/05-cinematica.webp', caption: 'Los peces adorando a Cthulhu, con el texto narrativo que explica la premisa.' },
+              { src: '/projects/cthulhu-jamboree/03-pausa.webp', caption: 'El menú de pausa durante el combate, con las opciones de reanudar, ajustes y salir.' },
+              { src: '/projects/cthulhu-jamboree/06-configuracion.webp', caption: 'El panel de configuración, con el selector de idioma y el control de volumen.' },
+              { src: '/projects/cthulhu-jamboree/00-logo.webp', caption: 'El logotipo del juego, dibujado a mano.' },
+            ],
+          },
+        ],
+      },
+    ],
+    stack: ['Unity', 'C#', 'Física 2D', 'HTML5', 'Game Jam'],
     image: '/projects/cthulhu-jamboree/portada.webp',
     links: [
       { label: 'Código', href: 'https://github.com/bleon133/GameJam2025' },
       { label: 'Jugar', href: 'https://crimpatches.itch.io/chutulu-jamboree' },
-    ],
-    mediaIdeas: [
-      {
-        title: '(Propuesta) Captura de la batalla 1v1 de burbujas',
-        caption: 'Vista propuesta de la partida en acción con dos jugadores compitiendo, reemplazable por una captura real del juego.',
-      },
-      {
-        title: '(Propuesta) Captura de la mecánica de caer al vacío',
-        caption: 'Ilustración propuesta del momento en que una burbuja se rompe y el personaje cae, para reemplazar por una captura real de la física del juego.',
-      },
-      {
-        title: '(Propuesta) Captura de la pantalla de inicio del juego',
-        caption: 'Captura propuesta de la interfaz de inicio de Cthulhu Jamboree, reemplazable por una captura real del juego HTML5.',
-      },
     ],
   },
 ]
