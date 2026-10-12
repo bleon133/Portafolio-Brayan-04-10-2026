@@ -1,13 +1,11 @@
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { projects } from '@/data/projects'
+import { featuredProjects } from '@/data/projects'
 import { ProjectCard } from '@/features/projects/ProjectCard'
 
-/** Resumen para la Home: solo los proyectos marcados como destacados. */
+/** Resumen para la Home: solo los proyectos marcados como destacados, del más reciente al más antiguo. */
 export function Projects() {
-  const featured = projects.filter((project) => project.featured)
-
   return (
     <Section id="proyectos" titleId="titulo-proyectos">
       <Container>
@@ -18,7 +16,7 @@ export function Projects() {
           action={{ label: 'Ver todos', to: '/proyectos' }}
         />
         <ul className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
-          {featured.map((project) => (
+          {featuredProjects.map((project) => (
             <li key={project.slug} className="h-full">
               <ProjectCard project={project} />
             </li>

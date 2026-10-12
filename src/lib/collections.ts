@@ -1,6 +1,6 @@
 const MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 
-/** 'AAAA-MM' a 'sep 2026'. */
+/** 'AAAA-MM' o 'AAAA-MM-DD' a 'sep 2026'. El día se ignora. */
 export function formatMonthYear(iso: string) {
   const [year, month] = iso.split('-')
   return `${MONTHS[Number(month) - 1]} ${year}`

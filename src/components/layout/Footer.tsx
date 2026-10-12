@@ -3,13 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { Container } from '@/components/layout/Container'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons'
-import { projects } from '@/data/projects'
+import { featuredProjects } from '@/data/projects'
 import { navItems, siteConfig } from '@/data/site'
 
 const currentYear = new Date().getFullYear()
-
-// Featured projects only — keeps the footer compact.
-const footerProjects = projects.filter((project) => project.featured)
 
 export function Footer() {
   const isHome = useLocation().pathname === '/'
@@ -66,7 +63,7 @@ export function Footer() {
           <nav aria-label="Proyectos destacados">
             <h3 className="text-sm font-medium text-muted">Proyectos</h3>
             <ul className="mt-3 space-y-3">
-              {footerProjects.map((project) => (
+              {featuredProjects.map((project) => (
                 <li key={project.slug}>
                   <Link
                     to={`/proyectos/${project.slug}`}

@@ -105,7 +105,18 @@ El contenido del portafolio vive en archivos de datos:
 | Presentación y recorrido | `src/data/about.ts` |
 | Títulos y descripciones de las páginas | `src/data/seo.ts` |
 
-Para sumar un proyecto, agrega un objeto a `projects` con `slug`, `title`, `category`, `description` y `stack`. También puedes añadir secciones narrativas, enlaces, una portada y una galería. Con `featured: true` aparece en Inicio. Las rutas, los filtros, el sitemap y los metadatos se generan desde esos datos.
+Para sumar un proyecto, agrega un objeto a `projects` con `slug`, `title`, `category`, `description` y `stack`. También puedes añadir secciones narrativas, enlaces, una portada y una galería. Las rutas, los filtros, el sitemap y los metadatos se generan desde esos datos.
+
+### Fecha de publicación y proyectos destacados
+
+Ambas cosas se editan por proyecto en `src/data/projects.ts`:
+
+| Campo | Qué hace | Dónde se ve |
+|---|---|---|
+| `publishedAt: 'AAAA-MM-DD'` | Fecha de publicación o ejecución. Ordena todos los listados de más reciente a más antigua. Sin este campo, el proyecto queda al final del orden. | Ficha lateral del proyecto, como «oct 2026» |
+| `featured: true` | Marca el proyecto como destacado. | Solo los destacados aparecen en Inicio y en el pie de página |
+
+El orden y la lista de destacados se calculan una sola vez al final de `src/data/projects.ts` (`projectsByDate` y `featuredProjects`), así que no hay que ordenar nada a mano en los componentes: basta con cambiar `publishedAt` y `featured` en cada proyecto.
 
 ## Diseño y accesibilidad
 

@@ -9,6 +9,7 @@ export const projects: Project[] = [
     status: 'En desarrollo, 68 % de avance',
     origin: 'Proyecto de grado, UNAB',
     year: '2026',
+    publishedAt: '2026-10-11',
     description:
       'Prototipo de realidad virtual para Android y Google Cardboard que enseña a adultos con diabetes tipo 2 la técnica de insulinización con lapicero, el almacenamiento y el desecho seguro. Se recorre solo con la mirada.',
     sections: [
@@ -111,8 +112,9 @@ export const projects: Project[] = [
     slug: 'sistema-vigilancia',
     title: 'Sistema para empresa de vigilancia',
     category: 'Web',
-    featured: true,
+    featured: false,
     origin: 'Devs Technology',
+    publishedAt: '2025-09-01',
     role: 'Participé en gran parte del desarrollo.',
     description:
       'Plataforma para gestionar usuarios, clientes y puestos de trabajo. Programa turnos y rondas, controla armas y mapas, y guarda historiales, alertas, nómina, métricas, copias de seguridad y bitácora.',
@@ -161,8 +163,9 @@ export const projects: Project[] = [
     slug: 'app-vigilantes',
     title: 'Aplicación para control de vigilantes',
     category: 'Móvil',
-    featured: true,
+    featured: false,
     origin: 'Devs Technology',
+    publishedAt: '2025-09-01',
     description:
       'App móvil multiplataforma para la gestión operativa de vigilantes. Permite consultar y hacer transferencias de turno, ver la programación asignada, registrar minutas de novedades y apoyar las revistas de puestos que hacen los supervisores.',
     stack: ['Android Studio', 'Kotlin Multiplatform'],
@@ -187,6 +190,7 @@ export const projects: Project[] = [
     category: 'Web',
     featured: false,
     origin: 'Devs Technology',
+    publishedAt: '2025-09-01',
     description:
       'Sitio corporativo de Devs Technology. Escribí el código de la página a partir del prototipo en Figma que me entregó la empresa.',
     stack: ['HTML', 'CSS', 'Bootstrap', 'jQuery', 'Three.js', 'Figma'],
@@ -211,7 +215,8 @@ export const projects: Project[] = [
     slug: 'bgapp',
     title: 'BGApp',
     category: 'Web y móvil',
-    featured: true,
+    featured: false,
+    publishedAt: '2025-05-28',
     description:
       'Plataforma de turismo en Bucaramanga con rutas, mapas interactivos y reservas. Incluye versión móvil offline y online con geolocalización y notificaciones.',
     stack: ['Spring Boot', 'Kotlin', 'MongoDB', 'Bootstrap'],
@@ -242,6 +247,7 @@ export const projects: Project[] = [
     featured: false,
     origin: 'Proyecto académico',
     year: '2022',
+    publishedAt: '2023-02-09',
     description:
       'Prototipo para el registro y la trazabilidad de medicamentos: inventario, escaneo de códigos y alertas de caducidad.',
     sections: [
@@ -285,6 +291,7 @@ export const projects: Project[] = [
     featured: false,
     origin: 'Proyecto académico',
     year: '2026',
+    publishedAt: '2026-01-01',
     description:
       'Sistema CRUD de artículos con código de barras, stock mínimo y precios, más proveedores y clasificaciones. Ningún artículo queda sin proveedor ni clasificación.',
     sections: [
@@ -328,6 +335,7 @@ export const projects: Project[] = [
     featured: false,
     origin: 'Proyecto académico',
     year: '2026',
+    publishedAt: '2026-01-01',
     description:
       'Sistema web CRUD de perfiles de usuario, direcciones, teléfonos y roles, con autenticación contra base de datos.',
     sections: [
@@ -370,6 +378,7 @@ export const projects: Project[] = [
     featured: false,
     origin: 'Proyecto académico, UTTT',
     year: '2026',
+    publishedAt: '2026-01-01',
     description:
       'Diseño de la red de un campus universitario de más de 17 edificios, con segmentación por VLANs, subnetting VLSM y topología jerárquica de tres capas (core, distribución y acceso).',
     sections: [
@@ -409,9 +418,10 @@ export const projects: Project[] = [
     slug: 'renacer-vikingo',
     title: 'Renacer Vikingo',
     category: 'Videojuego',
-    featured: false,
+    featured: true,
     origin: 'Proyecto académico en equipo (8 personas)',
     year: '2024',
+    publishedAt: '2024-10-22',
     role: 'Líder de programación',
     description:
       'RPG 2D en pixel art donde un humilde Karl reconstruye su aldea vikinga tras la invasión de los Cruzados, sube de rango hasta Konungr y devuelve la esperanza a su pueblo.',
@@ -627,9 +637,10 @@ export const projects: Project[] = [
     slug: 'hurontroll',
     title: 'HuronTroll',
     category: 'Videojuego',
-    featured: false,
+    featured: true,
     origin: 'Global Game Jam 2024',
     year: '2024',
+    publishedAt: '2024-01-28',
     role: 'Programación y ensamblado',
     description:
       'Juego de plataformas 2D en pixel art protagonizado por un hurón. Hecho en 48 horas para la Global Game Jam 2024 bajo el tema «Make Me Laugh».',
@@ -818,8 +829,9 @@ export const projects: Project[] = [
     slug: 'cthulhu-jamboree',
     title: 'Cthulhu Jamboree',
     category: 'Videojuego',
-    featured: false,
+    featured: true,
     year: '2025',
+    publishedAt: '2025-01-26',
     description:
       'Batalla local 1v1 de burbujas: revienta la de tu oponente antes de caer al vacío. Global Game Jam 2025.',
     stack: ['Unity', 'C#', 'HTML5'],
@@ -845,11 +857,26 @@ export const projects: Project[] = [
   },
 ]
 
+/**
+ * Proyectos ordenados de la fecha más reciente a la más antigua.
+ * Los proyectos sin `publishedAt` quedan al final, en el orden del archivo.
+ * `getProject` y `getNextProject` usan este mismo orden.
+ */
+export const projectsByDate = [...projects].sort((a, b) => {
+  if (!a.publishedAt && !b.publishedAt) return 0
+  if (!a.publishedAt) return 1
+  if (!b.publishedAt) return -1
+  return b.publishedAt.localeCompare(a.publishedAt)
+})
+
+/** Destacados para la Home y el pie de página, ya ordenados por fecha. */
+export const featuredProjects = projectsByDate.filter((project) => project.featured)
+
 export function getProject(slug: string | undefined) {
-  return projects.find((project) => project.slug === slug)
+  return projectsByDate.find((project) => project.slug === slug)
 }
 
 export function getNextProject(slug: string) {
-  const index = projects.findIndex((project) => project.slug === slug)
-  return projects[(index + 1) % projects.length]
+  const index = projectsByDate.findIndex((project) => project.slug === slug)
+  return projectsByDate[(index + 1) % projectsByDate.length]
 }

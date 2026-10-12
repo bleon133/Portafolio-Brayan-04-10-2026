@@ -16,7 +16,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { projects } from '../src/data/projects.ts'
+import { projectsByDate } from '../src/data/projects.ts'
 import { pageMeta } from '../src/data/seo.ts'
 import { siteConfig } from '../src/data/site.ts'
 
@@ -102,7 +102,7 @@ const routes = [
       ]),
     ],
   })),
-  ...projects.map((project) => {
+  ...projectsByDate.map((project) => {
     const route = `/proyectos/${project.slug}`
     return {
       route,

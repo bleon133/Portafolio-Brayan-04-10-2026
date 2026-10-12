@@ -55,7 +55,7 @@ export interface Project {
   slug: string
   title: string
   category: ProjectCategory
-  /** Aparece en la Home. Los demás solo en /proyectos. */
+  /** Aparece en Inicio y en el pie de página. Los demás solo en /proyectos. */
   featured: boolean
   description: string
   stack: string[]
@@ -73,6 +73,12 @@ export interface Project {
   facts?: { label: string; value: string }[]
   origin?: string
   year?: string
+  /**
+   * Fecha de publicación o ejecución del proyecto (AAAA-MM-DD). Ordena la lista
+   * de más reciente a más antigua y se muestra en la ficha lateral.
+   * Sin esta fecha, el proyecto va al final del orden.
+   */
+  publishedAt?: string
   role?: string
   gallery?: GalleryImage[]
   /** Blocks render in data order so project detail content can grow without template branches. */

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import { Container } from '@/components/layout/Container'
 import { FilterChips } from '@/components/ui/FilterChips'
-import { projects } from '@/data/projects'
+import { projects, projectsByDate } from '@/data/projects'
 import { ProjectCard } from '@/features/projects/ProjectCard'
 import { uniqueValues } from '@/lib/collections'
 
@@ -40,7 +40,7 @@ export function ProjectsExplorer() {
     setParams(next, { replace: true })
   }
 
-  const visible = projects.filter(
+  const visible = projectsByDate.filter(
     (project) =>
       (!category || project.category === category) && (!technology || project.stack.includes(technology)),
   )
