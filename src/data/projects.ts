@@ -91,17 +91,11 @@ export const projects: Project[] = [
           },
           {
             type: 'media',
-            columns: 2,
+            columns: 1,
             items: [
-              { src: '/projects/insulinavr/diagrama-arquitectura.png', alt: 'Diagrama de la arquitectura del prototipo en cinco capas', label: 'Capas', caption: 'De la mirada del usuario hasta los datos, con el progreso guardado en JSON local.' },
-              { src: '/projects/insulinavr/diagrama-bus-eventos.png', alt: 'Diagrama del bus de eventos entre componentes', label: 'Bus de eventos', caption: 'Cada componente publica y escucha eventos sin llamar directamente a otro.' },
-            ],
-          },
-          {
-            type: 'media',
-            columns: 2,
-            items: [
-              { src: '/projects/insulinavr/diagrama-modelo-datos.png', alt: 'Diagrama de clases del modelo de contenido', label: 'Modelo de datos', caption: 'Los ScriptableObjects que guardan el contenido, el orden, la narración y las preguntas.', span: 2 },
+              { src: '/projects/insulinavr/diagrama-arquitectura.png', alt: 'Diagrama de la arquitectura del prototipo en cinco capas', label: 'Capas', caption: 'De la mirada del usuario hasta los datos, con el progreso guardado en JSON local.', fit: 'flow' },
+              { src: '/projects/insulinavr/diagrama-bus-eventos.png', alt: 'Diagrama del bus de eventos entre componentes', label: 'Bus de eventos', caption: 'Cada componente publica y escucha eventos sin llamar directamente a otro.', fit: 'flow' },
+              { src: '/projects/insulinavr/diagrama-modelo-datos.png', alt: 'Diagrama de clases del modelo de contenido', label: 'Modelo de datos', caption: 'Los ScriptableObjects que guardan el contenido, el orden, la narración y las preguntas.', fit: 'flow' },
             ],
           },
         ],
@@ -177,11 +171,7 @@ export const projects: Project[] = [
       },
       {
         src: '/projects/insulinavr/botonera.webp',
-        caption: 'Botonera estándar en un primer paso, un paso intermedio y el último.',
-      },
-      {
-        src: '/projects/insulinavr/botonera-situaciones.webp',
-        caption: 'Las siete situaciones de la botonera: cada paso decide qué botones se muestran según su posición en el módulo.',
+        caption: 'La botonera estándar, que cambia según el paso: cada uno decide qué botones muestra de los cinco posibles (anterior, repetir, siguiente, salir y finalizar).',
       },
       {
         src: '/projects/insulinavr/teletransporte.webp',

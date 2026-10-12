@@ -22,6 +22,12 @@ export interface ProjectMediaItem {
   label?: string
   /** Ancho relativo dentro de la rejilla: 2 ocupa dos columnas (útil para tiras anchas). */
   span?: 1 | 2 | 3 | 4
+  /**
+   * Cómo encaja el medio en su marco. `cover` (por defecto) lo limita en alto,
+   * pensado para sprites y GIFs. `flow` respeta la proporción natural y deja
+   * que ocupe todo el ancho, pensado para diagramas y capturas anchas.
+   */
+  fit?: 'cover' | 'flow'
 }
 
 export type ProjectContentBlock =
@@ -29,8 +35,11 @@ export type ProjectContentBlock =
   | { type: 'list'; items: string[] }
   /** Tabla simple: `columns` se dibuja como cabecera y `rows` como filas. */
   | { type: 'table'; columns: string[]; rows: string[][] }
-  /** Rejilla de imágenes o GIFs con etiqueta y pie opcionales. */
-  | { type: 'media'; items: ProjectMediaItem[]; columns?: 2 | 3 | 4 }
+  /**
+   * Rejilla de imágenes o GIFs con etiqueta y pie opcionales.
+   * `columns: 1` deja los medios uno debajo de otro a ancho completo.
+   */
+  | { type: 'media'; items: ProjectMediaItem[]; columns?: 1 | 2 | 3 | 4 }
   /** Grupo de imágenes que reutiliza el carrusel con visor ampliado. */
   | { type: 'gallery'; images: GalleryImage[] }
 
