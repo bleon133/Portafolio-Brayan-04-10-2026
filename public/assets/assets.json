@@ -34,5 +34,29 @@
       "transformation": "Trimmed transparent canvas to alpha bounds with 48px side padding; removed top transparency and retained source bottom, preserving both arms",
       "purpose": "User-provided portrait for the Home hero"
     }
+  ],
+  "projectMedia": [
+    {
+      "project": "renacer-vikingo",
+      "source": "InfoProyectos/Vikingo (material entregado por el usuario)",
+      "cover": {
+        "path": "public/projects/renacer-vikingo/portada.png",
+        "source": "InfoProyectos/Vikingo/banner.png",
+        "dimensions": "1280x400",
+        "purpose": "Logotipo del juego (hachas cruzadas y casco vikingo). Se renderiza con object-contain dentro del marco 2:1 por su relación 3.2:1, para no recortar el logo ni el texto"
+      },
+      "carousel": {
+        "path": "public/projects/renacer-vikingo/",
+        "count": 13,
+        "dimensions": "1600x900",
+        "purpose": "Capturas reales del juego: aldea y HUD, combate, ciclo de día y noche, estadísticas, inventario, bosque, aldea reconstruida, almacén, herrería, taberna, salón comunal, manual y cinemática"
+      },
+      "gifs": {
+        "path": "public/projects/renacer-vikingo/gifs/",
+        "count": 13,
+        "dimensions": "192x192 (hakon-caminar: 804x192)",
+        "purpose": "Sprites animados del protagonista (Hakon), los cruzados, la araña de la cueva y siete aldeanos, usados en las rejillas de la sección Animaciones. Se excluyó npc-comensal.gif por ser un sprite prácticamente vacío"
+      }
+    }
   ]
 }

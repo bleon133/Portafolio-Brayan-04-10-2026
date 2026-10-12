@@ -410,25 +410,218 @@ export const projects: Project[] = [
     title: 'Renacer Vikingo',
     category: 'Videojuego',
     featured: false,
+    origin: 'Proyecto académico en equipo (8 personas)',
+    year: '2024',
+    role: 'Líder de programación',
     description:
-      'Juego 2D en pixel art ambientado en la época medieval. Cruzados invadieron el reino y el jugador debe sobrevivir, reconstruir la aldea y subir de rango.',
-    stack: ['Unity', 'C#'],
-    image: '/projects/renacer-vikingo/portada.webp',
-    links: [{ label: 'Código', href: 'https://github.com/bleon133/vikingo' }],
-    mediaIdeas: [
+      'RPG 2D en pixel art donde un humilde Karl reconstruye su aldea vikinga tras la invasión de los Cruzados, sube de rango hasta Konungr y devuelve la esperanza a su pueblo.',
+    highlights: ['Líder de programación', '8 personas', '12 escenas', '4 meses', 'Unity + C#'],
+    facts: [
+      { label: 'Género', value: 'RPG 2D de exploración, vista cenital' },
+      { label: 'Motor', value: 'Unity 2021.3.37f1 (LTS)' },
+      { label: 'Pipeline', value: 'URP 2D' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Duración', value: '4 meses (junio a octubre)' },
+      { label: 'Estado', value: 'Jugable de principio a fin' },
+    ],
+    sections: [
       {
-        title: '(Propuesta) Captura del personaje principal en pixel art',
-        caption: 'Vista propuesta del personaje vikingo en el entorno del juego, reemplazable por una captura real del motor Unity.',
+        id: 'descripcion',
+        title: 'Descripción',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Renacer Vikingo es un RPG 2D de exploración con vista cenital, ambientado en una Noruega medieval asediada. Tras la invasión de los Cruzados, la aldea vikinga queda en ruinas y el jugador —un humilde Karl, hombre libre— toma la responsabilidad de reconstruirla.',
+          },
+          {
+            type: 'paragraph',
+            text: 'El juego combina tres pilares: recolección de recursos (madera en el bosque, piedra y hierro en la mina y la cueva), reconstrucción de la aldea (nueve edificios con requisitos propios de materiales) y combate contra tres rangos de enemigos cruzados. A medida que avanza, el personaje sube de nivel y escala en la jerarquía vikinga: de Thrall a Konungr.',
+          },
+          {
+            type: 'paragraph',
+            text: 'El proyecto cuenta con doce escenas jugables, ciclo de día y noche, sistema de inventario, comercio en tres establecimientos, huerto con siembra y cosecha, misiones principales y secundarias, diálogos con ocho aldeanos y una cinemática de apertura en cinco láminas.',
+          },
+        ],
       },
       {
-        title: '(Propuesta) Captura de la aldea en construcción',
-        caption: 'Ilustración propuesta de la aldea medieval que el jugador reconstruye, para reemplazar por una captura real del juego.',
+        id: 'mi-rol',
+        title: 'Mi rol: liderazgo de programación',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Fui líder de programación del equipo. Me encargué de definir y construir el núcleo del sistema de juego, además de coordinar el trabajo técnico del equipo.',
+          },
+          {
+            type: 'table',
+            columns: ['Sistema', 'Qué hice', 'Archivos'],
+            rows: [
+              [
+                'Movimiento del personaje',
+                'Desplazamiento en cuatro direcciones con animación sincronizada, sprint con tiempo de recuperación y colisiones.',
+                'Scripts/Personaje/PersonajeMovimiento.cs, PersonajeAnimaciones.cs',
+              ],
+              [
+                'Combate del jugador',
+                'Ataque cuerpo a cuerpo, generación de daño, retroalimentación visual y sonora del golpe, y muerte con reaparición.',
+                'Scripts/Personaje/PersonajeAtaque.cs, PersonajeVida.cs, PersonajeFX.cs',
+              ],
+              [
+                'Panel de estadísticas',
+                'Panel de atributos que muestra daño, defensa, crítico, bloqueo y velocidad, todos derivados de los datos del personaje.',
+                'Scripts/Personaje/PersonajeStats.cs, Editor/PersonajeStatsEditor.cs',
+              ],
+              [
+                'Sistema de atributos',
+                'Reparto de puntos entre Fuerza, Inteligencia y Destreza al subir de nivel, con bonificadores aplicados en tiempo real.',
+                'Scripts/Personaje/Personaje.cs, Scripts/Extras/AtributoButton.cs',
+              ],
+              [
+                'Inventario',
+                'Mochila de 24 casillas con límite por pila, y acciones de usar, equipar y remover sobre cada objeto.',
+                'Scripts/Inventario/*',
+              ],
+              [
+                'Enemigos',
+                'Integración del movimiento, la detección y el ataque de los enemigos con su sistema de animación.',
+                'Scripts/Enemy/*',
+              ],
+            ],
+          },
+          {
+            type: 'list',
+            items: [
+              'Definí el núcleo jugable sobre el que el resto del equipo construyó: movimiento, combate, estadísticas e inventario forman la base de todas las escenas.',
+              'Coordiné la programación del equipo, distribuyendo el trabajo técnico y manteniendo la coherencia entre los sistemas que cada uno desarrollaba.',
+              'Ensamblé e integré las escenas, uniendo el trabajo de arte y de sistemas en escenas funcionales y jugables, y resolviendo las dependencias entre componentes.',
+              'Apoyé el diseño de personajes, colaborando con el equipo de arte en el movimiento, la animación y la respuesta en juego de los personajes.',
+              'Establecí el patrón de datos del proyecto con ScriptableObjects, para que ítems, armas, diálogos y misiones se pudieran editar como assets sin tocar código.',
+            ],
+          },
+        ],
       },
       {
-        title: '(Propuesta) Captura del sistema de progresión y rangos',
-        caption: 'Captura propuesta de la interfaz de subida de rango del jugador, reemplazable por una captura real de la UI del juego.',
+        id: 'reto',
+        title: 'Un reto técnico que resolví',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El sistema de estadísticas necesitaba ser editable sin recompilar. Lo resolví con un ScriptableObject de estadísticas más un editor propio (PersonajeStatsEditor.cs) que muestra el panel en el inspector y aplica los bonificadores por atributo automáticamente. Así el equipo de diseño podía equilibrar el personaje sin abrir el código, y el mismo asset servía para el jugador y los enemigos.',
+          },
+        ],
+      },
+      {
+        id: 'otros-sistemas',
+        title: 'Otros sistemas del juego',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Estos sistemas fueron trabajo en equipo y completan la escala del proyecto:',
+          },
+          {
+            type: 'list',
+            items: [
+              'Ciclo de día y noche con sol, luna y antorchas.',
+              'Sistema de diálogos con ocho aldeanos, cada uno con su historia.',
+              'Misiones principales y secundarias con panel de seguimiento.',
+              'Comercio en herrería, taberna y almacén.',
+              'Huerto con ciclos de siembra y cosecha.',
+              'Sistema de IA de enemigos por estados con ScriptableObjects.',
+              'Cinemática de apertura y libro tutorial.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'stack',
+        title: 'Stack técnico',
+        blocks: [
+          {
+            type: 'table',
+            columns: ['Área', 'Tecnología'],
+            rows: [
+              ['Motor', 'Unity 2021.3.37f1'],
+              ['Render', 'Universal Render Pipeline (URP) 2D'],
+              ['Lenguaje', 'C#'],
+              ['Datos', 'ScriptableObjects'],
+              ['UI', 'Unity UI + TextMeshPro'],
+              ['Animación', 'Animation / Animator Controller'],
+              ['Cinematografías', 'Unity Timeline'],
+              ['Audio', 'AudioMixer con cuatro canales'],
+              ['Tilemap', 'Tilemap 2D para los suelos'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'animaciones',
+        title: 'Animaciones',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Sprites animados del juego. El protagonista caminando, en reposo y al morir; los enemigos cruzados atacando; y los aldeanos que dan vida a la aldea.',
+          },
+          {
+            type: 'media',
+            columns: 3,
+            items: [
+              { src: '/projects/renacer-vikingo/gifs/hakon-idle.gif', alt: 'El protagonista en reposo', label: 'Hakon, en reposo', caption: 'Animación idle' },
+              { src: '/projects/renacer-vikingo/gifs/hakon-muerte.gif', alt: 'El protagonista al morir', label: 'Hakon, derrota', caption: 'Animación de muerte' },
+              { src: '/projects/renacer-vikingo/gifs/hakon-caminar.gif', alt: 'El protagonista caminando en las cuatro direcciones', label: 'Hakon, el protagonista', caption: 'Caminar en las cuatro direcciones', span: 2 },
+            ],
+          },
+          {
+            type: 'media',
+            columns: 3,
+            items: [
+              { src: '/projects/renacer-vikingo/gifs/cruzado-infanteria-ataque.gif', alt: 'Cruzado de infantería atacando', label: 'Cruzado de infantería', caption: 'Ataque cuerpo a cuerpo' },
+              { src: '/projects/renacer-vikingo/gifs/cruzado-caballero-ataque.gif', alt: 'Cruzado caballero atacando', label: 'Cruzado caballero', caption: 'Ataque de rango mayor' },
+              { src: '/projects/renacer-vikingo/gifs/arana-cueva.gif', alt: 'La araña de la cueva', label: 'Araña de la cueva', caption: 'Enemigo de la mina' },
+            ],
+          },
+          {
+            type: 'media',
+            columns: 4,
+            items: [
+              { src: '/projects/renacer-vikingo/gifs/npc-thora.gif', alt: 'Thora, guía de introducción', label: 'Thora', caption: 'Guía de introducción' },
+              { src: '/projects/renacer-vikingo/gifs/npc-asmund.gif', alt: 'Asmund, el sabio que reparte las misiones', label: 'Asmund', caption: 'Reparte las misiones' },
+              { src: '/projects/renacer-vikingo/gifs/npc-freya.gif', alt: 'Freya, tabernera', label: 'Freya', caption: 'Tabernera' },
+              { src: '/projects/renacer-vikingo/gifs/npc-bjorn.gif', alt: 'Bjorn, el herrero', label: 'Bjorn', caption: 'Herrero' },
+              { src: '/projects/renacer-vikingo/gifs/npc-astrid.gif', alt: 'Astrid, la agricultora', label: 'Astrid', caption: 'Agricultora' },
+              { src: '/projects/renacer-vikingo/gifs/npc-harald.gif', alt: 'Harald, de la cabaña', label: 'Harald', caption: 'De la cabaña' },
+              { src: '/projects/renacer-vikingo/gifs/npc-sigurd.gif', alt: 'Sigurd, instructor de entrenamiento', label: 'Sigurd', caption: 'Entrenamiento' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'galeria',
+        title: 'Galería del juego',
+        blocks: [
+          {
+            type: 'gallery',
+            images: [
+              { src: '/projects/renacer-vikingo/01-aldea-hud.webp', caption: 'El personaje en la entrada de la aldea, con la interfaz completa: vida, maná, experiencia, monedas y accesos a inventario, atributos y misiones.' },
+              { src: '/projects/renacer-vikingo/02-combate.webp', caption: 'Enfrentamiento cuerpo a cuerpo con el sistema de daño activo, la barra de vida bajando y los números de daño en pantalla.' },
+              { src: '/projects/renacer-vikingo/13-noche.webp', caption: 'La aldea de noche: luna, cielo oscuro y las antorchas encendidas con su halo de luz.' },
+              { src: '/projects/renacer-vikingo/03-panel-stats.webp', caption: 'Panel de Daño, Defensa, Crítico, Bloqueo y Velocidad, junto al reparto de puntos entre Fuerza, Inteligencia y Destreza.' },
+              { src: '/projects/renacer-vikingo/04-inventario.webp', caption: 'La mochila de 24 casillas con las acciones de usar, equipar y remover objetos.' },
+              { src: '/projects/renacer-vikingo/05-bosque.webp', caption: 'Zona de recolección de madera, con los troncos talados y un aldeano del poblado.' },
+              { src: '/projects/renacer-vikingo/06-aldea-construida.webp', caption: 'La muralla de la aldea con sus dos torres y la puerta central.' },
+              { src: '/projects/renacer-vikingo/07-almacen.webp', caption: 'El almacén con sus estanterías de recursos y la comerciante atendiendo el mostrador.' },
+              { src: '/projects/renacer-vikingo/08-herreria.webp', caption: 'La forja, el yunque, el fuelle y las herramientas del herrero.' },
+              { src: '/projects/renacer-vikingo/09-taberna.webp', caption: 'La taberna con sus mesas, barriles y la barra donde se rellena la cantimplora.' },
+              { src: '/projects/renacer-vikingo/10-salon-comunal.webp', caption: 'El salón con las estatuas, los escudos y los braseros, donde se reparten las misiones.' },
+              { src: '/projects/renacer-vikingo/11-manual.webp', caption: 'El manual del juego con sus cuatro secciones: personajes, interfaz, interacciones e historias.' },
+              { src: '/projects/renacer-vikingo/12-cinematica.webp', caption: 'Una de las láminas narrativas de la cinemática, con el texto de la historia sobre la aldea.' },
+            ],
+          },
+        ],
       },
     ],
+    stack: ['Unity', 'C#', 'URP 2D', 'Pixel Art', 'ScriptableObjects'],
+    image: '/projects/renacer-vikingo/portada.png',
+    coverFit: 'contain',
+    links: [{ label: 'Código', href: 'https://github.com/bleon133/vikingo' }],
   },
   {
     slug: 'hurontroll',

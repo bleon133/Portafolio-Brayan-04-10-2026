@@ -8,6 +8,9 @@ interface ProjectCoverProps {
 /** Portada uniforme del proyecto: imagen real o textura editorial abstracta. */
 export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
   if (project.image) {
+    // Los logos y banners se muestran completos sobre un fondo oscuro; las capturas se recortan.
+    const contain = project.coverFit === 'contain'
+
     return (
       <img
         src={project.image}
@@ -15,7 +18,7 @@ export function ProjectCover({ project, className = '' }: ProjectCoverProps) {
         loading="lazy"
         width={640}
         height={360}
-        className={`aspect-[2/1] w-full object-cover object-center ${className}`}
+        className={`aspect-[2/1] w-full ${contain ? 'bg-[#2c1520] object-contain' : 'object-cover object-center'} ${className}`}
       />
     )
   }

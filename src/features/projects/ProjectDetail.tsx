@@ -5,6 +5,7 @@ import { Container } from '@/components/layout/Container'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { ProjectFacts } from '@/features/projects/ProjectFacts'
 import { ProjectGallery } from '@/features/projects/ProjectGallery'
+import { ProjectHighlights } from '@/features/projects/ProjectHighlights'
 import { ProjectSections } from '@/features/projects/ProjectSections'
 import { usePageMeta } from '@/hooks/usePageMeta'
 import type { Project, ProjectMediaSlide } from '@/types'
@@ -57,7 +58,10 @@ export function ProjectDetail({ project, next }: ProjectDetailProps) {
       <Container
         className={`flex-1 py-16 ${hasSections ? 'grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem]' : 'max-w-5xl'}`}
       >
-        {hasSections && <ProjectSections sections={project.sections ?? []} />}
+        <div className="min-w-0 space-y-12">
+          {project.highlights?.length ? <ProjectHighlights highlights={project.highlights} /> : null}
+          {hasSections && <ProjectSections sections={project.sections ?? []} />}
+        </div>
         <ProjectFacts project={project} sticky={hasSections} />
       </Container>
 

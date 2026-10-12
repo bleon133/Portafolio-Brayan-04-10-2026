@@ -14,9 +14,25 @@ export interface GalleryImage {
   caption: string
 }
 
+export interface ProjectMediaItem {
+  src: string
+  alt: string
+  caption?: string
+  /** Etiqueta corta bajo el medio, por ejemplo «Freya, tabernera». */
+  label?: string
+  /** Ancho relativo dentro de la rejilla: 2 ocupa dos columnas (útil para tiras anchas). */
+  span?: 1 | 2 | 3 | 4
+}
+
 export type ProjectContentBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
+  /** Tabla simple: `columns` se dibuja como cabecera y `rows` como filas. */
+  | { type: 'table'; columns: string[]; rows: string[][] }
+  /** Rejilla de imágenes o GIFs con etiqueta y pie opcionales. */
+  | { type: 'media'; items: ProjectMediaItem[]; columns?: 2 | 3 | 4 }
+  /** Grupo de imágenes que reutiliza el carrusel con visor ampliado. */
+  | { type: 'gallery'; images: GalleryImage[] }
 
 export interface ProjectSection {
   id: string
@@ -45,6 +61,10 @@ export interface Project {
   stack: string[]
   /** Ruta pública (carpeta /public). Sin imagen, las tarjetas y la página muestran una portada tipográfica. */
   image?: string
+  /** Muestra la portada ajustándola dentro del marco 2:1 sin recortar (logos o banners). Por defecto se recorta. */
+  coverFit?: 'cover' | 'contain'
+  /** Etiquetas cortas de logros o datos clave, por ejemplo «Líder de programación». */
+  highlights?: string[]
   links: ProjectLink[]
   /** Campos opcionales: la subpágina solo los muestra si existen. */
   /** Estado del proyecto cuando todavía no está terminado, por ejemplo «En desarrollo». */
