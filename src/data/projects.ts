@@ -56,12 +56,101 @@ export const projects: Project[] = [
         ],
       },
       {
+        id: 'curso',
+        title: 'El curso implementado',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El curso son cinco módulos encadenados y un examen por módulo. Cada módulo vive en una zona de la casa virtual, y cada paso combina una animación 3D, una narración con subtítulos y la botonera de navegación. Los exámenes se hacen en la sala de estudio.',
+          },
+          {
+            type: 'table',
+            columns: ['Módulo', 'Contenido', 'Pasos', 'Requiere'],
+            rows: [
+              ['M1', 'Extracción e inspección: animaciones de la nevera y las cinco cajas de insulina', '17', 'Ninguno'],
+              ['M2', 'Preparación e higiene: lavado de manos y preparación del lapicero', '17', 'M1'],
+              ['M3', 'Mapeo, rotación y asepsia', '10', 'M2'],
+              ['M4', 'Técnica de inyección', '10', 'M3'],
+              ['M5', 'Desecho seguro y conservación después del uso', '6', 'M4'],
+              ['EvalM1 a EvalM5', 'Examen de cada módulo, 2 preguntas y 60 % para aprobar', '2 cada uno', 'M1 a M5'],
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'El módulo 2, de preparación e higiene, es el que más animación tiene: 14 clips que cubren el lavado de manos completo y la preparación del lapicero.',
+          },
+        ],
+      },
+      {
+        id: 'arquitectura',
+        title: 'Arquitectura',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El código se organiza en cinco capas que van de la entrada del usuario hasta los datos. Cada capa solo conoce a la de abajo, y los sistemas se comunican entre sí con un bus de eventos, así que agregar uno nuevo no obliga a tocar los que ya existen.',
+          },
+          {
+            type: 'media',
+            columns: 2,
+            items: [
+              { src: '/projects/insulinavr/diagrama-arquitectura.png', alt: 'Diagrama de la arquitectura del prototipo en cinco capas', label: 'Capas', caption: 'De la mirada del usuario hasta los datos, con el progreso guardado en JSON local.' },
+              { src: '/projects/insulinavr/diagrama-bus-eventos.png', alt: 'Diagrama del bus de eventos entre componentes', label: 'Bus de eventos', caption: 'Cada componente publica y escucha eventos sin llamar directamente a otro.' },
+            ],
+          },
+          {
+            type: 'media',
+            columns: 2,
+            items: [
+              { src: '/projects/insulinavr/diagrama-modelo-datos.png', alt: 'Diagrama de clases del modelo de contenido', label: 'Modelo de datos', caption: 'Los ScriptableObjects que guardan el contenido, el orden, la narración y las preguntas.', span: 2 },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'animaciones',
+        title: 'Animaciones del módulo 2',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El módulo 2 cubre la preparación e higiene: el lavado de manos completo y la preparación del lapicero. Tiene 14 animaciones (pasos 2.2 a 2.17) y es el módulo con más trabajo de animación del prototipo.',
+          },
+          {
+            type: 'media',
+            columns: 2,
+            items: [
+              { src: '/projects/insulinavr/gifs/lavado-manos.gif', alt: 'Animación del frotado de palmas durante el lavado de manos', label: 'Frotar las palmas', caption: 'Uno de los pasos del lavado de manos, con la técnica de la OMS.' },
+              { src: '/projects/insulinavr/gifs/abrir-grifo.gif', alt: 'Animación de abrir el grifo y mojar las manos', label: 'Abrir el grifo', caption: 'El primer paso: abrir el grifo y mojar las manos.' },
+            ],
+          },
+        ],
+      },
+      {
         id: 'resultado',
         title: 'Resultado',
         blocks: [
           {
             type: 'paragraph',
             text: 'Al 1 de octubre de 2026 el avance ponderado era del 68 %, por encima del 60 % exigido para la entrega. Se ejecutaron 35 pruebas de verificación y se corrigieron 15 defectos. Faltan el tutorial, la pantalla de puntuaciones, más preguntas por examen y la validación con médicos de la Fundación Clínica de Floridablanca.',
+          },
+          {
+            type: 'paragraph',
+            text: 'El avance se calcula ponderando cada componente por su peso en el alcance, así que refleja el trabajo real y no una cuenta de pantallas terminadas.',
+          },
+          {
+            type: 'table',
+            columns: ['Componente', 'Peso', 'Avance'],
+            rows: [
+              ['Arquitectura base (datos, eventos, vinculación, registro)', '10 %', '100 %'],
+              ['Módulos de enseñanza M1 a M5 (60 pasos, botonera)', '25 %', '90 %'],
+              ['Interacción por mirada y teletransporte', '10 %', '95 %'],
+              ['Progreso persistente y reglas de desbloqueo', '10 %', '100 %'],
+              ['Árbol de avances', '5 %', '100 %'],
+              ['Exámenes EvalM1 a EvalM5', '15 %', '60 %'],
+              ['Tutorial', '5 %', '10 %'],
+              ['Pantalla de puntuaciones', '5 %', '0 %'],
+              ['Validación con expertos', '15 %', '10 %'],
+              ['Total ponderado', '100 %', '68 %'],
+            ],
           },
         ],
       },
@@ -80,7 +169,7 @@ export const projects: Project[] = [
       },
       {
         src: '/projects/insulinavr/vivienda-vista-superior.webp',
-        caption: 'Vista superior de la vivienda virtual: cocina, sala, vestíbulo y sala de estudio, con sus puntos de teletransporte.',
+        caption: 'Vista superior de la vivienda: la cocina arriba, la sala en el centro, el vestíbulo abajo a la izquierda y la sala de estudio a la derecha, con sus puntos de teletransporte.',
       },
       {
         src: '/projects/insulinavr/paso-modulo-1.webp',
@@ -91,8 +180,16 @@ export const projects: Project[] = [
         caption: 'Botonera estándar en un primer paso, un paso intermedio y el último.',
       },
       {
+        src: '/projects/insulinavr/botonera-situaciones.webp',
+        caption: 'Las siete situaciones de la botonera: cada paso decide qué botones se muestran según su posición en el módulo.',
+      },
+      {
         src: '/projects/insulinavr/teletransporte.webp',
         caption: 'Puntos de teletransporte con un color por cuarto. Al mirarlos crecen y se aclaran.',
+      },
+      {
+        src: '/projects/insulinavr/teletransporte-mantener.webp',
+        caption: 'Punto de teletransporte que exige mantener la vista: la barra se llena y solo entonces traslada al usuario.',
       },
       {
         src: '/projects/insulinavr/arbol-progreso.webp',
