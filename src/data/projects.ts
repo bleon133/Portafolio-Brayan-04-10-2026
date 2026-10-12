@@ -630,7 +630,7 @@ export const projects: Project[] = [
     featured: false,
     origin: 'Global Game Jam 2024',
     year: '2024',
-    role: 'Documentación y README del proyecto',
+    role: 'Programación y ensamblado',
     description:
       'Juego de plataformas 2D en pixel art protagonizado por un hurón. Hecho en 48 horas para la Global Game Jam 2024 bajo el tema «Make Me Laugh».',
     highlights: ['Global Game Jam 2024', '48 horas', '4 personas', 'Unity + C#', 'Make Me Laugh'],
@@ -668,21 +668,17 @@ export const projects: Project[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Participé en el equipo durante la jam, a cargo de la documentación y el README del proyecto: dejé por escrito el funcionamiento del juego, sus mecánicas y sus controles, para que el equipo y quien llegara después pudiera entender qué se había construido en dos días de trabajo.',
-          },
-          {
-            type: 'paragraph',
-            text: 'En una jam de 48 horas, tener a alguien que ordene y documente lo que se produce es lo que evita que el resultado se pierda en la memoria.',
+            text: 'Fui el encargado de la programación del juego y de parte del ensamblado en Unity. En 48 horas de jam, eso significó construir el núcleo jugable sobre el que se montó todo lo demás: el control del personaje, la recolección, el marcador, las colisiones y el flujo entre escenas.',
           },
         ],
       },
       {
         id: 'sistemas',
-        title: 'Sistemas del juego (equipo)',
+        title: 'Sistemas que programé',
         blocks: [
           {
             type: 'paragraph',
-            text: 'Estos son los sistemas que hacen funcionar el juego, desarrollados por el equipo:',
+            text: 'Estos son los sistemas que hacen funcionar el juego:',
           },
           {
             type: 'table',
@@ -694,7 +690,7 @@ export const projects: Project[] = [
               ['Puertas de nivel', 'La salida solo se abre con al menos una llave y un item recogidos.'],
               ['Mecánica cómica', 'El hurón hace caca con la tecla Z; el objeto se autodestruye a los 5 segundos.'],
               ['Victoria y derrota', 'Pantallas de Winner y Game Over con reinicio de nivel.'],
-              ['Cinemática', 'Secuencia de cinco láminas sobre tablero de corcho, con navegación y Skip.'],
+              ['Flujo de escenas', 'Navegación del menú, la cinemática y el paso entre niveles.'],
             ],
           },
         ],
@@ -706,6 +702,16 @@ export const projects: Project[] = [
           {
             type: 'paragraph',
             text: 'El marcador persistente (ControladorPuntos.cs) es el sistema mejor resuelto del proyecto. Mantiene la puntuación viva entre escenas con un Singleton y, como la interfaz sí se destruye al cambiar de escena, se resuscribe al evento sceneLoaded para reconectar sus referencias. Es justo el tipo de patrón que en una jam suele quedar a medias, y aquí está bien cerrado.',
+          },
+        ],
+      },
+      {
+        id: 'ensamblado',
+        title: 'El ensamblado',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Además de programar, me encargué de montar las escenas en Unity: unir los sistemas con el arte del equipo, colocar los prefabs y las colisiones en su sitio, y dejar el juego en un estado jugable de principio a fin. El resultado es un proyecto que se recorre completo, desde el menú hasta los créditos.',
           },
         ],
       },
@@ -787,13 +793,14 @@ export const projects: Project[] = [
               { src: '/projects/hurontroll/10-menu.png', caption: 'El menú del juego: el logotipo con letras de comida y los botones PLAY! y EXIT.' },
               { src: '/projects/hurontroll/13-nivel1.png', caption: 'El hurón avanzando por el primer nivel, con las plataformas, el fuego como peligro y los contadores de items y llaves.' },
               { src: '/projects/hurontroll/14-nivel2.png', caption: 'El nivel del bosque: el puente de cuerdas, las nubes y una manzana coleccionable.' },
+              { src: '/projects/hurontroll/11-cinematica-1.png', caption: 'Una de las láminas de la cinemática, sobre el tablero de corcho con los memes pinchados.' },
               { src: '/projects/hurontroll/12-cinematica-2.png', caption: 'Una de las láminas de la cinemática, con los botones BACK, NEXT y SKIP.' },
               { src: '/projects/hurontroll/00-logo.webp', caption: 'El logotipo en grande: cada letra de «HURON» está formada con comida.' },
               { src: '/projects/hurontroll/04-fondo-nivel2.webp', caption: 'El fondo del segundo nivel, un bosque oscuro con siluetas de árboles.' },
               { src: '/projects/hurontroll/03-fondo-nivel3.webp', caption: 'El escenario del nivel inédito, dentro del tronco de un árbol.' },
               { src: '/projects/hurontroll/05-tiles-nivel1.webp', caption: 'La hoja de tiles con la que se construye el primer nivel.' },
               { src: '/projects/hurontroll/01-fondo-menu.webp', caption: 'El escenario del menú principal.' },
-              { src: '/projects/hurontroll/02-escenario-cabana.png', caption: 'El escenario de la cabaña.' },
+              { src: '/projects/hurontroll/02-escenario-cabana.webp', caption: 'El escenario de la cabaña.' },
               { src: '/projects/hurontroll/08-raton-trono.png', caption: 'Uno de los personajes del nivel inédito.' },
               { src: '/projects/hurontroll/06-plataformas.png', caption: 'La hoja de plataformas con la que se arman los niveles.' },
               { src: '/projects/hurontroll/07-game-over.png', caption: 'El cartel de derrota, en tipografía pixel art.' },
