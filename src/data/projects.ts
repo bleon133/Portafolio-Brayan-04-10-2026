@@ -1114,6 +1114,149 @@ export const projects: Project[] = [
       { label: 'Jugar', href: 'https://crimpatches.itch.io/chutulu-jamboree' },
     ],
   },
+  {
+    slug: 'chia-landing',
+    title: 'Chía: El Equilibrio Perdido',
+    category: 'Web',
+    featured: true,
+    origin: 'UNAB · CoCrea 2025',
+    year: '2025',
+    publishedAt: '2025-09-15',
+    role: 'Auxiliar de investigación · Frontend',
+    description:
+      'Landing page del videojuego Chía, inspirado en la cultura Muisca. Presenta el proyecto, explica el beneficio tributario del 165% y recibe donaciones y citas.',
+    highlights: ['UNAB', 'CoCrea 2025', 'React + TypeScript', 'Bilingüe', 'En producción'],
+    facts: [
+      { label: 'Tipo', value: 'Sitio público del videojuego' },
+      { label: 'Mi rol', value: 'Auxiliar de investigación, desarrollo del frontend' },
+      { label: 'Equipo', value: '5 estudiantes de la UNAB' },
+      { label: 'Institución', value: 'Universidad Autónoma de Bucaramanga' },
+      { label: 'Convocatoria', value: 'CoCrea 2025, modalidad PAI' },
+      { label: 'Estado', value: 'Publicado en producción' },
+    ],
+    sections: [
+      {
+        id: 'descripcion',
+        title: 'El proyecto',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Chía: El Equilibrio Perdido es un videojuego de acción inspirado en la cosmovisión de la cultura Muisca, ambientado unos 200 años antes de la llegada de los europeos. Lo desarrollan cinco estudiantes de la Universidad Autónoma de Bucaramanga y fue aprobado en la convocatoria CoCrea 2025, modalidad PAI.',
+          },
+          {
+            type: 'paragraph',
+            text: 'La landing es el sitio público del proyecto. Presenta el videojuego, explica el beneficio tributario para quien dona y recibe los aportes y las solicitudes de cita.',
+          },
+        ],
+      },
+      {
+        id: 'mi-aporte',
+        title: 'Mi aporte',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Participé como auxiliar de investigación, y una de mis funciones fue el desarrollo del frontend de la landing page: la aplicación web con la que el público conoce el proyecto y hace su aporte.',
+          },
+          {
+            type: 'paragraph',
+            text: 'La landing es una SPA en React y TypeScript. Sobre esa base construí y conecté la interfaz: las secciones de presentación, el formulario de donación con firma digital, la calculadora del beneficio tributario y la agenda de citas.',
+          },
+        ],
+      },
+      {
+        id: 'secciones',
+        title: 'Qué hace la landing',
+        blocks: [
+          {
+            type: 'table',
+            columns: ['Sección', 'Contenido'],
+            rows: [
+              ['Portada', 'La presentación del juego, con el personaje principal sobre un fondo de cascada y los logos de CoCrea y UNAB.'],
+              ['Beneficio tributario', 'Explica la deducción del 165% sobre el monto donado, con las cifras de referencia.'],
+              ['Impacto cultural', 'Tres pilares: creación de propiedad intelectual, certificado CID y preservación del patrimonio.'],
+              ['El proyecto', 'Presenta el videojuego con un layout de nodos explorables.'],
+              ['Respaldo institucional', 'El marco normativo que sostiene el incentivo y los avales del proyecto.'],
+              ['Calculadora y citas', 'Un simulador del beneficio tributario y un formulario para agendar una reunión.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'modulos',
+        title: 'Módulos interactivos',
+        blocks: [
+          {
+            type: 'list',
+            items: [
+              'Formulario de donación: carta de intención con datos del donante, carga del RUT y firma digital dibujada en un canvas.',
+              'Calculadora tributaria: calcula la deducción según el monto, con montos sugeridos.',
+              'Agenda de citas: selección de fecha con calendario y envío de los datos de contacto.',
+              'Bilingüe: todo el sitio cambia entre español e inglés.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'arquitectura',
+        title: 'Arquitectura',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La landing es una aplicación de una sola página que consume los servicios del proyecto para publicar el contenido y recibir las donaciones. El navegador carga la interfaz, y la interfaz pide los datos a los servicios.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/chia-landing/11-arquitectura.png', alt: 'Diagrama general de la arquitectura de la landing', label: 'Vista general', caption: 'El navegador carga la SPA y esta se comunica con los servicios del proyecto.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'table',
+            columns: ['Área', 'Tecnología'],
+            rows: [
+              ['Framework', 'React 18'],
+              ['Lenguaje', 'TypeScript'],
+              ['Build', 'Vite 6'],
+              ['Estilos', 'Tailwind CSS 4'],
+              ['Rutas', 'react-router 7'],
+              ['Formularios', 'react-hook-form + Zod'],
+              ['Fechas', 'react-day-picker + date-fns'],
+              ['Protección anti-bot', 'Cloudflare Turnstile'],
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'El detalle de la infraestructura y de los servicios queda fuera a propósito: el sitio está en producción y recibe donaciones.',
+          },
+        ],
+      },
+      {
+        id: 'galeria',
+        title: 'Galería de la landing',
+        blocks: [
+          {
+            type: 'gallery',
+            images: [
+              { src: '/projects/chia-landing/01-hero.webp', caption: 'La portada, con el personaje Chía sobre el fondo de cascada y los logos institucionales.' },
+              { src: '/projects/chia-landing/02-beneficio.webp', caption: 'La sección del beneficio tributario, con la deducción del 165% y las cifras de referencia.' },
+              { src: '/projects/chia-landing/03-impacto.webp', caption: 'Los pilares de impacto cultural: creación de propiedad intelectual, certificado CID y patrimonio.' },
+              { src: '/projects/chia-landing/04-proyecto.webp', caption: 'La presentación del videojuego, con nodos que el visitante puede explorar.' },
+              { src: '/projects/chia-landing/05-respaldo.webp', caption: 'El respaldo institucional y el marco normativo del incentivo tributario.' },
+              { src: '/projects/chia-landing/06-calculadora.webp', caption: 'La calculadora del beneficio y la agenda de citas, en una sola sección.' },
+              { src: '/projects/chia-landing/07-donacion.webp', caption: 'La carta de intención del formulario de donación.' },
+              { src: '/projects/chia-landing/08-firma.webp', caption: 'La firma digital que el donante dibuja en el canvas.' },
+              { src: '/projects/chia-landing/09-menu.webp', caption: 'El menú de navegación, con el logo y el selector de idioma.' },
+              { src: '/projects/chia-landing/10-footer.webp', caption: 'El pie de página con los créditos del proyecto.' },
+            ],
+          },
+        ],
+      },
+    ],
+    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Web'],
+    image: '/projects/chia-landing/01-hero.webp',
+    links: [{ label: 'Sitio en vivo', href: 'https://chiaelequilibrioperdido.online/' }],
+  },
 ]
 
 /**
