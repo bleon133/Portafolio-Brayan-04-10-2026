@@ -441,7 +441,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Renacer Vikingo es un RPG 2D de exploración con vista cenital, ambientado en una Noruega medieval asediada. Tras la invasión de los Cruzados, la aldea vikinga queda en ruinas y el jugador —un humilde Karl, hombre libre— toma la responsabilidad de reconstruirla.',
+            text: 'Renacer Vikingo es un RPG 2D de exploración con vista cenital, ambientado en una Noruega medieval asediada. Tras la invasión de los Cruzados, la aldea vikinga queda en ruinas, y el jugador, un humilde Karl y hombre libre, toma la responsabilidad de reconstruirla.',
           },
           {
             type: 'paragraph',
@@ -665,7 +665,7 @@ export const projects: Project[] = [
           },
           {
             type: 'paragraph',
-            text: 'El juego abraza el tema de la jam —«Make Me Laugh»— sin complejos: los coleccionables son platos colombianos (arepa santanderiana, tamal y hormiga culona), la cinemática se cuenta sobre un tablero de corcho con doce memes reales pinchados, y la habilidad estrella del hurón es directamente hacer caca.',
+            text: 'El juego abraza el tema de la jam, «Make Me Laugh», sin complejos: los coleccionables son platos colombianos (arepa santanderiana, tamal y hormiga culona), la cinemática se cuenta sobre un tablero de corcho con doce memes reales pinchados, y la habilidad estrella del hurón es directamente hacer caca.',
           },
           {
             type: 'paragraph',
