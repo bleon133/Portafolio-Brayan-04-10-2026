@@ -417,7 +417,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'perfiles-roles',
-    title: 'Gestión de usuarios: API REST y panel de administración',
+    title: 'Gestión de usuarios',
     category: 'Web',
     featured: true,
     origin: 'Universidad Tecnológica de Tula-Tepeji (UTTT)',
@@ -437,6 +437,24 @@ export const projects: Project[] = [
       { label: 'Estado', value: 'Publicado y funcionando' },
     ],
     sections: [
+      {
+        id: 'demo',
+        title: 'Probar el panel',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El panel está publicado y se puede recorrer con una cuenta de prueba. Los datos que ya están cargados son de ejemplo.',
+          },
+          {
+            type: 'table',
+            columns: ['Campo', 'Valor'],
+            rows: [
+              ['Usuario', 'admin.lopez'],
+              ['Contraseña', 'Admin2026!'],
+            ],
+          },
+        ],
+      },
       {
         id: 'proyecto',
         title: 'El proyecto',
@@ -643,7 +661,11 @@ export const projects: Project[] = [
     ],
     stack: ['ASP.NET Web API', 'C#', '.NET Framework', 'Entity Framework', 'SQL Server', 'React', 'TypeScript', 'Vite'],
     image: '/projects/perfiles-roles/dashboard.png',
-    links: [],
+    links: [
+      { label: 'Probar el panel', href: 'https://usermanagement-go0cfsbr1-brayan-leons-projects.vercel.app/login' },
+      { label: 'Código backend', href: 'https://github.com/bleon133/BackGestionUsuarios' },
+      { label: 'Código frontend', href: 'https://github.com/bleon133/FrontGestionUsuarios' },
+    ],
   },
   {
     slug: 'red-campus',
