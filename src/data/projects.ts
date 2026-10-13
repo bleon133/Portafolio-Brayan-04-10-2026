@@ -197,15 +197,66 @@ export const projects: Project[] = [
   },
   {
     slug: 'sistema-vigilancia',
-    title: 'Sistema para empresa de vigilancia',
-    category: 'Web',
+    title: 'Sistema de vigilancia: plataforma web y app móvil',
+    category: 'Web y móvil',
     featured: false,
     origin: 'Devs Technology',
     publishedAt: '2025-09-01',
-    role: 'Participé en gran parte del desarrollo.',
+    role: 'Participé en gran parte del desarrollo',
     description:
-      'Plataforma para gestionar usuarios, clientes y puestos de trabajo. Programa turnos y rondas, controla armas y mapas, y guarda historiales, alertas, nómina, métricas, copias de seguridad y bitácora.',
-    stack: ['Spring Boot', 'Java', 'Bootstrap', 'Thymeleaf', 'MongoDB', 'WebSocket', 'Leaflet', 'jQuery'],
+      'Sistema para una empresa de vigilancia, con dos entornos que trabajan juntos: una plataforma web para la operación y una app móvil para los vigilantes en puesto. Gestiona usuarios, clientes y puestos de trabajo, programa turnos y rondas, controla armas y mapas, y guarda historiales, alertas, nómina, métricas, copias de seguridad y bitácora.',
+    highlights: ['Dos entornos: web y móvil', 'Spring Boot · Kotlin Multiplatform', 'Programación de turnos y rondas', 'Mapas y geocercas'],
+    facts: [
+      { label: 'Mi rol', value: 'Participé en gran parte del desarrollo' },
+      { label: 'Origen', value: 'Desarrollado durante mi trabajo en Devs Technology' },
+      { label: 'Entorno web', value: 'Spring Boot · Thymeleaf · Bootstrap' },
+      { label: 'Entorno móvil', value: 'Android Studio · Kotlin Multiplatform' },
+      { label: 'Datos', value: 'MongoDB' },
+      { label: 'Tiempo real', value: 'WebSocket' },
+    ],
+    sections: [
+      {
+        id: 'plataforma',
+        title: 'La plataforma web',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La parte web es el centro de la operación. Desde ahí el personal administrativo gestiona usuarios, clientes y puestos de trabajo, programa los turnos y las rondas, y controla el armamento y las ubicaciones sobre el mapa.',
+          },
+          {
+            type: 'list',
+            items: [
+              'Usuarios del sistema, con edición, cambio de contraseña, activación y creación.',
+              'Clientes, con sus datos y su imagen, y exportación de todos a la vez.',
+              'Puestos de trabajo ubicados en el mapa, con filtros.',
+              'Registro de armas, con traslado entre puestos.',
+              'Programación de turnos de varios tipos, con asignación de personal, novedades y reemplazos.',
+              'Rondas de los vigilantes, con geocerca y puntos sobre el mapa.',
+              'Historial de transferencias de turno y bitácora de lo que hace cada usuario.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'movil',
+        title: 'La app móvil',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La app es multiplataforma y acompaña al vigilante en el puesto. Consulta su programación, hace las transferencias de turno, registra las novedades y sirve de apoyo en las revistas que hacen los supervisores.',
+          },
+          {
+            type: 'list',
+            items: [
+              'Pantalla principal con un temporizador que indica cuánto falta para el siguiente turno.',
+              'Calendario con los turnos asignados.',
+              'Formulario para reportar novedades e incidencias del puesto.',
+            ],
+          },
+        ],
+      },
+    ],
+    stack: ['Spring Boot', 'Java', 'Bootstrap', 'Thymeleaf', 'MongoDB', 'WebSocket', 'Leaflet', 'Kotlin Multiplatform', 'Android Studio'],
     image: '/projects/sistema-vigilancia/mapa.webp',
     links: [],
     gallery: [
@@ -244,31 +295,19 @@ export const projects: Project[] = [
         src: '/projects/sistema-vigilancia/bitacora.webp',
         caption: 'Bitácora con el registro de lo que hacen los usuarios dentro del sistema.',
       },
-    ],
-  },
-  {
-    slug: 'app-vigilantes',
-    title: 'Aplicación para control de vigilantes',
-    category: 'Móvil',
-    featured: false,
-    origin: 'Devs Technology',
-    publishedAt: '2025-09-01',
-    description:
-      'App móvil multiplataforma para la gestión operativa de vigilantes. Permite consultar y hacer transferencias de turno, ver la programación asignada, registrar minutas de novedades y apoyar las revistas de puestos que hacen los supervisores.',
-    stack: ['Android Studio', 'Kotlin Multiplatform'],
-    image: '/projects/app-vigilantes/portada.webp',
-    links: [],
-    gallery: [
       {
         src: '/projects/app-vigilantes/inicio.webp',
         caption:
-          'Pantalla principal. Un temporizador muestra cuánto falta para el siguiente turno y desde ahí se llega a las rondas y al estado de los turnos.',
+          'App móvil. Un temporizador muestra cuánto falta para el siguiente turno y desde ahí se llega a las rondas y al estado de los turnos.',
       },
       {
         src: '/projects/app-vigilantes/novedades.webp',
-        caption: 'Formulario para reportar novedades del puesto de trabajo, con registro de incidencias y eventos.',
+        caption: 'App móvil. Formulario para reportar novedades del puesto, con registro de incidencias y eventos.',
       },
-      { src: '/projects/app-vigilantes/turnos.webp', caption: 'Calendario con los turnos asignados al vigilante.' },
+      {
+        src: '/projects/app-vigilantes/turnos.webp',
+        caption: 'App móvil. Calendario con los turnos asignados al vigilante.',
+      },
     ],
   },
   {
@@ -276,6 +315,7 @@ export const projects: Project[] = [
     title: 'Devs Tech',
     category: 'Web',
     featured: false,
+    hidden: true,
     origin: 'Devs Technology',
     publishedAt: '2025-09-01',
     description:
@@ -303,6 +343,7 @@ export const projects: Project[] = [
     title: 'BGApp',
     category: 'Web y móvil',
     featured: false,
+    hidden: true,
     publishedAt: '2025-05-28',
     description:
       'Plataforma de turismo en Bucaramanga con rutas, mapas interactivos y reservas. Incluye versión móvil offline y online con geolocalización y notificaciones.',
