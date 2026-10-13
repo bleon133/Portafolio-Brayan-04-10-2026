@@ -1,4 +1,4 @@
-import { projects } from '@/data/projects'
+import { visibleProjects } from '@/data/projects'
 import type { AboutStep } from '@/types'
 
 export const aboutIntro =
@@ -7,7 +7,7 @@ export const aboutIntro =
 export const aboutStats = [
   { value: 2, suffix: '+', label: 'años de experiencia' },
   { value: 8, suffix: '.º', label: 'semestre en la UNAB' },
-  { value: projects.length, suffix: '', label: 'proyectos publicados' },
+  { value: visibleProjects.length, suffix: '', label: 'proyectos publicados' },
 ]
 
 export const aboutSteps: AboutStep[] = [

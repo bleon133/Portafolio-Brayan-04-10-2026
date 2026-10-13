@@ -88,6 +88,11 @@ export interface Project {
    * Sin esta fecha, el proyecto va al final del orden.
    */
   publishedAt?: string
+  /**
+   * Oculta el proyecto de todo el sitio (listado, inicio, pie y navegación)
+   * sin borrarlo de este archivo. Su página de detalle deja de estar enlazada.
+   */
+  hidden?: boolean
   role?: string
   gallery?: GalleryImage[]
   /** Blocks render in data order so project detail content can grow without template branches. */

@@ -376,6 +376,7 @@ export const projects: Project[] = [
     title: 'Sistema de gestión de inventario',
     category: 'Escritorio',
     featured: false,
+    hidden: true,
     origin: 'Proyecto académico',
     year: '2026',
     publishedAt: '2026-01-01',
@@ -672,6 +673,7 @@ export const projects: Project[] = [
     title: 'Modelo de aseguramiento de infraestructura de red',
     category: 'Redes',
     featured: false,
+    hidden: true,
     origin: 'Proyecto académico, UTTT',
     year: '2026',
     publishedAt: '2026-01-01',
@@ -1469,11 +1471,18 @@ export const projects: Project[] = [
 ]
 
 /**
+ * Proyectos que se muestran en el sitio. Los marcados con `hidden: true`
+ * quedan fuera del listado, la portada, el pie y la navegación, pero siguen
+ * definidos arriba por si vuelven a publicarse.
+ */
+export const visibleProjects = projects.filter((project) => !project.hidden)
+
+/**
  * Proyectos ordenados de la fecha más reciente a la más antigua.
  * Los proyectos sin `publishedAt` quedan al final, en el orden del archivo.
  * `getProject` y `getNextProject` usan este mismo orden.
  */
-export const projectsByDate = [...projects].sort((a, b) => {
+export const projectsByDate = [...visibleProjects].sort((a, b) => {
   if (!a.publishedAt && !b.publishedAt) return 0
   if (!a.publishedAt) return 1
   if (!b.publishedAt) return -1
