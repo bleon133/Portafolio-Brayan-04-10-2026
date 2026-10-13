@@ -662,7 +662,7 @@ export const projects: Project[] = [
     stack: ['ASP.NET Web API', 'C#', '.NET Framework', 'Entity Framework', 'SQL Server', 'React', 'TypeScript', 'Vite'],
     image: '/projects/perfiles-roles/dashboard.png',
     links: [
-      { label: 'Probar el panel', href: 'https://usermanagement-go0cfsbr1-brayan-leons-projects.vercel.app/login' },
+      { label: 'Probar el panel', href: 'https://gestionusuarios.brayandeveloper.online/login' },
       { label: 'Código backend', href: 'https://github.com/bleon133/BackGestionUsuarios' },
       { label: 'Código frontend', href: 'https://github.com/bleon133/FrontGestionUsuarios' },
     ],
