@@ -21,7 +21,7 @@ Portafolio de **Brayan Steven León Martinez**, estudiante de Ingeniería de Sis
 
 - **Inicio editorial** con presentación, estadísticas, capacidades, proyectos destacados, formación y contacto.
 - **Experiencia** en filas editoriales con fechas, responsabilidades, tecnologías y referencias laborales.
-- **12 proyectos**, cuatro destacados en Inicio, con filtros compartibles por categoría y tecnología.
+- **12 proyectos**, seis destacados en Inicio, con filtros compartibles por categoría y tecnología.
 - **Casos de estudio** con narrativa por secciones, datos del proyecto, stack, enlaces y navegación al proyecto siguiente.
 - **Galerías** con imágenes reales cuando están disponibles; las ideas visuales pendientes se identifican explícitamente como propuestas. El carrusel incluye controles de teclado y visor ampliado.
 - **Educación** con formación académica y certificados filtrables.
