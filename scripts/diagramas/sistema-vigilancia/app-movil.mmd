@@ -1,0 +1,28 @@
+flowchart LR
+    subgraph Hosts["Aplicaciones anfitrionas"]
+        direction TB
+        A["Android<br/>Android Studio"]
+        I["iOS<br/>proyecto Xcode"]
+    end
+
+    subgraph Shared["Módulo compartido · Kotlin Multiplatform"]
+        direction LR
+        UI["Interfaz<br/>Compose Multiplatform<br/>pantallas y navegación"]
+        VM["ViewModels<br/>estado de cada<br/>pantalla"]
+        Repo["Repositorios<br/>acceso a datos"]
+        Net["Cliente de red<br/>Ktor · JSON"]
+        RT["Tiempo real<br/>STOMP sobre<br/>WebSocket"]
+        Ses["Sesión local<br/>Multiplatform Settings"]
+        Dev["Servicios del dispositivo<br/>ubicación · notificaciones<br/>cámara · permisos"]
+        UI --> VM --> Repo --> Net
+        VM --> Ses
+        VM --> Dev
+        RT --> VM
+    end
+
+    Server["Servidor Spring Boot<br/>API REST · WebSocket"]
+
+    A --> UI
+    I --> UI
+    Net -- "HTTPS" --> Server
+    Server -. "avisos" .-> RT

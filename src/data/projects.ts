@@ -254,6 +254,17 @@ export const projects: Project[] = [
               'Formulario para reportar novedades e incidencias del puesto.',
             ],
           },
+          {
+            type: 'paragraph',
+            text: 'El código vive en un módulo compartido de Kotlin Multiplatform con la interfaz en Compose Multiplatform, así que las pantallas, la lógica y el acceso a datos se escriben una vez y se ejecutan en Android y en iOS. Solo los servicios del dispositivo, como la ubicación, las notificaciones y la cámara, tienen código propio por plataforma.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/sistema-vigilancia/diagrama-app-movil.png', alt: 'Diagrama de la arquitectura de la app móvil: aplicaciones Android e iOS sobre un módulo compartido de Kotlin Multiplatform conectado al servidor', label: 'Arquitectura de la app', caption: 'Android e iOS comparten interfaz, estado y acceso a datos. El servidor responde por HTTPS y avisa en tiempo real.', fit: 'flow' },
+            ],
+          },
         ],
       },
       {
@@ -357,7 +368,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    stack: ['Spring Boot', 'Java', 'Bootstrap', 'Thymeleaf', 'MongoDB', 'WebSocket', 'Leaflet', 'Kotlin Multiplatform', 'Android Studio'],
+    stack: ['Spring Boot', 'Java', 'Bootstrap', 'Thymeleaf', 'MongoDB', 'WebSocket', 'Leaflet', 'Kotlin Multiplatform', 'Compose Multiplatform', 'Ktor', 'Koin', 'Android Studio'],
     image: '/projects/sistema-vigilancia/mapa.webp',
     links: [],
     gallery: [
