@@ -1,0 +1,26 @@
+flowchart LR
+    U(["Usuario<br/>enfermería · técnicos"])
+
+    subgraph Front["Frontend · Angular 13"]
+        direction TB
+        Pages["Componentes por flujo<br/>solicitud · gestión · entrega"]
+        Svc["Servicios HTTP<br/>medicinas · pedidos · usuarios"]
+        Pages --> Svc
+    end
+
+    subgraph Api["API · ASP.NET Core 5"]
+        direction TB
+        Ctrl["Controladores<br/>Users · Medicinas · Órdenes<br/>Gestión · Equipos"]
+        Auth["Autenticación<br/>JWT"]
+        Repo["Repositorios<br/>reglas de negocio"]
+        Ef["Entity Framework Core<br/>migraciones"]
+        Ctrl --> Auth
+        Ctrl --> Repo
+        Repo --> Ef
+    end
+
+    DB[("SQL Server<br/>MediTrazBd")]
+
+    U --> Pages
+    Svc -- "HTTP · JSON" --> Ctrl
+    Ef --> DB

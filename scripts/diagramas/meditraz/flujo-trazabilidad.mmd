@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant E as Enfermería
+    participant S as Sistema
+    participant T as Técnicos
+
+    E->>S: 1. Solicita medicinas (hasta tres por orden)
+    S->>S: Verifica existencias y asigna número de orden
+    S->>S: Descuenta la cantidad del inventario
+    S-->>T: Orden disponible para gestionar
+    T->>S: 2. Gestiona el pedido
+    Note over T,S: Define quién entrega, quién transporta,<br/>quién recibe, las áreas y el equipo
+    T->>S: 3. Despacha la medicina en camino
+    T->>E: 4. Entrega la medicina en el área
+    E->>S: Confirma la recepción
+    T->>S: 5. Devuelve el equipo de transporte
+    S-->>S: Equipo disponible de nuevo

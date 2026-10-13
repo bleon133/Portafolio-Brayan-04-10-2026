@@ -489,7 +489,7 @@ export const projects: Project[] = [
     year: '2022',
     publishedAt: '2023-02-09',
     description:
-      'Prototipo para el registro y la trazabilidad de medicamentos: inventario, escaneo de códigos y alertas de caducidad.',
+      'Prototipo académico para registrar y rastrear medicamentos en un entorno clínico: inventario con lote y vencimiento, solicitudes de enfermería, gestión del pedido por técnicos, transporte con equipo asignado, entrega y devolución del equipo.',
     sections: [
       {
         id: 'resumen',
@@ -497,23 +497,116 @@ export const projects: Project[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Sistema web con monitoreo por código de barras, inventario digital, alertas de caducidad y control del transporte de fármacos. Se publicó como artículo de investigación en el repositorio institucional de la UNAB.',
+            text: 'Meditraz es un prototipo de sistema web para la trazabilidad de medicamentos dentro de un entorno clínico. Registra las medicinas con su lote y vencimiento, permite que enfermería las solicite y deja constancia de quién las entrega, quién las transporta y quién las recibe. Se publicó como artículo de investigación en el repositorio institucional de la UNAB.',
+          },
+        ],
+      },
+      {
+        id: 'flujo',
+        title: 'Flujo de trazabilidad',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El recorrido de una medicina tiene cinco pasos: solicitud, gestión, medicina en camino, entrega y devolución del equipo de transporte. Al crear la orden, el sistema verifica las existencias, asigna un número de orden y descuenta la cantidad del inventario.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/meditraz/diagrama-flujo-trazabilidad.png', alt: 'Diagrama de secuencia del flujo de trazabilidad entre enfermería, el sistema y los técnicos', label: 'Flujo de trazabilidad', caption: 'Los cinco pasos, con enfermería y técnicos como actores y el sistema validando el stock.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'arquitectura',
+        title: 'Arquitectura',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Es una aplicación en tres capas: una SPA en Angular con un componente por paso del flujo, una API REST en ASP.NET Core con controladores y repositorios, y SQL Server accedido con Entity Framework Core y migraciones.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/meditraz/diagrama-arquitectura.png', alt: 'Diagrama de la arquitectura: frontend Angular, API ASP.NET Core y SQL Server', label: 'Arquitectura', caption: 'Angular consume la API por HTTP y JSON; la API accede a SQL Server con Entity Framework Core.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'modelo-datos',
+        title: 'Modelo de datos',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El modelo separa usuarios y cargos, áreas, medicinas almacenadas y equipos de transporte. Una orden agrupa hasta tres medicinas, y la administración del pedido une la orden con tres responsables, dos áreas y el equipo que la transporta.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/meditraz/diagrama-modelo-datos.png', alt: 'Diagrama entidad-relación de Meditraz', label: 'Modelo de datos', caption: 'Entidades y relaciones del sistema, tal como las crea Entity Framework Core.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'seguridad',
+        title: 'Autenticación',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Las contraseñas no se guardan: se almacena un hash HMACSHA512 con una sal propia por usuario. Al iniciar sesión la API entrega un token JWT que dura un día y el frontend lo envía en cada petición protegida.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/meditraz/diagrama-autenticacion.png', alt: 'Diagrama de secuencia del registro e inicio de sesión con hash y token JWT', label: 'Autenticación', caption: 'Registro con hash y sal, inicio de sesión con token y peticiones con Bearer.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisiones',
+        title: 'Decisiones técnicas',
+        blocks: [
+          {
+            type: 'list',
+            items: [
+              'Patrón repositorio con interfaces y DTOs con AutoMapper, para que los controladores queden delgados y la lógica no dependa de Entity Framework.',
+              'Base de datos creada con migraciones de Entity Framework Core a partir de los modelos.',
+              'Cada paso del flujo es un grupo de componentes de Angular, así el técnico y la enfermera ven solo lo que les corresponde.',
+              'Se descuenta el inventario al crear la orden y se comprueba antes que haya cantidad suficiente.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'alcance',
+        title: 'Alcance y limitaciones',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Es un prototipo académico de 2022 en Angular 13 y ASP.NET Core 5. No tiene autorización por rol, el CORS está abierto y las URL de la API están fijas en el frontend. La fecha de vencimiento se registra y se muestra, pero las alertas de caducidad y el escaneo de códigos describen el diseño del artículo y no están implementados en el código del repositorio.',
           },
         ],
       },
     ],
-    mediaIdeas: [
+    gallery: [
       {
-        title: '(Propuesta) Captura del inventario digital de medicamentos',
-        caption: 'Vista propuesta del módulo de inventario con la lista de fármacos y sus códigos de barras, reemplazable por una captura real del prototipo Angular.',
+        src: '/projects/meditraz/menu.webp',
+        caption: 'Pantalla de inicio con el menú lateral: perfil, listas y registros, solicitud de medicina y trazabilidad.',
       },
       {
-        title: '(Propuesta) Captura de alerta de caducidad',
-        caption: 'Ilustración propuesta del sistema de alertas que notifica sobre medicamentos próximos a vencer, reemplazable por una captura real de la interfaz.',
+        src: '/projects/meditraz/registro-medicamentos.webp',
+        caption: 'Registro de un medicamento con nombre comercial, código, cantidad, vencimiento, temperatura, laboratorio, lote y área.',
       },
       {
-        title: '(Propuesta) Diagrama de flujo de trazabilidad',
-        caption: 'Esquema propuesto que muestre el recorrido trazable de un medicamento desde el ingreso hasta la alerta de caducidad, para reemplazar por un diagrama real si se desea.',
+        src: '/projects/meditraz/registro-equipos.webp',
+        caption: 'Registro de un equipo de transporte con su código, su nombre y el área o bodega donde se guarda.',
       },
     ],
     stack: ['Angular', 'ASP.NET Core', 'SQL Server'],

@@ -1,0 +1,54 @@
+erDiagram
+    Charge ||--o{ User : "cargo"
+    GeneralAreas ||--o{ storedMedicine : "almacena"
+    GeneralAreas ||--o{ transpEquipment : "guarda"
+    User ||--o{ OrderMedecines : "solicita"
+    storedMedicine ||--o{ OrderMedecines : "hasta 3 medicinas"
+    OrderMedecines ||--o{ medicationManagement : "se administra en"
+    OrderMedecines }o--|| GeneralAreas : "área operativa"
+    User ||--o{ medicationManagement : "entrega · transporta · recibe"
+    GeneralAreas ||--o{ medicationManagement : "salida y recepción"
+    transpEquipment ||--o{ medicationManagement : "transporta con"
+
+    Charge {
+        int idCharge PK
+        string nameCharge
+        string workArea
+    }
+    User {
+        int idUser PK
+        int idChargeUse FK
+        string username
+        byte PasswordHash
+        byte PasswordSalt
+    }
+    GeneralAreas {
+        int idGeneralArea PK
+        string ubicationArea
+        string wareHouse
+    }
+    storedMedicine {
+        int idStoredMedicines PK
+        int idAreaMedic FK
+        string codeMedicine
+        date expirationDate
+        string lot
+        int medicineEntryAmount
+    }
+    transpEquipment {
+        int idTranspEquip PK
+        int idEquipStorageArea FK
+        string codeEquip
+        bool available
+    }
+    OrderMedecines {
+        int idRequest PK
+        int FKUserRequest FK
+        int FKnumberOperating FK
+        int orderNumber
+    }
+    medicationManagement {
+        int idMedicationManag PK
+        int idOrder FK
+        int idTransportationMedications FK
+    }

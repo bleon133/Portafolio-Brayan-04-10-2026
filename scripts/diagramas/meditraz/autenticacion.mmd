@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant A as Angular
+    participant C as API · Users
+    participant R as Repositorio
+    participant B as SQL Server
+
+    A->>C: POST Registrar
+    C->>R: Crea el usuario
+    R->>R: Hash HMACSHA512 con sal propia
+    R->>B: Guarda hash y sal, nunca la contraseña
+    A->>C: POST LoginUsuarios
+    C->>R: Verifica usuario y contraseña
+    R->>B: Lee hash y sal
+    R->>R: Recalcula el hash y lo compara
+    R-->>A: Token JWT firmado, vigente un día
+    A->>C: Peticiones con Authorization Bearer
+    C-->>A: Solo responde si el token es válido
