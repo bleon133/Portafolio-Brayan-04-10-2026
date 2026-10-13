@@ -60,7 +60,7 @@ export function Hero() {
               {siteConfig.shortName}
             </h2>
             <p className="mt-3 text-sm font-semibold uppercase tracking-[0.1em] text-accent">
-              Desarrollador Backend y Fullstack
+              Desarrollador Fullstack con enfoque en Backend
             </p>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg lg:max-w-[21rem] xl:max-w-lg">
               Construyo aplicaciones web y APIs robustas, con atención al
@@ -98,7 +98,7 @@ export function Hero() {
           />
           <img
             src="/assets/hero/brayan-leon.webp"
-            alt="Brayan León, desarrollador Backend y Fullstack"
+            alt="Brayan León, desarrollador Fullstack con enfoque en Backend"
             width={1600}
             height={1536}
             loading="eager"
