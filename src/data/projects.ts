@@ -417,45 +417,232 @@ export const projects: Project[] = [
   },
   {
     slug: 'perfiles-roles',
-    title: 'Sistema web de perfiles y roles',
+    title: 'Gestión de usuarios: API REST y panel de administración',
     category: 'Web',
-    featured: false,
-    origin: 'Proyecto académico',
+    featured: true,
+    origin: 'Universidad Tecnológica de Tula-Tepeji (UTTT)',
     year: '2026',
-    publishedAt: '2026-01-01',
+    publishedAt: '2026-04-05',
+    role: 'Desarrollo backend y frontend',
     description:
-      'Sistema web CRUD de perfiles de usuario, direcciones, teléfonos y roles, con autenticación contra base de datos.',
+      'API REST para administrar usuarios, roles, perfiles, direcciones y teléfonos, con un panel de administración en React. Construida como proyecto de la materia Aplicaciones Web Orientadas a Servicios durante el intercambio académico 2026-1.',
+    highlights: ['Intercambio UTTT 2026-1', 'API REST', '6 controladores · 37 endpoints', 'React + TypeScript', 'Publicado'],
+    facts: [
+      { label: 'Mi rol', value: 'Desarrollo backend y frontend' },
+      { label: 'Origen', value: 'Intercambio académico en la UTTT, 2026-1' },
+      { label: 'Materia', value: 'Aplicaciones Web Orientadas a Servicios' },
+      { label: 'Backend', value: 'ASP.NET Web API 2 · .NET Framework 4.8 · EF6' },
+      { label: 'Frontend', value: 'React 18 · TypeScript · Vite' },
+      { label: 'Datos', value: 'SQL Server' },
+      { label: 'Estado', value: 'Publicado y funcionando' },
+    ],
     sections: [
       {
-        id: 'caracteristicas',
-        title: 'Qué incluye',
+        id: 'proyecto',
+        title: 'El proyecto',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Gestión de usuarios es un sistema para administrar usuarios, roles, perfiles, direcciones y teléfonos. Lo construí durante mi intercambio académico en la Universidad Tecnológica de Tula-Tepeji (UTTT) en el periodo 2026-1, como proyecto de la materia Aplicaciones Web Orientadas a Servicios.',
+          },
+          {
+            type: 'paragraph',
+            text: 'El sistema tiene dos partes: una API REST en ASP.NET que concentra las reglas de negocio y el acceso a datos, y un panel de administración en React que consume esa API. La API está publicada y se puede consultar desde su documentación interactiva.',
+          },
+        ],
+      },
+      {
+        id: 'que-hace',
+        title: 'Qué hace',
         blocks: [
           {
             type: 'list',
             items: [
-              'Web API REST en ASP.NET con control de acceso basado en roles.',
-              'Interfaz responsive con Bootstrap y validaciones en JavaScript.',
-              'Publicado en un servidor web externo (somee.com).',
+              'CRUD de usuarios, consulta por nombre de usuario y suspensión o reactivación de cuentas.',
+              'CRUD de roles y asignación de roles a usuarios.',
+              'CRUD de perfiles, con sus direcciones y teléfonos.',
+              'Inicio de sesión validado en el servidor, con respuesta distinta para credenciales incorrectas y cuenta suspendida.',
+              'Reglas de negocio: el nombre de usuario es único, un rol no se asigna dos veces al mismo usuario y no se elimina un rol que esté en uso.',
+              'Eliminación en cascada controlada desde los servicios y escrituras dentro de transacciones.',
+            ],
+          },
+          {
+            type: 'table',
+            columns: ['Recurso', 'Operaciones'],
+            rows: [
+              ['Usuarios', 'GET, GET por id, GET por username, POST, POST /login, PUT, DELETE, PATCH toggle-suspendido'],
+              ['Roles', 'GET, GET por id, GET por nombre, POST, PUT, DELETE'],
+              ['UsuarioRoles', 'GET, GET por id, GET por usuario, POST, DELETE'],
+              ['PerfilesUsuarios', 'GET, GET por id, GET por usuario, POST, PUT, DELETE'],
+              ['Direcciones', 'GET, GET por id, POST, PUT, DELETE'],
+              ['Telefonos', 'GET, GET por id, GET por número, GET por perfil, POST, PUT, DELETE'],
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'En total son 6 controladores y 37 endpoints, todos bajo el prefijo /api/v1.',
+          },
+        ],
+      },
+      {
+        id: 'backend',
+        title: 'Backend',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La API se organiza en tres piezas: los controladores reciben las peticiones, los servicios concentran la lógica y las transacciones, y el proyecto de dominio expone el modelo de Entity Framework generado desde la base de datos.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/perfiles-roles/diagrama-arquitectura.png', alt: 'Diagrama de capas de la API', label: 'Capas de la API', caption: 'Controladores, mapeo, servicios, seguridad y acceso a datos.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'table',
+            columns: ['Decisión', 'Por qué'],
+            rows: [
+              ['DTOs con AutoMapper', 'La API no expone las entidades de base de datos; las propiedades de navegación se ignoran y la contraseña nunca sale en una respuesta.'],
+              ['Capa de servicios', 'Los controladores quedan delgados y las reglas viven en un solo lugar.'],
+              ['Transacciones en escrituras', 'Crear o eliminar con datos relacionados es todo o nada.'],
+              ['Servicios y controladores descartables', 'El contexto de base de datos se libera al terminar cada petición.'],
+              ['Versionado en la ruta', 'El prefijo /api/v1 permite evolucionar la API sin romper a los clientes.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'seguridad',
+        title: 'Seguridad',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Las contraseñas se guardan con PBKDF2, con 100 000 iteraciones, una sal aleatoria por contraseña y comparación en tiempo constante. El formato almacenado permite subir el costo en el futuro sin romper los hashes anteriores.',
+          },
+          {
+            type: 'list',
+            items: [
+              'Las contraseñas nunca se devuelven: el mapeo del usuario ignora ese campo.',
+              'Al editar un usuario, si no se envía contraseña se conserva la actual.',
+              'El inicio de sesión se valida en el servidor. Si una contraseña almacenada venía en texto plano de datos antiguos, se migra a hash en el primer acceso correcto.',
+              'La cadena de conexión vive en un archivo aparte que no está en el repositorio; solo se versionan plantillas de ejemplo.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'modelo-datos',
+        title: 'Modelo de datos',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Seis tablas. Un usuario tiene roles y perfiles; cada perfil tiene direcciones y teléfonos. La base de datos ya existía, así que el modelo de Entity Framework se generó desde ella.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/perfiles-roles/diagrama-modelo-datos.png', alt: 'Modelo de datos de las seis tablas', label: 'Relaciones', caption: 'Los usuarios, sus roles asignados y los perfiles con direcciones y teléfonos.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'frontend',
+        title: 'Panel de administración',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La interfaz es una aplicación de una sola página en React y TypeScript que consume la API. El estado del servidor lo maneja TanStack Query, así que cada escritura invalida la caché de las entidades que toca y las tablas se refrescan solas. Los estilos son CSS Modules sobre un sistema de tokens propio, con tema oscuro.',
+          },
+          {
+            type: 'table',
+            columns: ['Pantalla', 'Función'],
+            rows: [
+              ['Acceso', 'Usuario y contraseña, con mostrar u ocultar y validación en servidor.'],
+              ['Panel', 'Métricas de usuarios, perfiles, roles y direcciones, con cuentas activas y suspendidas.'],
+              ['Usuarios', 'Tabla con estado, roles como chips y conteo de perfiles; modal con pestañas de datos y roles.'],
+              ['Roles', 'CRUD y búsqueda por nombre.'],
+              ['Perfiles', 'Datos personales y RFC; modal con pestañas de perfil, direcciones y teléfonos.'],
+              ['Direcciones', 'CRUD con selector de perfil.'],
+              ['Listado general', 'Perfiles con dirección y teléfonos, ordenados por cumpleaños.'],
+            ],
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/perfiles-roles/diagrama-conexion-front-back.png', alt: 'Diagrama de conexión entre el frontend React y la API', label: 'Frontend y backend', caption: 'El navegador, el cliente HTTP, la caché, los errores y las capas del servidor.', fit: 'flow' },
+              { src: '/projects/perfiles-roles/arquitectura-capas.png', alt: 'Diagrama de capas del frontend', label: 'Capas del frontend', caption: 'De las pantallas hasta la API, pasando por la caché y el cliente HTTP.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'despliegue',
+        title: 'Despliegue',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La API corre en un hosting con IIS y SQL Server bajo un dominio propio, y el frontend se publica como sitio estático. Durante el despliegue aparecieron tres problemas que quedaron resueltos.',
+          },
+          {
+            type: 'table',
+            columns: ['Problema', 'Solución'],
+            rows: [
+              ['La cadena de conexión no llegaba al sitio publicado', 'El archivo de configuración se agregó como contenido del proyecto y un transform lo cambia en la publicación.'],
+              ['Swagger apuntaba a la URL equivocada en el hosting', 'Se fijó la URL raíz de Swagger.'],
+              ['Advertencia de un paquete del framework en el build', 'Se agregó la referencia explícita y se corrigió la redirección de enlaces.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'pendientes',
+        title: 'Estado y pendientes',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La API y el panel están publicados y funcionan contra la base de datos real. Quedan mejoras que no formaban parte del alcance entregado.',
+          },
+          {
+            type: 'table',
+            columns: ['Tema', 'Estado'],
+            rows: [
+              ['Autenticación con token y autorización por roles', 'Pendiente. Hoy el inicio de sesión valida credenciales pero no emite token, así que las rutas del panel se protegen en el cliente.'],
+              ['Restringir CORS a orígenes conocidos', 'Pendiente; hoy está abierto para cualquier origen.'],
+              ['Validación de modelos y DTO separados para crear y responder', 'Pendiente.'],
+              ['Acciones asíncronas e inyección de dependencias', 'Pendiente.'],
+              ['Restricciones únicas e índices en la base de datos', 'Pendiente.'],
+              ['Pruebas unitarias y de integración', 'Pendiente.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'galeria',
+        title: 'Galería del panel',
+        blocks: [
+          {
+            type: 'gallery',
+            images: [
+              { src: '/projects/perfiles-roles/dashboard.png', caption: 'El panel, con las métricas de usuarios, perfiles, roles y direcciones, y el conteo de cuentas activas y suspendidas.' },
+              { src: '/projects/perfiles-roles/usuarios.png', caption: 'La tabla de usuarios, con el estado de cada cuenta, sus roles y el número de perfiles.' },
+              { src: '/projects/perfiles-roles/usuario-modal.png', caption: 'La edición de un usuario, con las pestañas de datos y de asignación de roles.' },
+              { src: '/projects/perfiles-roles/perfiles.png', caption: 'La tabla de perfiles, con los datos personales y el usuario asociado.' },
+              { src: '/projects/perfiles-roles/perfil-modal.png', caption: 'La edición de un perfil, con las pestañas de perfil, direcciones y teléfonos.' },
+              { src: '/projects/perfiles-roles/roles.png', caption: 'La gestión de roles, con búsqueda por nombre contra la API.' },
+              { src: '/projects/perfiles-roles/direcciones.png', caption: 'El CRUD de direcciones, con selector de perfil.' },
+              { src: '/projects/perfiles-roles/listado.png', caption: 'El listado general, con los perfiles ordenados por fecha de cumpleaños.' },
+              { src: '/projects/perfiles-roles/login.png', caption: 'La pantalla de acceso, con validación en el servidor.' },
             ],
           },
         ],
       },
     ],
-    mediaIdeas: [
-      {
-        title: '(Propuesta) Captura del CRUD de perfiles y roles',
-        caption: 'Vista propuesta de la interfaz de gestión de roles con asignación de permisos, reemplazable por una captura real de la aplicación ASP.NET.',
-      },
-      {
-        title: '(Propuesta) Captura de autenticación con login',
-        caption: 'Ilustración propuesta del formulario de autenticación contra base de datos, para reemplazar por una captura real de la interfaz.',
-      },
-      {
-        title: '(Propuesta) Diagrama de la API REST con roles',
-        caption: 'Esquema propuesto de los endpoints REST y el control de acceso basado en roles, reemplazable por un diagrama de arquitectura real.',
-      },
-    ],
-    stack: ['ASP.NET', 'C#', 'SQL Server', 'Bootstrap', 'JavaScript', 'REST API'],
+    stack: ['ASP.NET Web API', 'C#', '.NET Framework', 'Entity Framework', 'SQL Server', 'React', 'TypeScript', 'Vite'],
+    image: '/projects/perfiles-roles/dashboard.png',
     links: [],
   },
   {
@@ -1122,13 +1309,13 @@ export const projects: Project[] = [
     origin: 'UNAB · CoCrea 2025',
     year: '2025',
     publishedAt: '2025-09-15',
-    role: 'Auxiliar de investigación · Frontend',
+    role: 'Auxiliar de investigación · Programador',
     description:
       'Landing page del videojuego Chía, inspirado en la cultura Muisca. Presenta el proyecto, explica el beneficio tributario del 165% y recibe donaciones y citas.',
     highlights: ['UNAB', 'CoCrea 2025', 'React + TypeScript', 'Bilingüe', 'En producción'],
     facts: [
       { label: 'Tipo', value: 'Sitio público del videojuego' },
-      { label: 'Mi rol', value: 'Auxiliar de investigación, desarrollo del frontend' },
+      { label: 'Mi rol', value: 'Auxiliar de investigación · Programador' },
       { label: 'Equipo', value: '5 estudiantes de la UNAB' },
       { label: 'Institución', value: 'Universidad Autónoma de Bucaramanga' },
       { label: 'Convocatoria', value: 'CoCrea 2025, modalidad PAI' },
@@ -1155,7 +1342,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Participé como auxiliar de investigación, y una de mis funciones fue el desarrollo del frontend de la landing page: la aplicación web con la que el público conoce el proyecto y hace su aporte.',
+            text: 'Participé como auxiliar de investigación y como programador. Trabajé en el frontend de la landing page, la aplicación web con la que el público conoce el proyecto y hace su aporte, y también en tareas de backend del sistema.',
           },
           {
             type: 'paragraph',
