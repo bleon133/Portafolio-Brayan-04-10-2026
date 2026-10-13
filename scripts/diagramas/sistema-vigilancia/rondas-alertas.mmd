@@ -1,0 +1,19 @@
+flowchart LR
+    subgraph Ronda["Durante la ronda"]
+        direction TB
+        R1["Vigilante recorre<br/>los puntos del puesto"] --> R2["La app envía<br/>la ubicación"]
+        R2 --> R3{"¿Dentro de<br/>la geocerca?"}
+        R3 -- "sí" --> R4["Se registra<br/>el punto de control"]
+        R3 -- "no" --> R5["Se rechaza<br/>el registro"]
+    end
+
+    subgraph Vigilancia["Revisión automática"]
+        direction TB
+        J1["Tarea programada<br/>revisa las rondas"] --> J2{"¿Ronda<br/>incompleta?"}
+        J2 -- "sí" --> J3["Genera una alerta"]
+        J2 -- "no" --> J4["Sin novedad"]
+    end
+
+    R4 --> J1
+    J3 --> W["Aviso en tiempo real<br/>al panel"]
+    W --> H["Historial de alertas"]

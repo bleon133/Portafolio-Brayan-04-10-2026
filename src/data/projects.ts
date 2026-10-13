@@ -204,15 +204,16 @@ export const projects: Project[] = [
     publishedAt: '2025-09-01',
     role: 'Participé en gran parte del desarrollo',
     description:
-      'Sistema para una empresa de vigilancia, con dos entornos que trabajan juntos: una plataforma web para la operación y una app móvil para los vigilantes en puesto. Gestiona usuarios, clientes y puestos de trabajo, programa turnos y rondas, controla armas y mapas, y guarda historiales, alertas, nómina, métricas, copias de seguridad y bitácora.',
-    highlights: ['Dos entornos: web y móvil', 'Spring Boot · Kotlin Multiplatform', 'Programación de turnos y rondas', 'Mapas y geocercas'],
+      'Sistema para una empresa de vigilancia, con dos entornos que trabajan juntos: una plataforma web para la operación y una app móvil para los vigilantes en puesto. Gestiona usuarios, clientes y puestos de trabajo, programa turnos y rondas, controla armas y mapas, y guarda historiales, alertas, nómina, métricas, copias de seguridad y bitácora. El panel recibe avisos en tiempo real y el sistema respalda sus datos de forma automática.',
+    highlights: ['Dos entornos: web y móvil', 'Spring Boot · Kotlin Multiplatform', 'Programación de turnos y rondas', 'Mapas y geocercas', 'Avisos en tiempo real'],
     facts: [
-      { label: 'Mi rol', value: 'Participé en gran parte del desarrollo' },
       { label: 'Origen', value: 'Desarrollado durante mi trabajo en Devs Technology' },
       { label: 'Entorno web', value: 'Spring Boot · Thymeleaf · Bootstrap' },
       { label: 'Entorno móvil', value: 'Android Studio · Kotlin Multiplatform' },
       { label: 'Datos', value: 'MongoDB' },
       { label: 'Tiempo real', value: 'WebSocket' },
+      { label: 'Seguridad', value: 'Autenticación por tokens, roles y bitácora' },
+      { label: 'Respaldos', value: 'Automáticos, con restauración desde el panel' },
     ],
     sections: [
       {
@@ -252,6 +253,106 @@ export const projects: Project[] = [
               'Calendario con los turnos asignados.',
               'Formulario para reportar novedades e incidencias del puesto.',
             ],
+          },
+        ],
+      },
+      {
+        id: 'modulos',
+        title: 'Módulos del sistema',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El sistema se organiza en cinco dominios. Cada uno agrupa los módulos que usa un perfil de la operación y todos comparten los mismos datos, así que lo que el vigilante registra en la app aparece de inmediato en el panel.',
+          },
+          {
+            type: 'table',
+            columns: ['Dominio', 'Qué resuelve'],
+            rows: [
+              ['Operación', 'Puestos de trabajo ubicados en el mapa, con filtros y geocercas.'],
+              ['Personal y clientes', 'Usuarios del sistema y datos de los clientes.'],
+              ['Turnos y rondas', 'Programación de turnos, transferencias, novedades, reemplazos, rondas y alertas.'],
+              ['Control', 'Registro de armas y traslados entre puestos.'],
+              ['Administración', 'Nómina, métricas, bitácora y respaldos.'],
+            ],
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/sistema-vigilancia/diagrama-modulos.png', alt: 'Diagrama de los módulos del sistema agrupados en cinco dominios', label: 'Módulos', caption: 'Los cinco dominios del sistema y los módulos que agrupa cada uno.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'arquitectura',
+        title: 'Arquitectura',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Es una aplicación Spring Boot en capas. El panel web y la app móvil entran por puertas distintas, la capa web y la API REST, pero pasan por la misma seguridad y los mismos servicios. Ahí viven las reglas de negocio, que son las únicas que hablan con la base de datos.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/sistema-vigilancia/diagrama-arquitectura.png', alt: 'Diagrama de la arquitectura: panel web y app móvil, aplicación Spring Boot en capas y base de datos MongoDB', label: 'Arquitectura', caption: 'Panel y app comparten seguridad y servicios. El tiempo real y las tareas programadas salen de los mismos servicios.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'flujos',
+        title: 'Dos flujos clave',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La entrega de turno entre vigilantes pasa por tres estados y cada cambio llega al panel en tiempo real. El historial de cada transferencia queda guardado.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/sistema-vigilancia/diagrama-transferencia-turno.png', alt: 'Diagrama de secuencia de la transferencia de turno entre dos vigilantes, la app, el servidor y el panel', label: 'Transferencia de turno', caption: 'De la entrega al cierre, con avisos en tiempo real al panel y registro en el historial.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'En las rondas, la ubicación que envía la app se valida contra la geocerca del puesto antes de registrar el punto. Una tarea programada revisa las rondas y genera una alerta cuando algo queda sin completar.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/sistema-vigilancia/diagrama-rondas-alertas.png', alt: 'Diagrama de flujo de una ronda con validación por geocerca y revisión automática que genera alertas', label: 'Rondas y alertas', caption: 'Validación por geocerca durante la ronda y revisión automática que alerta al panel.', fit: 'flow' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisiones',
+        title: 'Decisiones técnicas',
+        blocks: [
+          {
+            type: 'list',
+            items: [
+              'Una sola aplicación en capas para el panel y la app móvil, de modo que las reglas de negocio existen una vez y las dos interfaces siempre coinciden.',
+              'Avisos en tiempo real con WebSocket: el panel recibe transferencias, alertas y rondas sin recargar la página.',
+              'Tareas programadas que revisan rondas y turnos y generan alertas sin que nadie tenga que vigilar el sistema.',
+              'Geocercas como polígonos sobre el mapa, validadas en el servidor para que la ubicación no dependa de lo que diga el dispositivo.',
+              'Autenticación por tokens, permisos por rol y una bitácora que registra lo que hace cada usuario.',
+              'Respaldos automáticos de la base de datos, con restauración desde el panel y exportación de listados a Excel.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'alcance',
+        title: 'Nota de alcance',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Este proyecto se desarrolló en Devs Technology y se publica con su autorización, sin la marca, los datos ni el personal del cliente. Los diagramas son generales y no reflejan rutas, esquemas de datos ni parámetros del sistema en operación.',
           },
         ],
       },

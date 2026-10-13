@@ -1,0 +1,25 @@
+flowchart LR
+    Panel["Panel web<br/>Thymeleaf · Bootstrap · Leaflet"]
+    Panel ~~~ App["App móvil<br/>Kotlin Multiplatform"]
+
+    subgraph Servidor["Aplicación Spring Boot"]
+        direction TB
+        Web["Capa web<br/>vistas del panel"]
+        Api["API REST<br/>para la app móvil"]
+        Sec["Seguridad<br/>autenticación y roles"]
+        Svc["Servicios<br/>reglas de negocio · correo"]
+        Jobs["Tareas programadas<br/>revisiones y respaldos"]
+        WS["Tiempo real<br/>WebSocket"]
+        Web --> Sec
+        Api --> Sec
+        Sec --> Svc
+        Jobs --> Svc
+        Svc --> WS
+    end
+
+    DB[("MongoDB<br/>base documental")]
+
+    Panel --> Web
+    WS -. "avisos en tiempo real" .-> Panel
+    App --> Api
+    Svc --> DB

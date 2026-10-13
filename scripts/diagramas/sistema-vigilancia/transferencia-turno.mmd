@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant S as Vigilante que entrega
+    participant E as Vigilante que recibe
+    participant A as App móvil
+    participant V as Servidor
+    participant P as Panel web
+
+    S->>A: Inicia la entrega del puesto
+    A->>V: Registra la transferencia
+    V-->>P: Aviso en tiempo real · iniciada
+    E->>A: Confirma la recepción
+    A->>V: Actualiza el estado
+    V-->>P: Aviso en tiempo real · en proceso
+    V->>V: Cierra y guarda el historial
+    V-->>P: Aviso en tiempo real · finalizada
+    Note over V,P: Cada transferencia queda en el historial
