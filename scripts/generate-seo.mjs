@@ -50,7 +50,7 @@ const person = {
   name: siteConfig.name,
   givenName: 'Brayan Steven',
   familyName: 'León Martinez',
-  jobTitle: 'Estudiante de Ingeniería de Sistemas | Desarrollador Backend y Fullstack',
+  jobTitle: 'Estudiante de Ingeniería de Sistemas | Desarrollador Fullstack con enfoque en Backend',
   description: siteConfig.description,
   url: siteUrl,
   image: absoluteAsset(defaultImage),

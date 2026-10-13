@@ -29,9 +29,9 @@ export const capabilities: Capability[] = [
     items: ['Kotlin', 'Kotlin Multiplatform', 'Jetpack Compose', 'Android Studio', 'Flutter'],
   },
   {
-    title: 'Videojuegos y electrónica',
-    blurb: 'Prototipos de game jam y proyectos con Arduino.',
-    items: ['Unity', 'C#', 'Arduino'],
+    title: 'Videojuegos',
+    blurb: 'Prototipos de game jam y proyectos en Unity.',
+    items: ['Unity', 'C#'],
   },
 ]
 

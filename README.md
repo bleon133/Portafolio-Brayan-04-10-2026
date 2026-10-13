@@ -5,7 +5,7 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 
-Portafolio de **Brayan Steven León Martinez**, estudiante de Ingeniería de Sistemas en la Universidad Autónoma de Bucaramanga (UNAB), desarrollador Backend y Fullstack que busca prácticas profesionales para 2027-1. Presenta experiencia, capacidades técnicas, formación y 12 proyectos con sus respectivos casos de estudio.
+Portafolio de **Brayan Steven León Martinez**, estudiante de Ingeniería de Sistemas en la Universidad Autónoma de Bucaramanga (UNAB), desarrollador Fullstack con enfoque en Backend que busca prácticas profesionales para 2027-1. Presenta experiencia, capacidades técnicas, formación y 12 proyectos con sus respectivos casos de estudio.
 
 ## Vista previa
 

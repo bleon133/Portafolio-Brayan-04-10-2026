@@ -5,9 +5,9 @@ export const siteConfig = {
   shortName: 'Brayan León',
   role: 'Estudiante de Ingeniería de Sistemas',
   tagline:
-    'Estudiante de Ingeniería de Sistemas | Desarrollador Backend y Fullstack | Java, Spring Boot, React, .NET y TypeScript | Buscando prácticas profesionales 2027-1',
+    'Estudiante de Ingeniería de Sistemas | Desarrollador Fullstack con enfoque en Backend | Java, Spring Boot, React, .NET y TypeScript | Buscando prácticas profesionales 2027-1',
   description:
-    'Portafolio de Brayan Steven León Martinez, estudiante de Ingeniería de Sistemas en la UNAB. Desarrollo Backend y Fullstack con Java, Spring Boot, React y .NET.',
+    'Portafolio de Brayan Steven León Martinez, estudiante de Ingeniería de Sistemas en la UNAB. Desarrollo Fullstack con enfoque en Backend. Trabajo con Java, Spring Boot, React y .NET.',
   github: 'https://github.com/bleon133',
   githubUser: 'bleon133',
   linkedin: 'https://www.linkedin.com/in/brayan-steven-le%C3%B3n-martinez-a7528416b',

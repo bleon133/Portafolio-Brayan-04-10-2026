@@ -10,9 +10,9 @@ export interface PageMeta {
 
 export const pageMeta: Record<string, PageMeta> = {
   '/': {
-    title: 'Brayan León | Desarrollador Backend y Fullstack',
+    title: 'Brayan León | Desarrollador Fullstack con enfoque en Backend',
     description:
-      'Portafolio de Brayan Steven León Martinez, estudiante de Ingeniería de Sistemas en la UNAB. Desarrollo Backend y Fullstack con Java, Spring Boot, React y .NET. Busco prácticas profesionales en 2027-1.',
+      'Portafolio de Brayan Steven León Martinez, estudiante de Ingeniería de Sistemas en la UNAB. Desarrollo Fullstack con enfoque en Backend. Trabajo con Java, Spring Boot, React y .NET. Busco prácticas profesionales en 2027-1.',
   },
   '/experiencia': {
     title: 'Experiencia | Brayan León',
