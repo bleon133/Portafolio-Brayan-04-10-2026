@@ -26,5 +26,4 @@ dist-ssr
 .playwright-cli
 .playwright-mcp/
 .mcp.json
-.claude/
 .vite
