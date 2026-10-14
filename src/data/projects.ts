@@ -1579,16 +1579,18 @@ export const projects: Project[] = [
     origin: 'UNAB · CoCrea 2025',
     year: '2025',
     publishedAt: '2025-09-15',
-    role: 'Auxiliar de investigación · Programador',
+    role: 'Auxiliar de investigación · Programador full stack',
     description:
-      'Landing page del videojuego Chía, inspirado en la cultura Muisca. Presenta el proyecto, explica el beneficio tributario del 165% y recibe donaciones y citas.',
-    highlights: ['UNAB', 'CoCrea 2025', 'React + TypeScript', 'Bilingüe', 'En producción'],
+      'Plataforma web del videojuego Chía, inspirado en la cultura Muisca. Une una landing en React, una API en Spring Boot con PostgreSQL y un panel administrativo para gestionar donaciones y citas.',
+    highlights: ['UNAB', 'CoCrea 2025', 'Spring Boot', 'PostgreSQL', 'JWT', 'React + TypeScript', 'En producción'],
     facts: [
-      { label: 'Tipo', value: 'Sitio público del videojuego' },
-      { label: 'Mi rol', value: 'Auxiliar de investigación · Programador' },
+      { label: 'Tipo', value: 'Plataforma web del videojuego' },
       { label: 'Equipo', value: '5 estudiantes de la UNAB' },
       { label: 'Institución', value: 'Universidad Autónoma de Bucaramanga' },
       { label: 'Convocatoria', value: 'CoCrea 2025, modalidad PAI' },
+      { label: 'Backend', value: 'Spring Boot 4 · Java 21' },
+      { label: 'Base de datos', value: 'PostgreSQL' },
+      { label: 'Despliegue', value: 'Docker Compose · Nginx' },
       { label: 'Estado', value: 'Publicado en producción' },
     ],
     sections: [
@@ -1602,7 +1604,7 @@ export const projects: Project[] = [
           },
           {
             type: 'paragraph',
-            text: 'La landing es el sitio público del proyecto. Presenta el videojuego, explica el beneficio tributario para quien dona y recibe los aportes y las solicitudes de cita.',
+            text: 'El sistema tiene tres partes: la landing pública, que presenta el juego y explica el beneficio tributario para quien dona; una API REST que guarda las donaciones y las citas; y un panel privado con el que el equipo revisa y decide cada aporte. El sitio está en producción y recibe donaciones.',
           },
         ],
       },
@@ -1612,17 +1614,238 @@ export const projects: Project[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Participé como auxiliar de investigación y como programador. Trabajé en el frontend de la landing page, la aplicación web con la que el público conoce el proyecto y hace su aporte, y también en tareas de backend del sistema.',
+            text: 'Participé como auxiliar de investigación y como programador full stack. Aquí cuento sobre todo el backend, que es la parte que más pesa en el sistema, y cómo se conecta con la interfaz.',
+          },
+          {
+            type: 'list',
+            items: [
+              'Migré el backend de FastAPI (Python) a Spring Boot y mantuve el formato de las respuestas que ya consumía el frontend: JSON en snake_case y errores con un campo detail.',
+              'Diseñé la autenticación con JWT sin estado, con contraseñas en BCrypt y una lista de sesiones revocadas para que cerrar sesión invalide el token de verdad.',
+              'Armé el panel administrativo: listado con métricas, detalle de cada donación, edición campo por campo y decisión de aprobar o rechazar.',
+              'Implementé la auditoría: cada cambio queda registrado con quién lo hizo, qué campo tocó y cuál era el valor anterior.',
+              'Resolví el endpoint agregado del panel (patrón BFF), el módulo de términos y condiciones editable y la parte final del agendamiento de citas.',
+              'Corregí la compatibilidad con el pooler de conexiones de la base administrada y el error de transacciones abortadas de PostgreSQL.',
+            ],
           },
           {
             type: 'paragraph',
-            text: 'La landing es una SPA en React y TypeScript. Sobre esa base construí y conecté la interfaz: las secciones de presentación, el formulario de donación con firma digital, la calculadora del beneficio tributario y la agenda de citas.',
+            text: 'En el frontend trabajé sobre la landing en React y TypeScript: las secciones de presentación, el formulario de donación con firma digital, la calculadora del beneficio tributario, la agenda de citas y las pantallas del panel.',
+          },
+        ],
+      },
+      {
+        id: 'arquitectura',
+        title: 'Arquitectura',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El navegador entra por Nginx, que termina el TLS y reparte el tráfico: las páginas van al contenedor del frontend y las llamadas a la API van al backend. Los tres servicios corren con Docker Compose y solo Nginx queda expuesto a internet.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/chia-landing/11-arquitectura.webp', alt: 'Diagrama de la arquitectura del sistema: navegador, Nginx, frontend, backend y servicios externos', label: 'Vista general', caption: 'Nginx separa la interfaz de la API; el backend habla con la base de datos, el correo, el calendario y el servicio anti-bot.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'table',
+            columns: ['Área', 'Tecnología'],
+            rows: [
+              ['Backend', 'Spring Boot 4 · Java 21'],
+              ['Persistencia', 'Spring Data JPA · PostgreSQL'],
+              ['Seguridad', 'Spring Security · JWT · BCrypt'],
+              ['Documentos', 'Apache PDFBox'],
+              ['Integraciones', 'Correo SMTP · Google Calendar · Cloudflare Turnstile'],
+              ['Frontend', 'React 18 · TypeScript · Vite 6 · Tailwind CSS 4'],
+              ['Formularios', 'react-hook-form · Zod'],
+              ['Infraestructura', 'Docker Compose · Nginx · Certbot'],
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'No publico las credenciales, la infraestructura ni el detalle del esquema de la base de datos, porque el sitio recibe donaciones.',
+          },
+        ],
+      },
+      {
+        id: 'backend',
+        title: 'El backend por capas',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El backend sigue una arquitectura por capas, con unas 3.000 líneas de Java. Cada petición pasa por el filtro de seguridad, llega a un controlador, que delega en un servicio, y este usa los repositorios para hablar con la base de datos. Ninguna capa se salta a la siguiente.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/chia-landing/12-capas-backend.webp', alt: 'Diagrama de las capas del backend: seguridad, controllers, services, repositories y PostgreSQL', label: 'Capas', caption: 'Los servicios son el único punto que toca las integraciones y los repositorios.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'table',
+            columns: ['Capa', 'Qué hace'],
+            rows: [
+              ['Controllers', 'Reciben la petición, validan los datos y delegan. No tienen reglas de negocio.'],
+              ['Services', 'Reglas de negocio, transacciones, auditoría, generación de PDF y envío de correos.'],
+              ['Repositories y entidades', 'Spring Data JPA con consultas derivadas por nombre. Hibernate solo valida el esquema; no lo modifica.'],
+              ['DTOs', 'Son el contrato con el frontend. Las entidades nunca se serializan directamente.'],
+              ['Seguridad', 'Filtro JWT, sesiones sin estado, contraseñas con BCrypt y solo las rutas públicas imprescindibles.'],
+              ['Errores', 'Un manejador global convierte las excepciones en respuestas JSON coherentes.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisiones',
+        title: 'Decisiones de diseño',
+        blocks: [
+          {
+            type: 'list',
+            items: [
+              'Respuesta agregada para el panel: el dashboard pide una sola vez los totales y la lista, en lugar de varias consultas que podían quedar desincronizadas.',
+              'Estados con reglas: una donación solo se edita o se decide mientras está pendiente. Después queda cerrada.',
+              'Rechazar exige un motivo, que viaja en el correo al donante.',
+              'Bitácora campo por campo: antes de aplicar un cambio se guarda quién lo hizo, qué campo tocó y los valores anterior y nuevo.',
+              'Certificado versionado: si un cambio afecta lo que aparece en el PDF, el sistema lo regenera y conserva la versión anterior con su fecha.',
+              'Correos tolerantes a fallos: si el aviso de una cita no sale, la cita ya guardada no se pierde.',
+              'Los archivos de cada donación se guardan fuera del contenedor, en un volumen, y solo los administradores autenticados pueden descargarlos.',
+              'Una tarea programada borra cada noche las sesiones revocadas que ya vencieron.',
+              'Todas las fechas del sistema usan la zona horaria de Bogotá.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'base-de-datos',
+        title: 'Base de datos',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La persistencia usa PostgreSQL con Spring Data JPA. Por seguridad no publico el detalle del esquema, pero sí cómo se organiza.',
+          },
+          {
+            type: 'table',
+            columns: ['Entidad', 'Para qué sirve'],
+            rows: [
+              ['Donaciones', 'Cada aporte y su estado: pendiente, aprobada o rechazada.'],
+              ['Citas', 'Reuniones agendadas, enlazadas con su evento en Google Calendar.'],
+              ['Usuarios', 'Cuentas del panel, con rol y estado activo o inactivo.'],
+              ['Bitácora de auditoría', 'Historial de cambios sobre las donaciones.'],
+              ['Sesiones revocadas', 'Identificadores de los tokens cerrados, hasta que vencen.'],
+              ['Términos y condiciones', 'El compromiso de donación en español e inglés, editable desde el panel.'],
+            ],
+          },
+          {
+            type: 'list',
+            items: [
+              'El esquema lo cambia el equipo de forma explícita; Hibernate solo lo valida al arrancar.',
+              'Las transacciones se declaran en los servicios, donde vive la regla de negocio.',
+              'Ajusté la conexión al pooler de la base administrada y corregí el error de transacciones abortadas que aparecía en PostgreSQL.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'conexion',
+        title: 'Cómo se conecta el frontend con el backend',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'La interfaz no llama a la red por su cuenta. Todo pasa por un cliente HTTP único, que agrega la sesión y normaliza los errores, y por servicios pequeños que arman cada petición.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/chia-landing/14-frontend-backend.webp', alt: 'Diagrama de la conexión entre el frontend y el backend', label: 'Frontend y backend', caption: 'Las pantallas usan hooks y contexto; estos usan el cliente HTTP, que llega a la API por el mismo origen.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'table',
+            columns: ['Pieza del frontend', 'Qué hace'],
+            rows: [
+              ['Cliente HTTP', 'Envuelve fetch, añade el token a las rutas protegidas y ofrece get, post, put, patch y delete con tipos genéricos.'],
+              ['Contexto de sesión', 'Guarda al usuario autenticado, valida el token al abrir el panel y cierra la sesión también en el servidor.'],
+              ['Guard de rutas', 'Redirige al inicio de sesión si el panel se abre sin sesión.'],
+              ['Servicio de donación', 'Arma un envío multipart con los datos en JSON, la firma como imagen, el RUT y el token anti-bot.'],
+              ['Proxy', 'En desarrollo Vite redirige la API al backend; en producción lo hace Nginx. Como el origen es el mismo, el navegador no choca con CORS.'],
+              ['Tipos', 'Interfaces de TypeScript que reflejan los DTO del backend.'],
+            ],
+          },
+        ],
+      },
+      {
+        id: 'donacion',
+        title: 'Recorrido de una donación',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Es el flujo más delicado del sistema, porque junta archivos, datos personales y correos. Va desde el formulario público hasta la decisión del administrador.',
+          },
+          {
+            type: 'media',
+            columns: 1,
+            items: [
+              { src: '/projects/chia-landing/13-flujo-donacion.webp', alt: 'Diagrama del recorrido de una donación entre el donante, el backend y el administrador', label: 'Del formulario a la decisión', caption: 'El donante envía todo en una sola petición; el backend lo registra, genera el certificado y avisa por correo.', fit: 'flow' },
+            ],
+          },
+          {
+            type: 'list',
+            items: [
+              'El formulario se valida en el navegador con Zod antes de enviarse.',
+              'El servidor revisa el tamaño del RUT y verifica el token anti-bot con Cloudflare.',
+              'La firma llega como imagen y se estampa en el certificado PDF, a partir de una plantilla para persona natural o jurídica.',
+              'Los correos de aviso salen a los administradores y al donante.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'panel',
+        title: 'Panel administrativo',
+        blocks: [
+          {
+            type: 'list',
+            items: [
+              'Inicio de sesión con JWT. Las rutas del panel se protegen en el frontend y en el backend.',
+              'Dashboard con totales y listado de donaciones, con búsqueda por nombre o documento.',
+              'Detalle de cada donación con sus datos, su ubicación, la facturación y los documentos descargables.',
+              'Edición campo por campo mientras la donación está pendiente.',
+              'Aprobar o rechazar con ventanas de confirmación. El rechazo pide un motivo.',
+              'Editor de los términos y condiciones, en español e inglés.',
+              'Barra lateral que se contrae en pantallas pequeñas.',
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'No muestro capturas del panel, porque contiene datos de donantes.',
+          },
+        ],
+      },
+      {
+        id: 'despliegue',
+        title: 'Despliegue',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'El sistema se empaqueta en tres contenedores con Docker Compose: frontend, backend y Nginx. Los dos Dockerfiles compilan en dos etapas, con Maven y Java 21 para el backend y Node para el frontend, así la imagen final solo lleva lo necesario para correr.',
+          },
+          {
+            type: 'list',
+            items: [
+              'Solo Nginx publica puertos. El frontend y el backend se comunican por la red interna de Docker.',
+              'Nginx redirige HTTP a HTTPS y usa certificados de Let’s Encrypt emitidos con Certbot.',
+              'Las credenciales viven en variables de entorno y fuera del repositorio.',
+              'El límite de tamaño de los archivos se define en Nginx y en Spring Boot.',
+            ],
           },
         ],
       },
       {
         id: 'secciones',
-        title: 'Qué hace la landing',
+        title: 'La landing pública',
         blocks: [
           {
             type: 'table',
@@ -1645,46 +1868,11 @@ export const projects: Project[] = [
           {
             type: 'list',
             items: [
-              'Formulario de donación: carta de intención con datos del donante, carga del RUT y firma digital dibujada en un canvas.',
+              'Formulario de donación: carta de intención con datos del donante, carga del RUT, firma digital dibujada en un canvas y verificación anti-bot.',
               'Calculadora tributaria: calcula la deducción según el monto, con montos sugeridos.',
-              'Agenda de citas: selección de fecha con calendario y envío de los datos de contacto.',
+              'Agenda de citas: selección de fecha con calendario y creación del evento en Google Calendar, con correo de confirmación.',
               'Bilingüe: todo el sitio cambia entre español e inglés.',
             ],
-          },
-        ],
-      },
-      {
-        id: 'arquitectura',
-        title: 'Arquitectura',
-        blocks: [
-          {
-            type: 'paragraph',
-            text: 'La landing es una aplicación de una sola página que consume los servicios del proyecto para publicar el contenido y recibir las donaciones. El navegador carga la interfaz, y la interfaz pide los datos a los servicios.',
-          },
-          {
-            type: 'media',
-            columns: 1,
-            items: [
-              { src: '/projects/chia-landing/11-arquitectura.png', alt: 'Diagrama general de la arquitectura de la landing', label: 'Vista general', caption: 'El navegador carga la SPA y esta se comunica con los servicios del proyecto.', fit: 'flow' },
-            ],
-          },
-          {
-            type: 'table',
-            columns: ['Área', 'Tecnología'],
-            rows: [
-              ['Framework', 'React 18'],
-              ['Lenguaje', 'TypeScript'],
-              ['Build', 'Vite 6'],
-              ['Estilos', 'Tailwind CSS 4'],
-              ['Rutas', 'react-router 7'],
-              ['Formularios', 'react-hook-form + Zod'],
-              ['Fechas', 'react-day-picker + date-fns'],
-              ['Protección anti-bot', 'Cloudflare Turnstile'],
-            ],
-          },
-          {
-            type: 'paragraph',
-            text: 'El detalle de la infraestructura y de los servicios queda fuera a propósito: el sitio está en producción y recibe donaciones.',
           },
         ],
       },
@@ -1710,7 +1898,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Web'],
+    stack: ['Spring Boot', 'Java', 'PostgreSQL', 'React', 'TypeScript', 'Spring Security', 'JWT', 'Docker', 'Nginx', 'Vite', 'Tailwind CSS'],
     image: '/projects/chia-landing/01-hero.webp',
     links: [{ label: 'Sitio en vivo', href: 'https://chiaelequilibrioperdido.online/' }],
   },
