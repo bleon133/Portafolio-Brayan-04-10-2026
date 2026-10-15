@@ -673,7 +673,7 @@ export const projects: Project[] = [
     role: 'Desarrollo backend y frontend',
     description:
       'API REST para administrar usuarios, roles, perfiles, direcciones y teléfonos, con un panel de administración en React. Construida como proyecto de la materia Aplicaciones Web Orientadas a Servicios durante el intercambio académico 2026-1.',
-    highlights: ['Intercambio UTTT 2026-1', 'API REST', '6 controladores · 37 endpoints', 'React + TypeScript', 'Publicado'],
+    highlights: ['Intercambio UTTT 2026-1', 'API REST', '6 controladores · 37 endpoints', 'JWT y roles', 'React + TypeScript'],
     facts: [
       { label: 'Mi rol', value: 'Desarrollo backend y frontend' },
       { label: 'Origen', value: 'Intercambio académico en la UTTT, 2026-1' },
@@ -681,27 +681,9 @@ export const projects: Project[] = [
       { label: 'Backend', value: 'ASP.NET Web API 2 · .NET Framework 4.8 · EF6' },
       { label: 'Frontend', value: 'React 18 · TypeScript · Vite' },
       { label: 'Datos', value: 'SQL Server' },
-      { label: 'Estado', value: 'Publicado y funcionando' },
+      { label: 'Estado', value: 'Publicado' },
     ],
     sections: [
-      {
-        id: 'demo',
-        title: 'Probar el panel',
-        blocks: [
-          {
-            type: 'paragraph',
-            text: 'El panel está publicado y se puede recorrer con una cuenta de prueba. Los datos que ya están cargados son de ejemplo.',
-          },
-          {
-            type: 'table',
-            columns: ['Campo', 'Valor'],
-            rows: [
-              ['Usuario', 'admin.lopez'],
-              ['Contraseña', 'Admin2026!'],
-            ],
-          },
-        ],
-      },
       {
         id: 'proyecto',
         title: 'El proyecto',
@@ -726,7 +708,7 @@ export const projects: Project[] = [
               'CRUD de usuarios, consulta por nombre de usuario y suspensión o reactivación de cuentas.',
               'CRUD de roles y asignación de roles a usuarios.',
               'CRUD de perfiles, con sus direcciones y teléfonos.',
-              'Inicio de sesión validado en el servidor, con respuesta distinta para credenciales incorrectas y cuenta suspendida.',
+              'Inicio de sesión con token JWT, validado en el servidor, con respuesta distinta para credenciales incorrectas y cuenta suspendida.',
               'Reglas de negocio: el nombre de usuario es único, un rol no se asigna dos veces al mismo usuario y no se elimina un rol que esté en uso.',
               'Eliminación en cascada controlada desde los servicios y escrituras dentro de transacciones.',
             ],
@@ -791,7 +773,10 @@ export const projects: Project[] = [
               'Las contraseñas nunca se devuelven: el mapeo del usuario ignora ese campo.',
               'Al editar un usuario, si no se envía contraseña se conserva la actual.',
               'El inicio de sesión se valida en el servidor. Si una contraseña almacenada venía en texto plano de datos antiguos, se migra a hash en el primer acceso correcto.',
-              'La cadena de conexión vive en un archivo aparte que no está en el repositorio; solo se versionan plantillas de ejemplo.',
+              'La cadena de conexión y la clave de firma de los tokens viven en archivos aparte que no están en el repositorio; solo se versionan plantillas de ejemplo.',
+              'El inicio de sesión entrega un token JWT que el panel envía en cada petición. Todos los endpoints exigen ese token, salvo el login, y borrar usuarios o cambiar roles solo lo puede hacer un administrador.',
+              'CORS acepta solo los orígenes configurados y el login bloquea por unos minutos tras varios intentos fallidos.',
+              'Los errores internos no devuelven detalles al cliente y los datos de entrada se validan antes de llegar a la base de datos.',
             ],
           },
         ],
@@ -869,15 +854,14 @@ export const projects: Project[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'La API y el panel están publicados y funcionan contra la base de datos real. Quedan mejoras que no formaban parte del alcance entregado.',
+            text: 'La API y el panel quedaron publicados. Después de la entrega les agregué autenticación con token, roles y CORS restringido. Quedan mejoras que no formaban parte del alcance.',
           },
           {
             type: 'table',
             columns: ['Tema', 'Estado'],
             rows: [
-              ['Autenticación con token y autorización por roles', 'Pendiente. Hoy el inicio de sesión valida credenciales pero no emite token, así que las rutas del panel se protegen en el cliente.'],
-              ['Restringir CORS a orígenes conocidos', 'Pendiente; hoy está abierto para cualquier origen.'],
-              ['Validación de modelos y DTO separados para crear y responder', 'Pendiente.'],
+              ['Refresh tokens y revocación', 'Pendiente. El token dura una hora y, al vencer, hay que volver a iniciar sesión.'],
+              ['DTO separados para crear y responder', 'Pendiente. La validación de entrada ya está, pero se comparte el mismo DTO.'],
               ['Acciones asíncronas e inyección de dependencias', 'Pendiente.'],
               ['Restricciones únicas e índices en la base de datos', 'Pendiente.'],
               ['Pruebas unitarias y de integración', 'Pendiente.'],
@@ -909,7 +893,7 @@ export const projects: Project[] = [
     stack: ['ASP.NET Web API', 'C#', '.NET Framework', 'Entity Framework', 'SQL Server', 'React', 'TypeScript', 'Vite'],
     image: '/projects/perfiles-roles/dashboard.png',
     links: [
-      { label: 'Probar el panel', href: 'https://gestionusuarios.brayandeveloper.online/login' },
+      { label: 'Ver el panel', href: 'https://gestionusuarios.brayandeveloper.online/login' },
       { label: 'Código backend', href: 'https://github.com/bleon133/BackGestionUsuarios' },
       { label: 'Código frontend', href: 'https://github.com/bleon133/FrontGestionUsuarios' },
     ],
