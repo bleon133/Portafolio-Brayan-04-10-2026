@@ -1,0 +1,36 @@
+# Brayan Steven León Martinez
+
+> Estudiante de Ingeniería de Sistemas en la UNAB (Bucaramanga, Colombia) y desarrollador backend y fullstack. Busca prácticas profesionales para 2027-1.
+
+Este es el portafolio personal de Brayan Steven León Martinez. Reúne sus proyectos, su experiencia y su formación. Todo el contenido está en español.
+
+## Quién es
+
+- Cursa octavo semestre de Ingeniería de Sistemas en la Universidad Autónoma de Bucaramanga (UNAB), con movilidad académica en la Universidad Tecnológica de Tula-Tepeji, en México.
+- Es desarrollador backend y fullstack. Trabajó dos años y tres meses en Devs Technology (de junio de 2023 a septiembre de 2025), donde construyó y mantuvo una plataforma web y una app móvil que siguen en producción.
+- Entre agosto y noviembre de 2026 es auxiliar de investigación y creación en la UNAB, dentro del videojuego «Chía: El Equilibrio Perdido».
+- Busca prácticas profesionales en 2027-1, en roles backend o fullstack.
+- Vive en Bucaramanga, Santander, Colombia.
+
+## Stack
+
+Java, Spring Boot, .NET y ASP.NET Core, PHP, React, TypeScript, JavaScript, Angular, Kotlin Multiplatform, Flutter, MongoDB, PostgreSQL, Oracle, SQL Server, Unity y C#. Herramientas: Git, Docker y CI/CD.
+
+## Páginas
+
+- [Inicio](https://brayandeveloper.online/): presentación breve y proyectos destacados.
+- [Proyectos](https://brayandeveloper.online/proyectos): los ocho proyectos publicados, con su stack y su descripción.
+- [Experiencia](https://brayandeveloper.online/experiencia): trayectoria profesional y responsabilidades por cargo.
+- [Educación](https://brayandeveloper.online/educacion): formación académica y certificados.
+- [Contacto](https://brayandeveloper.online/#contacto): correo, GitHub y LinkedIn.
+
+## Proyectos
+
+- [InsulinaVR](https://brayandeveloper.online/proyectos/insulinavr): prototipo de realidad virtual para enseñar la técnica de insulinización a adultos con diabetes tipo 2; se recorre solo con la mirada.
+- [Gestión de usuarios](https://brayandeveloper.online/proyectos/perfiles-roles): API REST con Spring Boot y panel en React para administrar usuarios, roles, perfiles, direcciones y teléfonos.
+- [Chía: El Equilibrio Perdido](https://brayandeveloper.online/proyectos/chia-landing): plataforma web de un videojuego inspirado en la cultura Muisca, con landing en React, API en Spring Boot con PostgreSQL y panel de donaciones.
+- [Sistema de vigilancia](https://brayandeveloper.online/proyectos/sistema-vigilancia): plataforma web y app móvil para una empresa de vigilancia; turnos, rondas, armas, mapas, alertas en tiempo real y bitácora.
+- [Cthulhu Jamboree](https://brayandeveloper.online/proyectos/cthulhu-jamboree): combate local 1v1 entre dos peces que cuelgan de un globo, hecho en 48 horas para la Global Game Jam 2025.
+- [Renacer Vikingo](https://brayandeveloper.online/proyectos/renacer-vikingo): RPG 2D en pixel art donde un Karl reconstruye su aldea vikinga y sube de rango hasta Konungr.
+- [HuronTroll](https://brayandeveloper.online/proyectos/hurontroll): juego de plataformas 2D en pixel art protagonizado por un hurón, hecho para la Global Game Jam 2024.
+- [Meditraz](https://brayandeveloper.online/proyectos/meditraz): prototipo académico para registrar y rastrear medicamentos en un entorno clínico, con inventario, solicitudes y transporte.
