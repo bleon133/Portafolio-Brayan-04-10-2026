@@ -41,24 +41,26 @@ export function Hero() {
       className="relative isolate mt-[var(--header-h)] overflow-hidden bg-background [@media(min-width:1024px)_and_(min-height:800px)_and_(orientation:landscape)]:pt-[min(var(--hero-extra),20vh)]"
     >
       <Container className="relative grid grid-rows-[auto_minmax(max-content,1fr)] pt-6 min-h-[max(700px,calc(100svh_-_var(--header-h)))] sm:min-h-[calc(24px_+_var(--title-h)_+_var(--tablet-photo-h)_-_var(--overlap))] lg:min-h-[max(640px,calc(24px_+_var(--title-h)_+_var(--photo-h)_-_var(--overlap)))] [@media(max-height:500px)_and_(max-width:900px)]:min-h-[max(700px,calc(100svh_-_var(--header-h)))]">
-        {/* Masthead — Bebas Neue 400, z-10 above circle (z-0) */}
-        <h1
+        {/* Masthead — Bebas Neue 400, z-10 above circle (z-0). Decorativo: el h1 semántico es el nombre. */}
+        <div
+          aria-hidden="true"
           className={`${portfolioTitleClass} h-[var(--title-h)] relative z-10 origin-left scale-x-[1.05] sm:scale-x-[1.25] lg:scale-x-[1.3]`}
         >
           <span className="block origin-top [transform:scaleY(var(--title-stretch))]">
             Portafolio
           </span>
-        </h1>
+        </div>
 
         {/* Content row — grid intrinsic sizing lets the hero grow if copy needs space. */}
         <div className="relative z-30 grid min-h-0 grid-cols-1 items-center pb-[calc(var(--mobile-photo-h)_+_24px)] sm:grid-cols-[42%_58%] sm:pb-0 md:grid-cols-[50%_50%] lg:grid-cols-[40%_60%] [@media(max-height:500px)_and_(max-width:900px)]:grid-cols-1 [@media(max-height:500px)_and_(max-width:900px)]:pb-[calc(var(--mobile-photo-h)_+_24px)]">
           <div className="relative z-30 min-w-0 py-6 font-heading">
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
-              Hola, soy
+              Portafolio de desarrollo de software · Ingeniería de Sistemas
             </p>
-            <h2 className="mt-2 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              {siteConfig.shortName}
-            </h2>
+            <h1 className="mt-2 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
+              <span className="sr-only">{siteConfig.name}</span>
+              <span aria-hidden="true">{siteConfig.shortName}</span>
+            </h1>
             <p className="mt-3 text-sm font-semibold uppercase tracking-[0.1em] text-accent">
               Desarrollador Fullstack con enfoque en Backend
             </p>
@@ -98,6 +100,8 @@ export function Hero() {
           />
           <img
             src="/assets/hero/brayan-leon.webp"
+            srcSet="/assets/hero/brayan-leon-640.webp 640w, /assets/hero/brayan-leon-1200.webp 1200w, /assets/hero/brayan-leon.webp 1600w"
+            sizes="(min-width: 1024px) 560px, (min-width: 640px) 51vw, 90vw"
             alt="Brayan León, desarrollador Fullstack con enfoque en Backend"
             width={1600}
             height={1536}

@@ -2,7 +2,7 @@ import { visibleProjects } from '@/data/projects'
 import type { AboutStep } from '@/types'
 
 export const aboutIntro =
-  'Soy desarrollador Fullstack con enfoque en Backend con más de 2 años de experiencia construyendo y manteniendo aplicaciones web. Trabajo sobre todo con Spring Boot, Java, React y .NET.'
+  'Soy desarrollador backend y fullstack, estudiante de Ingeniería de Sistemas en la Universidad Autónoma de Bucaramanga (UNAB), Bucaramanga, Colombia. Llevo más de 2 años construyendo y manteniendo aplicaciones web, casi siempre con Spring Boot, Java, React y .NET, y este portafolio es donde voy reuniendo ese trabajo.'
 
 export const aboutStats = [
   { value: 2, suffix: '+', label: 'años de experiencia' },
